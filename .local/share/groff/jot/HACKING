@@ -1,0 +1,28 @@
+Layout:
+    examples/    : Example Jot documents for reading/testing
+    tests/       : Has tests for various iternal parts of Jot, line allocation, tokenizing, queue testing
+    jot.c        : Handles arguments and line-by-line parsing
+    line.c       : Reads exactly one line of a file
+    line.h       : Header for above
+    parse.c      : contains Tokenized, which is a TokenQueue with a bunch of tokens on it
+    parse.h      : Header for above
+    state.h      : Defines various actions useful for state manipulation
+    token.h      : Defines the token structure
+    tokenqueue.c : Defines the functions for the TokenQueue data structure
+    tokenqueue.h : Defines the TokenQueue data structure
+    val.h        : Defines the 'val' datastructure
+    writer.c     : Defines the functions for the writer state machine
+    writer.h     : Defines the writer state machine
+    util.c       : Error handling and allocation error handling functions
+    util.h       : Headers for above
+
+Settings:
+    You can change the output (possibly to non-ms groff outputs) in writer.c
+    You can change spacing/parsing particulars in parse.c
+    You can change compilation specifics in the Makefile
+    grep -Hrn "SETTING" *
+
+To-Do:
+    Links with pdfhref?
+    Separate monospaced blocks from displayed blocks
+    grep -Hrn "TODO" *

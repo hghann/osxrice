@@ -1,0 +1,213 @@
+tap "buo/cask-upgrade"
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/cask-versions"
+tap "homebrew/core"
+# Clone of cat(1) with syntax highlighting and Git integration
+brew "bat"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.9"
+# Powerful command-line bookmark manager
+brew "buku"
+# Core application library for C
+brew "glib"
+# Manage compile and link flags for libraries
+brew "pkg-config"
+# Cross-platform make
+brew "cmake"
+# GNU File, Shell, and Text utilities
+brew "coreutils"
+# Configurable talking characters in ASCII art
+brew "cowsay"
+# GNU diction and style
+brew "diction"
+# Tool for managing dock items
+brew "dockutil"
+# Select default apps for documents and URL schemes on macOS
+brew "duti"
+# Modern replacement for 'ls'
+brew "exa"
+# Perl lib for reading and writing EXIF metadata
+brew "exiftool"
+# Simple, fast and user-friendly alternative to find
+brew "fd"
+# Macro processing language
+brew "m4"
+# Play, record, convert, and stream audio and video
+brew "ffmpeg"
+# GNU compiler collection
+brew "gcc"
+# Banner-like program prints strings as ASCII art
+brew "figlet"
+# Infamous electronic fortune-cookie generator
+brew "fortune"
+# Command-line fuzzy finder written in Go
+brew "fzf"
+# GNU implementation of the famous stream editor
+brew "gnu-sed"
+# GNU Pretty Good Privacy (PGP) package
+brew "gnupg"
+# Language for typesetting graphs
+brew "grap"
+# GNU troff text-formatting system
+brew "groff"
+# Improved top (interactive process viewer)
+brew "htop"
+# Tools and libraries to manipulate images in many formats
+brew "imagemagick"
+# Lightweight and flexible command-line JSON processor
+brew "jq"
+# Terminal file manager
+brew "lf"
+# Text-based web browser
+brew "lynx"
+# Utility for directing compilation
+brew "make"
+# Mac App Store command-line interface
+brew "mas"
+# Music Player Daemon
+brew "mpd"
+# Ncurses-based client for the Music Player Daemon
+brew "ncmpcpp"
+# Fast, highly customisable system info script
+brew "neofetch"
+# Ambitious Vim-fork focused on extensibility and agility
+brew "neovim"
+# RSS/Atom feed reader for text terminals
+brew "newsboat"
+# Swiss-army knife of markup format conversion
+brew "pandoc"
+# Password manager
+brew "pass"
+# Pretty system information tool written in POSIX sh
+brew "pfetch"
+# Linter for prose
+brew "proselint"
+# Cross-platform application and UI framework
+brew "qt@5"
+# Software environment for statistical computing
+brew "r"
+# Tools to work with human-editable, plain text data files
+brew "recutils"
+# Sophisticated calendar and alarm
+brew "remind"
+# Spreadsheet program for the terminal, using ncurses
+brew "sc-im"
+# SMART hard drive monitoring
+brew "smartmontools"
+# Command-line interface for https://speedtest.net bandwidth tests
+brew "speedtest-cli"
+# Cross-shell prompt for astronauts
+brew "starship"
+# Command-line interface to the freedesktop.org trashcan
+brew "trash-cli"
+# Command-line unarchiving tools supporting multiple formats
+brew "unar"
+# Internet file retriever
+brew "wget"
+# Show the current WiFi network password
+brew "wifi-password"
+# Naive linter for English prose
+brew "write-good"
+# Access X11 clipboards from the command-line
+brew "xclip"
+# PDF viewer
+brew "xpdf"
+# Download YouTube videos from the command-line
+brew "youtube-dl"
+# Fork of youtube-dl with additional features and fixes
+brew "yt-dlp"
+# Fish-like fast/unobtrusive autosuggestions for zsh
+brew "zsh-autosuggestions"
+# Fish shell like syntax highlighting for zsh
+brew "zsh-syntax-highlighting"
+# View, print, and comment on PDF documents
+cask "adobe-acrobat-reader"
+# GPU-accelerated terminal emulator
+cask "alacritty"
+# Automatic tiling window manager similar to xmonad
+cask "amethyst"
+# Electronics prototyping platform
+cask "arduino"
+# Web browser focusing on privacy
+cask "brave-browser"
+# Multi-platform client-side cloud file encryption tool
+cask "cryptomator"
+# Google Chromium, sans integration with Google
+cask "eloston-chromium"
+# Metadata cleaner
+cask "exifcleaner"
+# Web browser
+cask "firefox"
+# 3D parametric modeler
+cask "freecad"
+# Free and open-source image editor
+cask "gimp"
+# Utility to hide menu bar items
+cask "hiddenbar"
+# Vector graphics editor
+cask "inkscape"
+# Password manager app
+cask "keepassxc"
+# Tool to prevent the system from going into sleep mode
+cask "keepingyouawake"
+# Office suite
+cask "libreoffice"
+# Web browser
+cask "librewolf"
+# Open-source firewall to block unknown outgoing connections
+cask "lulu"
+# File system integration
+cask "macfuse"
+# Full TeX Live distribution with GUI applications
+cask "mactex"
+# Text editor
+cask "macvim"
+# Provides updates to various Microsoft products
+cask "microsoft-auto-update"
+# Spreadsheet software
+cask "microsoft-excel"
+# Presentation software
+cask "microsoft-powerpoint"
+# Meet, chat, call, and collaborate in just one place
+cask "microsoft-teams"
+# Word processor
+cask "microsoft-word"
+# Media player based on MPlayer and mplayer2
+cask "mpv"
+# Free and open-source RSS reader
+cask "netnewswire"
+# Cloud storage client
+cask "onedrive"
+# Keyboard-driven, vim-like browser based on PyQt5
+cask "qutebrowser"
+# Move and resize windows using keyboard shortcuts or snap areas
+cask "rectangle"
+# Data science software focusing on R and Python
+cask "rstudio"
+# Instant messaging application focusing on security
+cask "signal"
+# PDF reader and note-taking application
+cask "skim"
+# Unpacks archive files
+cask "the-unarchiver"
+# Customizable email client
+cask "thunderbird"
+# Virtual machines UI using QEMU
+cask "utm"
+# Disk encryption software focusing on security based on TrueCrypt
+cask "veracrypt"
+# Access eTextbooks
+cask "vitalsource-bookshelf"
+# Virtual machine client
+cask "vmware-horizon-client"
+# Binary releases of VS Code without MS branding/telemetry/licensing
+cask "vscodium"
+# Desktop client for WhatsApp
+cask "whatsapp"
+# Video communication and virtual meeting platform
+cask "zoom"
+mas "iMovie", id: 408981434
+mas "Keynote", id: 409183694
+mas "Pages", id: 409201541
+mas "Xcode", id: 497799835

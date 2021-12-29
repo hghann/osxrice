@@ -1,0 +1,181 @@
+# File: lfrc
+# Maintainer: worthyox
+#
+# Basic Settings
+set previewer ~/.config/lf/preview
+set cleaner ~/.config/lf/cleaner
+set preview true
+set hidden true
+set drawbox true
+set icons true
+set ignorecase true
+
+# Custom Functions
+cmd mkdir ${{
+  printf "Directory Name: "
+  read ans
+  mkdir $ans
+}}
+
+cmd mkfile ${{
+  printf "File Name: "
+  read ans
+  $EDITOR $ans
+}}
+
+cmd chmod ${{
+  printf "Mode Bits: "
+  read ans
+
+  for file in "$fx"
+  do
+    chmod $ans $file
+  done
+
+  lf -remote 'send reload'
+}}
+
+cmd fzf_jump ${{
+  res="$(find . -maxdepth 3 | fzf --reverse --header='Jump to location')"
+  if [ -f "$res" ]; then
+    cmd="select"
+  elif [ -d "$res" ]; then
+    cmd="cd"
+  fi
+  lf -remote "send $id $cmd \"$res\""
+}}
+
+cmd broot_jump ${{
+  f=$(mktemp)
+  res="$(broot --outcmd $f && cat $f | sed 's/cd //')"
+  rm -f "$f"
+  if [ -f "$res" ]; then
+    cmd="select"
+  elif [ -d "$res" ]; then
+    cmd="cd"
+  fi
+  lf -remote "send $id $cmd \"$res\""
+}}
+
+# Archive bindings
+cmd unarchive ${{
+  case "$f" in
+      *.zip) unzip "$f" ;;
+      *.tar.gz) tar -xzvf "$f" ;;
+      *.tar.bz2) tar -xjvf "$f" ;;
+      *.tar) tar -xvf "$f" ;;
+      *) echo "Unsupported format" ;;
+  esac
+}}
+
+cmd zip %zip -r "$f" "$f"
+cmd tar %tar cvf "$f.tar" "$f"
+cmd targz %tar cvzf "$f.tar.gz" "$f"
+cmd tarbz2 %tar cjvf "$f.tar.bz2" "$f"
+
+# Trash cli bindings
+cmd trash ${{
+  files=$(printf "$fx" | tr '\n' ';')
+  while [ "$files" ]; do
+    # extract the substring from start of string up to delimiter.
+    # this is the first "element" of the string.
+    file=${files%%;*}
+
+    trash-put "$(basename "$file")"
+    # if there's only one element left, set `files` to an empty string.
+    # this causes us to exit this `while` loop.
+    # else, we delete the first "element" of the string from files, and move onto the next.
+    if [ "$files" = "$file" ]; then
+      files=''
+    else
+      files="${files#*;}"
+    fi
+  done
+}}
+
+cmd clear_trash %trash-empty
+
+cmd restore_trash ${{
+  trash-restore
+}}
+
+# Bindings
+# Remove some defaults
+map m
+map o
+map n
+map "'"
+map '"'
+map d
+map c
+map e
+map f
+
+# File Openers
+map ee $$EDITOR "$f"
+map z $$READER "$f"
+map u $view "$f"
+
+# Archive Mappings
+map az zip
+map at tar
+map ag targz
+map ab targz
+map au unarchive
+
+# Trash Mappings
+map dd trash
+map tc clear_trash
+map tr restore_trash
+
+# Broot Mapping
+map f fzf_jump
+
+# Basic Functions
+map . set hidden!
+map DD delete
+map p paste
+map x cut
+map cc copy
+map <enter> open
+map mf mkfile
+map md mkdir
+map ch chmod
+map r rename
+map H top
+map L bottom
+map R reload
+map C clear
+map u unselect
+
+# Mouse Mapping
+map <m-up> up
+map <m-down> down
+
+# Movement
+map gr cd ~/osxrice
+map gc. cd ~/.config
+map gcl cd ~/.config/lf
+map gca cd ~/.config/alacritty
+map gcz cd ~/.config/zsh
+map gcs cd ~/.config/startpage
+map gv cd ~/.vim
+
+map gp. cd ~/Pictures
+map gps cd ~/Pictures/screenshots
+map gpw cd ~/Pictures/wallpapers
+
+map gts cd ~/documents/university/bachelor-2/semester-2
+map gtu cd ~/OneDrive\ -\ University\ of\ Ottawa/bachelor/bachelor-2
+
+map gd cd ~/documents
+map gD cd ~/downloads
+map gtg cd ~/downloads/gitthings
+map ge cd ~/desktop
+
+map gu. cd /usr
+map ge. cd /etc
+map gus cd /usr/share
+map gl cd ~/.local
+map gul cd /usr/local
+map gub cd /usr/local/bin
