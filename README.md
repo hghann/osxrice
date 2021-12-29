@@ -9,12 +9,16 @@
 <p align="center">
   <a href="https://github.com/hghann/osxrice/blob/master/LICENSE">
       <img src="https://img.shields.io/github/license/hghann/osxrice">
+  </a>
   <a href="https://img.shields.io/github/languages/count/hghann/osxrice">
       <img src="https://img.shields.io/github/languages/count/hghann/osxrice">
+  </a>
   <a href="https://img.shields.io/github/languages/code-size/hghann/osxrice">
       <img src="https://img.shields.io/github/languages/code-size/hghann/osxrice">
+  </a>
   <a href="https://github.com/hghann/osxrice/pulse" alt="Activity">
-      <img src="https://img.shields.io/github/commit-activity/m/hghann/osxrice" /></a>
+      <img src="https://img.shields.io/github/commit-activity/m/hghann/osxrice">
+  </a>
 </p>
 
 ## Table of Contents
@@ -162,11 +166,12 @@ Alternatively, you can have an additional, personal dotfiles repo at `~/.extra`.
 
 ## Additional Resources
 
-- [Lars Kappert's Dotfiles](https://github.com/webpro/dotfiles)
 - [Awesome Dotfiles](https://github.com/webpro/awesome-dotfiles)
 - [Homebrew](https://brew.sh)
 - [Homebrew Cask](https://github.com/Homebrew/homebrew-cask)
 - [Bash prompt](https://wiki.archlinux.org/index.php/Color_Bash_Prompt)
+- [Lars Kappert's Dotfiles](https://github.com/webpro/dotfiles)
+- [Luke Smith's Dotfiles](https://github.com/LukeSmithxyz/voidrice)
 
 ## License
 

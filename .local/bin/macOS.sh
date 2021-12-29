@@ -8,6 +8,8 @@
 # @description : automate defaults on macOS
 ######################################################################
 
+echo "Applying defaults."
+
 COMPUTER_NAME="osx"
 
 osascript -e 'tell application "System Preferences" to quit'
@@ -486,11 +488,8 @@ for app in "Address Book" "Calendar" "Contacts" "Dock" "Finder" "Mail"
   killall "${app}" &> /dev/null
 done
 
-echo 'Installation Complete'
-echo 'Now you can make an SSH key:'
-echo "Press CONTROL+C, if you don't want to"
-
-ssh-keygen -t ecdsa -b 521
+echo "Defaults set."
+echo" Some changes may require a logout/restart to take effect."
 
 # vim: set tw=78 ts=2 et sw=2 sr:
 
