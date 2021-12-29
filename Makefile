@@ -19,6 +19,9 @@ PROGINSTALL = brew install --cask
 doas: ## Configure doas
 	$(SUDO) echo "permit persist keepenv $(whoami) as root" >> /etc/doas.conf
 
+ssh-key_gen: ## Generate an SSH key
+	ssh-keygen -t ecdsa -b 521
+
 scripts:
 	make -s $(HOME)/.local/bin/scripts
 
@@ -212,6 +215,12 @@ docker: ## Docker initial setup
 	$(SUDO) systemctl enable docker.service
 	$(SUDO) systemctl start docker.service
 
+macos: ## Apply macOS system defaults
+	$(PWD)/.local/bin/macOS.sh
+
+dock: ## Apply macOS dock settings
+	$(PWD)/.local/bin/dock.sh
+
 install: ## Install arch linux packages using pacman
 	xargs $(PKGINSTALL) < $(PWD)/pkg/brewlist
 
@@ -220,11 +229,13 @@ backup: ## Backup macOS packages using brew
 	brew list -1 --full-name > $(PWD)/pkg/brewlist
 
 update: ## Update macOS packages and save packages cache
+	sudo softwareupdate -i -a
 	brew upgrade -v;\
 		cd $(HOME)/.config/brew;\
 		brew bundle -v;\
 		brew cu -afyv;\
 		cd; brew doctor -v
+	    brew update
 
 pip: ## Install python packages
 	pip install --user --upgrade pip

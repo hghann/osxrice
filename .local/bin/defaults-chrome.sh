@@ -1,3 +1,9 @@
+######################################################################
+# @author      : hg (https://github.com/hghann)
+# @file        : defaults-chrome.sh
+# @created     : Wed 29 Dec 00:16:13 2021
+######################################################################
+
 # Disable swipe navigation
 defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool false
 defaults write com.google.Chrome.canary AppleEnableSwipeNavigateWithScrolls -bool false

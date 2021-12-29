@@ -1,3 +1,5 @@
+#!/bin/bash
+
 ######################################################################
 # @author      : hg (https://github.com/hghann)
 # @file        : .bash_profile
