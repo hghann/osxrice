@@ -1,0 +1,111 @@
+.TL
+Example Document
+
+.JS
+
+# Typesetting
+
+This is an unindented paragraph. Here is another line.
+And Another, now on a newline.
+
+    Here is an indented paragraph, with 4 spaces.
+It also has a line after it.
+
+  Two spaces? How delightfully absurd!
+More stuff.
+
+ One Space? Are you a maniac?
+How weird.
+
+	A Tab? How antiquated!
+Things here as well!
+
+# Fonts
+
+## Bold/Italics
+
+This is *italic*, this is not.
+This is **bold**, this is not.
+This is ***both***, this is not.
+
+## Super/Subscripts
+
+This is ^SuperScript^, this is not.
+This is _SubScript_, this is not.
+This is _^Both_^, this is not.
+
+## Combinations
+
+This is *italic ^SuperScript^*, this is not.
+This is *italic _SubScript_*, this is not.
+This is *italic _^Both^_*, this is not.
+
+This is **Bold ^SuperScript^**, this is not.
+This is **Bold _SubScript_**, this is not.
+This is **Bold ^_Both_^**, this is not.
+
+This is ***Both ^SuperScript^***, this is not.
+This is ***Both _SubScript_***, this is not.
+This is ***Both ^before_Both_after^***, this is not.
+
+# Character Testing
+
+Here is an asterisk: \*.
+Here are two: \*\*
+Here is an \^ up carat, and \_ underscore.
+
+# Lists
+
+- One
+- Two
+- Three
+
+## Right Shifts
+
+- One
+    - Two
+        - Three
+            - Four
+                - Five
+
+# Escapes
+
+Below is the pythagorean theorem in EQ.
+
+.EQ
+! a sup 2 + b sup 2 = c sup 2
+.EN
+
+Here's a diagram in pic:
+
+.PS
+! box "jot";
+! arrow;
+! box "pic";
+! arrow;
+! box "groff -ms";
+! arrow;
+! ellipse "Output";
+.PE
+
+# Code Blocks
+
+Jot allows users to embed code into a document like so:
+
+~~~
+#include <stdio.h>
+
+int 
+main(void) {
+    for (int i = 0; i < 30; i++)
+        printf("%d ", i);
+    putchar('\n');
+}
+~~~
+
+# Dot escapes
+
+- .bullet.
+## .header.
+
+.JE

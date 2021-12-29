@@ -1,0 +1,47 @@
+.TH JOT 1 jot\-VERSION
+.SH NAME
+jot \- a Groff preprocessor for note-taking
+.SH SYNOPSIS
+jot
+.RI [ files... ]
+.SH DESCRIPTION
+\f[B]Jot\f[] is a pre-processor for the groff ms macro package which allows basic markdown-esque formatting.
+By default, it reads a file from stdin, unless one or more filenames are given as arguments.
+It outputs groff text to stdout.
+.SH OPTIONS
+\f[B]Jot\f[] is configured through its source code, so it has no flags or options.
+.SH OVERVIEW
+.P
+The \f[B]jot\f[] commandline tool takes in content written in the Jot language and compiles it to the groff
+formatting language, specifically the ms macroset.
+The Jot language is considered 'markdown-esque', in that it takes a few features from markdown, but doesn't conform to any formal markdown standard, nor tries to.
+.P
+Jot currently supports basic markdown-esque features, as well as a few added ones:
+.IP \(bu 2
+Whitespace-based paragraphs
+.IP \(bu 2
+Differentiating between indented and non-indented paragraphs
+.IP \(bu 2
+Bolding, Italicizing and Constant Width with \f[B]**\f[], \f[B]*\f[] and \f[B]`\f[]
+.IP \(bu 2
+Superscripts and Subscripts with \f[B]^\f[] and \f[B]_\f[]
+.IP \(bu 2
+Lists using \f[B]-\f[] and \f[B]*\f[]
+.IP \(bu 2
+Escapes using \f[B]!\f[] and \f[B].\f[]
+.IP \(bu 2
+Blockquotes using \f[B]>\f[]
+.IP \(bu 2
+Code blocks using \f[B]~~~\f[] or \f[B]```\f[]
+.SH EXAMPLES
+.P
+To see examples of valid jot text, check the \f[I]examples/\f[] directory in the source code.
+There, you can find example jot documents and their ms equivalents.
+.SH SEE ALSO
+.BR groff(1) ,
+.BR groff_ms(7)
+.SH BUGS
+Report bugs on
+.UR https://gitlab.com/rvs314/jot
+the gitlab page
+.UE .

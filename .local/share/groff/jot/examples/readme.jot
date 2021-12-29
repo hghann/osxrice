@@ -1,0 +1,14 @@
+.TL
+My Jot Document
+.AU
+@rvs314
+
+.JS
+
+I can now write in ***markdown***!
+My paragraphs are seperated by empty lines, so I don't need to manage tags.
+
+    Paragraphs that start with an indent are indented.
+Any number/combination of spaces and tabs is accepted here.
+
+.JE

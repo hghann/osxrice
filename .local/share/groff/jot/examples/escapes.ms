@@ -1,0 +1,33 @@
+.TL
+Escapes in Jot
+
+.PP
+There's no way Jot can provide syntactical niceties for all possible things G/Troff can do.
+In fact, because of the nature of G/Troff, we often can't tell what it'll do because of its reliance on preprocessors.
+For this, our solution is escapes.
+.PP
+Escapes allow one to write literal G/Troff in the middle of a Jot document. For example, using the eqn preprocessor, we can write long equations, like the one below.
+.EQ "Equation 1"
+  G(z)~mark =~ e sup { ln ~G(z) }
+  ~=~ exp left (
+  sum from k>=1 { S sum k z sub k } over k right )
+.EN
+.PP
+As demonstrated above, there are two kinds of escapes: '.' escapes and '!' escapes. 
+Both render the text that follows truthfully to groff, though the '.' also sends itself to groff, while the '!' does not.
+For example: the phrase '.2C' sends the text '.2C', while '!2C' just sends '2C'.
+.PP
+Here's a picture using the 'pic' preprocessor:
+.PS
+ box "1";
+ arrow;
+ ellipse "2";
+ arrow;
+ box "3";
+.PE
+\f[]
+.FS
+Equation 1 comes from Brian W. Kernighan and Lorinda L. Cherry's
+"Typesetting Mathematics - User's Guide (Second Edition)". 
+The spaces in the equation are not in the book but added by myself for ease of reading, as they are removed by EQN.
+.FE

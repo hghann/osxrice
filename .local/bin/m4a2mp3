@@ -1,0 +1,18 @@
+#!/bin/sh
+
+######################################################################
+# @author      : hg (https://github.com/hghann)
+# @file        : m4a2mp3.sh
+# @created     : Wed 22 Dec 2020 10:26:46 AM
+#
+# @description : Convert all m4a files in a directory to mp3
+######################################################################
+
+for f in *.m4a;
+do
+ffmpeg -i "$f" -acodec libmp3lame -vn -b:a 320k "${f%.m4a}.mp3"
+done
+exit 0
+
+# vim: set tw=78 ts=2 et sw=2 sr:
+

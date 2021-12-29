@@ -1,0 +1,188 @@
+#!/bin/sh
+
+# ex - archive extractor
+# usage: ex <file>
+ex ()
+{
+  if [ -f $1 ] ; then
+    case $1 in
+      *.tar.bz2)   tar xjf $1   ;;
+      *.tar.gz)    tar xzf $1   ;;
+      *.tar.xz)    tar xJf $1   ;;
+      *.bz2)       bunzip2 $1   ;;
+      *.rar)       unrar x $1   ;;
+      *.gz)        gunzip $1    ;;
+      *.tar)       tar xf $1    ;;
+      *.tbz2)      tar xjf $1   ;;
+      *.tgz)       tar xzf $1   ;;
+      *.zip)       unzip $1     ;;
+      *.Z)         uncompress $1;;
+      *.7z)        7z x $1      ;;
+      *)           echo "'$1' cannot be extracted via ex()" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
+}
+
+# Use neovim for vim if present.
+[ -x "$(command -v nvim)" ] && alias vim="nvim" vimdiff="nvim -d"
+
+# Use $XINITRC variable if file exists.
+[ -f "$XINITRC" ] && alias startx="startx $XINITRC"
+
+# doas/sudo not required for some system commands
+#for command in mount umount sv pacman updatedb su ; do
+#    alias $command="doas $command"
+#done; unset command
+
+# miscellaneous
+#alias sudo='doas'
+alias \
+	c='clear' \
+	cat='bat' \
+	groff='/usr/local/Cellar/groff/1.22.4_1/bin/groff'    # alias osx groff to homebrew groff
+
+# Utilities
+alias \
+	wtr="curl wttr.in" \
+	myip="curl ifconfig.co" \
+	u='app-cleaner.sh' \
+	wpass='wifi-password' \
+	myip='curl ifconfig.co'
+
+# Navigation
+alias \
+	..='cd ..' \
+	...='cd ../..' \
+	.3='cd ../../..' \
+	.4='cd ../../../..' \
+	.5='cd ../../../../..'
+
+# brew
+alias brewsyu='brew upgrade && cd $HOME/.config/brew && brew bundle -v && brew doctor --verbose && cd && brew cu -a -f'   # update all brew pkgs
+alias brewfcrt='cd $HOME/.config/brew && brew bundle dump --describe && cd'    # create brewfile in $HOME/config/brew
+alias brewfupd='cd $HOME/.config/brew && brew bundle dump --force --describe && cd'    # update brewfile
+alias cleanup='brew autoremove && brew cleanup && brew doctor --verbose'    # remove orphaned packages
+alias brewdep='brew deps --tree --installed'    # list dependencies
+
+# Change "ls" to "exa"
+alias \
+	ls='exa -al --color=always --group-directories-first' \
+	la='exa -a --color=always --group-directories-first' \
+	ll='exa -l --color=always --group-directories-first' \
+	lt='exa -aT --color=always --group-directories-first' \
+	l.='exa -a | egrep "^\."'
+
+# Colorize grep output (good for log files)
+alias \
+	grep='grep --color=auto' \
+	egrep='egrep --color=auto' \
+	fgrep='fgrep --color=auto'
+
+# Colorize commands when possible.
+alias \
+	diff="diff --color=auto" \
+	ccat="highlight --out-format=ansi"
+
+# Verbosity and settings that you pretty much just always are going to want.
+alias \
+	cp="cp -iv" \
+	mv="mv -iv" \
+	rm="rm -vI" \
+	bc="bc -ql" \
+	mkd="mkdir -pv" \
+	yt="youtube-dl --add-metadata -i" \
+	yta="yt -x -f bestaudio/best" \
+	ffmpeg="ffmpeg -hide_banner"
+
+# These common commands are just too long! Abbreviate them.
+alias \
+	ka="killall" \
+	g="git" \
+	trem="transmission-remote" \
+	YT="youtube-viewer" \
+	sdn="sudo shutdown -h now" \
+	e="$EDITOR" \
+	v="$EDITOR" \
+	p="doas pacman" \
+	z="xpdf" \
+	n="newsboat"
+
+# Adding flags
+alias \
+	df='df -h' \
+	free='free -m' \
+	lf='/usr/local/bin/lfrun' \
+	vifm='./.config/vifm/scripts/vifmrun' \
+	ncmpcpp='ncmpcpp ncmpcpp_directory=$HOME/.config/ncmpcpp/' \
+	mocp='mocp -M "$XDG_CONFIG_HOME"/moc -O MOCDir="$XDG_CONFIG_HOME"/moc' \
+	lynx='lynx -cfg=~/.lynx/lynx.cfg -lss=~/.lynx/lynx.lss -vikeys'
+
+# get top process eating memory
+alias psmem='ps auxf | sort -nr -k 4'
+alias psmem10='ps auxf | sort -nr -k 4 | head -10'
+# get top process eating cpu
+alias pscpu='ps auxf | sort -nr -k 3'
+alias pscpu10='ps auxf | sort -nr -k 3 | head -10'
+
+# Git
+alias \
+	addup='git add -u' \
+	addall='git add .' \
+	branch='git branch' \
+	checkout='git checkout' \
+	clone='git clone' \
+	commit='git commit -m' \
+	fetch='git fetch' \
+	pull='git pull origin' \
+	push='git push origin' \
+	status='git status' \
+	tag='git tag' \
+	newtag='git tag -a' \
+	gd="cd downloads/gitthings"
+# bare git repo alias for dotfiles
+alias config="/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME"
+
+# gpg encryption
+# verify signature for isos
+alias gpg-check="gpg2 --keyserver-options auto-key-retrieve --verify"
+# receive the key of a developer
+alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"
+
+# youtube-dl
+alias \
+	ydl="youtube-dl -x --audio-format mp3 -a $HOME/urls" \
+	yta-aac="youtube-dl --extract-audio --audio-format aac " \
+	yta-best="youtube-dl --extract-audio --audio-format best " \
+	yta-flac="youtube-dl --extract-audio --audio-format flac " \
+	yta-m4a="youtube-dl --extract-audio --audio-format m4a " \
+	yta-mp3="youtube-dl --extract-audio --audio-format mp3 " \
+	yta-opus="youtube-dl --extract-audio --audio-format opus " \
+	yta-vorbis="youtube-dl --extract-audio --audio-format vorbis " \
+	yta-wav="youtube-dl --extract-audio --audio-format wav " \
+	ytv-best="youtube-dl -f bestvideo+bestaudio "
+
+# Switch between shells
+alias tobash="sudo chsh $USER -s /bin/bash && echo 'Now log out.'"
+alias tozsh="sudo chsh $USER -s /bin/zsh && echo 'Now log out.'"
+
+# Remind
+alias erem="vim ~/.reminders/remind.rem"
+
+# skim (pdf viewer)
+alias embed="skimpdf embed "
+alias unembed="skimpdf unembed "
+
+
+# Terminal rickroll
+alias rr='curl -s -L https://raw.githubusercontent.com/keroserene/rickrollrc/master/roll.sh | bash'
+
+# Set alias per OS
+case "$(uname -s)" in
+   Darwin)
+     # echo 'Mac OS X'
+     ;;
+   Linux)
+     ;;
+esac

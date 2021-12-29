@@ -1,0 +1,2337 @@
+%!PS
+%%Version: 3.3.1
+%%DocumentFonts: (atend)
+%%Pages: (atend)
+%%EndComments
+%
+% Version 3.3.1 prologue for troff files.
+%
+
+/#copies 1 store
+/aspectratio 1 def
+/formsperpage 1 def
+/landscape false def
+/linewidth .3 def
+/magnification 1 def
+/margin 0 def
+/orientation 0 def
+/resolution 720 def
+/rotation 1 def
+/xoffset 0 def
+/yoffset 0 def
+
+/roundpage true def
+/useclippath true def
+/pagebbox [0 0 612 792] def
+
+/R  /Times-Roman def
+/I  /Times-Italic def
+/B  /Times-Bold def
+/BI /Times-BoldItalic def
+/H  /Helvetica def
+/HI /Helvetica-Oblique def
+/HB /Helvetica-Bold def
+/HX /Helvetica-BoldOblique def
+/CW /Courier def
+/CO /Courier def
+/CI /Courier-Oblique def
+/CB /Courier-Bold def
+/CX /Courier-BoldOblique def
+/PA /Palatino-Roman def
+/PI /Palatino-Italic def
+/PB /Palatino-Bold def
+/PX /Palatino-BoldItalic def
+/Hr /Helvetica-Narrow def
+/Hi /Helvetica-Narrow-Oblique def
+/Hb /Helvetica-Narrow-Bold def
+/Hx /Helvetica-Narrow-BoldOblique def
+/KR /Bookman-Light def
+/KI /Bookman-LightItalic def
+/KB /Bookman-Demi def
+/KX /Bookman-DemiItalic def
+/AR /AvantGarde-Book def
+/AI /AvantGarde-BookOblique def
+/AB /AvantGarde-Demi def
+/AX /AvantGarde-DemiOblique def
+/NR /NewCenturySchlbk-Roman def
+/NI /NewCenturySchlbk-Italic def
+/NB /NewCenturySchlbk-Bold def
+/NX /NewCenturySchlbk-BoldItalic def
+/ZD /ZapfDingbats def
+/ZI /ZapfChancery-MediumItalic def
+/S  /S def
+/S1 /S1 def
+/GR /Symbol def
+
+/inch {72 mul} bind def
+/min {2 copy gt {exch} if pop} bind def
+
+/setup {
+	counttomark 2 idiv {def} repeat pop
+
+	landscape {/orientation 90 orientation add def} if
+	/scaling 72 resolution div def
+	linewidth setlinewidth
+	1 setlinecap
+
+	pagedimensions
+	xcenter ycenter translate
+	orientation rotation mul rotate
+	width 2 div neg height 2 div translate
+	xoffset inch yoffset inch neg translate
+	margin 2 div dup neg translate
+	magnification dup aspectratio mul scale
+	scaling scaling scale
+
+	addmetrics
+	0 0 moveto
+} def
+
+/pagedimensions {
+	useclippath userdict /gotpagebbox known not and {
+		/pagebbox [clippath pathbbox newpath] def
+		roundpage currentdict /roundpagebbox known and {roundpagebbox} if
+	} if
+	pagebbox aload pop
+	4 -1 roll exch 4 1 roll 4 copy
+	landscape {4 2 roll} if
+	sub /width exch def
+	sub /height exch def
+	add 2 div /xcenter exch def
+	add 2 div /ycenter exch def
+	userdict /gotpagebbox true put
+} def
+
+/addmetrics {
+	/Symbol /S null Sdefs cf
+	/Times-Roman /S1 StandardEncoding dup length array copy S1defs cf
+} def
+
+/pagesetup {
+	/page exch def
+	currentdict /pagedict known currentdict page known and {
+		page load pagedict exch get cvx exec
+	} if
+} def
+
+/decodingdefs [
+	{counttomark 2 idiv {y moveto show} repeat}
+	{neg /y exch def counttomark 2 idiv {y moveto show} repeat}
+	{neg moveto {2 index stringwidth pop sub exch div 0 32 4 -1 roll widthshow} repeat}
+	{neg moveto {spacewidth sub 0.0 32 4 -1 roll widthshow} repeat}
+	{counttomark 2 idiv {y moveto show} repeat}
+	{neg setfunnytext}
+] def
+
+/setdecoding {/t decodingdefs 3 -1 roll get bind def} bind def
+
+/w {neg moveto show} bind def
+/m {neg dup /y exch def moveto} bind def
+/done {/lastpage where {pop lastpage} if} def
+
+/f {
+	dup /font exch def findfont exch
+	dup /ptsize exch def scaling div dup /size exch def scalefont setfont
+	linewidth ptsize mul scaling 10 mul div setlinewidth
+	/spacewidth ( ) stringwidth pop def
+} bind def
+
+/changefont {
+	/fontheight exch def
+	/fontslant exch def
+	currentfont [
+		1 0
+		fontheight ptsize div fontslant sin mul fontslant cos div
+		fontheight ptsize div
+		0 0
+	] makefont setfont
+} bind def
+
+/sf {f} bind def
+
+/cf {
+	dup length 2 idiv
+	/entries exch def
+	/chtab exch def
+	/newencoding exch def
+	/newfont exch def
+
+	findfont dup length 1 add dict
+	/newdict exch def
+	{1 index /FID ne {newdict 3 1 roll put}{pop pop} ifelse} forall
+
+	newencoding type /arraytype eq {newdict /Encoding newencoding put} if
+
+	newdict /Metrics entries dict put
+	newdict /Metrics get
+	begin
+		chtab aload pop
+		1 1 entries {pop def} for
+		newfont newdict definefont pop
+	end
+} bind def
+
+%
+% A few arrays used to adjust reference points and character widths in some
+% of the printer resident fonts. If square roots are too high try changing
+% the lines describing /radical and /radicalex to,
+%
+%	/radical	[0 -75 550 0]
+%	/radicalex	[-50 -75 500 0]
+%
+% Move braceleftbt a bit - default PostScript character is off a bit.
+%
+
+/Sdefs [
+	/bracketlefttp		[201 500]
+	/bracketleftbt		[201 500]
+	/bracketrighttp		[-81 380]
+	/bracketrightbt		[-83 380]
+	/braceleftbt		[203 490]
+	/bracketrightex		[220 -125 500 0]
+	/radical		[0 0 550 0]
+	/radicalex		[-50 0 500 0]
+	/parenleftex		[-20 -170 0 0]
+	/integral		[100 -50 500 0]
+	/infinity		[10 -75 730 0]
+] def
+
+/S1defs [
+	/underscore		[0 80 500 0]
+	/endash			[7 90 650 0]
+] def
+%
+% Tries to round clipping path dimensions, as stored in array pagebbox, so they
+% match one of the known sizes in the papersizes array. Lower left coordinates
+% are always set to 0.
+%
+
+/roundpagebbox {
+    7 dict begin
+	/papersizes [8.5 inch 11 inch 14 inch 17 inch] def
+
+	/mappapersize {
+		/val exch def
+		/slop .5 inch def
+		/diff slop def
+		/j 0 def
+		0 1 papersizes length 1 sub {
+			/i exch def
+			papersizes i get val sub abs
+			dup diff le {/diff exch def /j i def} {pop} ifelse
+		} for
+		diff slop lt {papersizes j get} {val} ifelse
+	} def
+
+	pagebbox 0 0 put
+	pagebbox 1 0 put
+	pagebbox dup 2 get mappapersize 2 exch put
+	pagebbox dup 3 get mappapersize 3 exch put
+    end
+} bind def
+
+%%EndProlog
+%%BeginSetup
+mark
+/resolution 720 def
+setup
+2 setdecoding
+%%EndSetup
+%%Page: 0 1
+/saveobj save def
+mark
+1 pagesetup
+10 PA f
+(AT&T Bell Laboratories)2 1053 1 2353 1740 t
+(Murray Hill, New Jersey 07974)4 1367 1 2196 1860 t
+(Computing Science Technical Report No. 97)5 1946 1 1907 3180 t
+12 PB f
+(A Typesetter-independent TROFF)2 1872 1 1944 3450 t
+10 PI f
+(Brian W. Kernighan)2 826 1 2467 3690 t
+10 PA f
+(Revised, March, 1982)2 938 1 720 6240 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 0 1
+%%Page: 0 2
+/saveobj save def
+mark
+2 pagesetup
+12 PB f
+(A Typesetter-independent TROFF)2 1872 1 1944 1230 t
+10 PI f
+(Brian W. Kernighan)2 826 1 2467 1470 t
+10 PA f
+(AT&T Bell Laboratories)2 1053 1 2353 1650 t
+(Murray Hill, New Jersey 07974)4 1367 1 2196 1770 t
+10 PI f
+(ABSTRACT)2621 2270 w
+10 PA f
+(Although)1330 2566 w
+8 PA f
+(TROFF)1802 2566 w
+10 PA f
+( of document preparation at Bell)5 1538(has been the mainstay)3 1039 2 2103 2566 t
+( very dependent on one particular)5 1559(Labs for several years, it has heretofore been)7 2041 2 1080 2686 t
+(typesetter, the Graphic Systems CAT.)4 1659 1 1080 2806 t
+( describes conversion of)3 1072(This paper)1 477 2 1330 2962 t
+8 PA f
+(TROFF)2909 2962 w
+10 PA f
+(to deal with a wide class of type-)7 1485 1 3195 2962 t
+(setters.)1080 3082 w
+( these typesetters provide many more facilities than the CAT does.)10 2989(Some of)1 361 2 1330 3238 t
+( more sizes and fonts, larger alphabets, and the)8 2230(Typical extra features include)3 1370 2 1080 3358 t
+( paper)1 317( The)1 251( create new characters and to draw graphical objects.)8 2605(ability to)1 427 4 1080 3478 t
+(describes the enhancements that permit)4 1761 1 1080 3598 t
+8 PA f
+(TROFF)2867 3598 w
+10 PA f
+(to take advantage of some of these)6 1531 1 3149 3598 t
+(capabilities as well.)2 854 1 1080 3718 t
+(Revised, March, 1982)2 938 1 720 4198 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 0 2
+%%Page: 1 3
+/saveobj save def
+mark
+3 pagesetup
+12 PB f
+(A Typesetter-independent TROFF)2 1872 1 1944 1230 t
+10 PI f
+(Brian W. Kernighan)2 826 1 2467 1470 t
+10 PA f
+(AT&T Bell Laboratories)2 1053 1 2353 1650 t
+(Murray Hill, New Jersey 07974)4 1367 1 2196 1770 t
+10 PB f
+( Bit of History)3 647(1. A)1 203 2 720 2130 t
+10 PA f
+( be speaking today about work in progress, instead of completed research; this)12 3531(``I will)1 289 2 970 2322 t
+( fact is I)3 352(was not my original intention when I chose the subject of this lecture, but the)14 3468 2 970 2442 t
+(couldn't get my computer programs working in time.'')7 2426 1 970 2562 t
+(Donald E. Knuth)2 748 1 3850 2742 t
+8 PA f
+(1)4598 2710 w
+10 PA f
+(The)970 2934 w
+8 PA f
+(TROFF)1171 2934 w
+10 PA f
+(text formatter)1 620 1 1461 2934 t
+8 PA f
+(2)2081 2902 w
+10 PA f
+( in about 1973, in)4 792(was originally written by the late Joe Ossanna)7 2093 2 2155 2934 t
+( \()1 102(assembly language for the PDP-11.)4 1615 2 720 3054 t
+8 PA f
+(NROFF)2437 3054 w
+10 PA f
+(, which drives terminals instead of a typesetter, is)8 2330 1 2710 3054 t
+(essentially identical to)2 985 1 720 3174 t
+8 PA f
+(TROFF)1731 3174 w
+10 PA f
+( will use ``)3 457(; we)1 182 2 1987 3174 t
+8 PA f
+(TROFF)2626 3174 w
+10 PA f
+( was rewritten)2 641( It)1 119('' as a generic term henceforth.\))5 1398 3 2882 3174 t
+(in C around 1975, and underwent slow but steady evolution until Ossanna's death late in 1977.)15 4190 1 720 3294 t
+( of some obvious deficiencies \320 a rebarbative input syntax, mysterious and undocu-)12 3741(In spite)1 329 2 970 3450 t
+( for computer resources \(especially)4 1607(mented properties in some areas, and a voracious appetite)8 2713 2 720 3570 t
+( macro packages and preprocessors like)5 1765(when used with)2 713 2 720 3690 t
+8 PA f
+(EQN)3225 3690 w
+10 PA f
+(and)3430 3690 w
+8 PA f
+(TBL)3626 3690 w
+10 PA f
+(\) \320)1 160 1 3773 3690 t
+8 PA f
+(TROFF)3960 3690 w
+10 PA f
+(has been the basis)3 797 1 4243 3690 t
+(of document preparation at Bell Labs for some years, and is likely to remain so for years to come.)18 4285 1 720 3810 t
+( to acquire a new typesetter,)5 1270(Early in 1979, the Computing Science Research Center decided)8 2800 2 970 3966 t
+( Hill)1 210( the same time, the Murray)5 1275( At)1 177(primarily because of our interests in typesetting graphics.)7 2658 4 720 4086 t
+(Computer Center began to investigate the possibility of replacing their family of aging CAT's)13 4320 1 720 4206 t
+(with a new, high-performance typesetter, simply to keep up with their rapidly expanding load.)13 4208 1 720 4326 t
+( would be a glorious)4 987(My first thought \(a thought shared by many others\) was that this)11 3083 2 970 4482 t
+(opportunity to replace)2 1024 1 720 4602 t
+8 PA f
+(TROFF)1783 4602 w
+10 PA f
+( to work)2 398(with a new formatting language: better designed, easier)7 2564 2 2078 4602 t
+( remains a desirable goal, but, after quite a bit of thought)11 2607( This)1 249( of course much faster.)4 1034(with, and)1 430 4 720 4722 t
+( really much closer to a better design, let alone an imple-)11 2549(spread over several years, I am still not)7 1771 2 720 4842 t
+( a great deal of software depends on)7 1708(mentation. Furthermore,)1 1133 2 720 4962 t
+8 PA f
+(TROFF)3601 4962 w
+10 PA f
+(\320 the preprocessors, the)3 1142 1 3898 4962 t
+( Toss-)1 290(macro packages, and of course all of their documentation and our accumulated expertise.)12 4030 2 720 5082 t
+(ing this aside is not something to be done lightly.)9 2172 1 720 5202 t
+(Accordingly, in the spring of 1979, I set about to modify)10 2529 1 970 5358 t
+8 PA f
+(TROFF)3530 5358 w
+10 PA f
+(so that it would run hence-)5 1223 1 3817 5358 t
+( ground rule was that)4 988( The)1 225( a variety of typesetters.)4 1090(forth without change on)3 1099 4 720 5478 t
+8 PA f
+(TROFF)4155 5478 w
+10 PA f
+(should retain)1 596 1 4444 5478 t
+(its current specifications, so that existing software like)7 2450 1 720 5598 t
+8 PA f
+(EQN)3204 5598 w
+10 PA f
+(,)3382 5598 w
+8 PA f
+(TBL)3441 5598 w
+10 PA f
+( macro packages would)3 1076(and the)1 342 2 3622 5598 t
+(continue to work with it.)4 1097 1 720 5718 t
+( main-)1 284(Since much of the rest of this paper is encrusted with details that could appeal only to)16 3786 2 970 5874 t
+( Non-specialists)1 737( a brief summary of what has been done.)8 1877(tainers or masochists, I will give here)6 1706 3 720 5994 t
+(can stop reading at the end of the section.)8 1834 1 720 6114 t
+8 PA f
+(TROFF)970 6270 w
+10 PA f
+( just in details of)4 789(is highly dependent on the Graphic Systems CAT typesetter, not)9 2985 2 1266 6270 t
+( largely)1 356( language design issues have been)5 1630( The)1 241(code but also in many aspects of its design.)8 2093 4 720 6390 t
+( that dependencies are)3 1010(ignored \(few are truly fundamental\), while the code has been modified so)11 3310 2 720 6510 t
+(either eliminated or at least parameterized.)5 1904 1 720 6630 t
+8 PA f
+(TROFF)970 6786 w
+10 PA f
+( the typesetter compiled into the code, often in non-)9 2455(originally had parameters of)3 1316 2 1269 6786 t
+( invoked, to set values for)5 1177( new version reads a parameter file each time it is)10 2275( The)1 226(obvious ways.)1 642 4 720 6906 t
+(machine resolution, legal sizes, fonts and characters, character widths and the like.)11 3644 1 720 7026 t
+8 PA f
+(TROFF)970 7182 w
+10 PA f
+( beyond)1 386(output used to be binary device codes specific to the CAT and arcane)12 3376 2 1278 7182 t
+( output of the new version is)6 1302(description. The)1 747 2 720 7302 t
+8 PA f
+(ASCII)2800 7302 w
+10 PA f
+(characters in a simple and \(I hope\) universal)7 1994 1 3046 7302 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 1 3
+%%Page: 2 4
+/saveobj save def
+mark
+4 pagesetup
+10 PA f
+(- 2 -)2 166 1 2797 480 t
+( post-)1 255( A)1 135(language that describes where each character is to be placed and in what size and font.)15 3930 3 720 840 t
+( this typesetter-independent language)3 1725(processor must be written for each typesetter to convert)8 2595 2 720 960 t
+( currently exist for the CAT, the Mergen-)7 1876( Post-processors)1 751( typesetter.)1 501(into specific codes for that)4 1192 4 720 1080 t
+( Tektronix 4014 terminal, The Imagen Canon laser)7 2272(thaler Linotron 202, the Autologic APS-5, the)6 2048 2 720 1200 t
+( ones can generally be written in less than)8 1851( New)1 265( bit-map terminal.)2 800(printer, Versatec printers, and a)4 1404 4 720 1320 t
+(a day; they share much of their code with previous ones.)10 2500 1 720 1440 t
+( the older)2 442(The new output language contains information that is not readily identifiable in)11 3628 2 970 1596 t
+( the beginning of each page and line is marked, so post-processors can do)13 3319( notably,)1 393(output. Most)1 608 3 720 1716 t
+( it boustrophedo-)2 815(device-specific optimizations such as sorting the data vertically or printing)9 3505 2 720 1836 t
+(nically, independently of)2 1105 1 720 1956 t
+8 PA f
+(TROFF)1850 1956 w
+10 PA f
+(.)2106 1956 w
+(Since actual output is done by a post-processor, not)8 2393 1 970 2112 t
+8 PA f
+(TROFF)3403 2112 w
+10 PA f
+( for graphics)2 589(, new capabilities)2 792 2 3659 2112 t
+( easy to add.)3 610(have been)1 465 2 720 2232 t
+8 PA f
+(TROFF)1863 2232 w
+10 PA f
+(now recognizes commands for drawing diagonal lines, circles,)7 2878 1 2162 2232 t
+(ellipses, circular arcs, and quadratic B-splines; these are used in the PIC)11 3152 1 720 2352 t
+8 PA f
+(3)3872 2320 w
+10 PA f
+(and IDEAL)1 505 1 3937 2352 t
+8 PA f
+(4)4442 2320 w
+10 PA f
+(languages.)4507 2352 w
+( document may have an arbitrary)5 1484( A)1 129( been eased or eliminated.)4 1155(A number of limitations have)4 1302 4 970 2508 t
+( accessed)1 410( may be)2 361( Fonts)1 301(number of fonts on any page \(if the output device permits it, of course\).)13 3248 4 720 2628 t
+( Character)1 489( them; ``mounting'' is no longer necessary.)6 1904(merely by naming)2 817 3 720 2748 t
+10 PA f
+0 8 changefont
+(height)3960 2748 w
+10 PA f
+(and)4272 2748 w
+10 PA f
+-10 10 changefont
+(sl)4471 2748 w
+10 PA f
+(a)4542 2748 w
+10 PA f
+10 10 changefont
+(nt)4592 2748 w
+10 PA f
+(may be)1 327 1 4713 2748 t
+(set independently of width.)3 1222 1 720 2868 t
+(The new)1 382 1 970 3024 t
+8 PA f
+(TROFF)1378 3024 w
+10 PA f
+( 1000 bytes larger in instruction space and 13000 bytes larger in data)12 3030(is about)1 350 2 1660 3024 t
+( runs about as fast)4 819( It)1 121( PDP-11/40 style machines\).)3 1261(space \(thus guaranteeing that it will not run on)8 2119 4 720 3144 t
+( I made could be retrofitted into the)7 1659(as the original version, though a simple improvement that)8 2661 2 720 3264 t
+( in these time)3 625( post-processors are not included)4 1517( The)1 230(earlier version to keep it about 20% faster.)7 1948 4 720 3384 t
+(comparisons; they typically take 10-20% of the)6 2050 1 720 3504 t
+8 PA f
+(TROFF)2795 3504 w
+10 PA f
+(time.)3076 3504 w
+10 PB f
+( Dependencies)1 673(2. Typesetter)1 608 2 720 3744 t
+8 PA f
+(TROFF)970 3900 w
+10 PA f
+( dependent on the Graphic Systems CAT, not just in the)10 2541(turns out to be surprisingly)4 1241 2 1258 3900 t
+(code but in its design.)4 966 1 720 4020 t
+( example, the CAT provides four)5 1488( For)1 208( pretty obvious.)2 711(Some of the design dependencies are)5 1663 4 970 4176 t
+( specific sizes are wired into the syntax of the lan-)10 2221( The)1 220( and 15 sizes.)3 589(fonts \(of 102 characters each\))4 1290 4 720 4296 t
+( than 36 points,)3 706(guage: since the CAT has no sizes larger)7 1840 2 720 4416 t
+10 CW f
+(\\s46)3301 4416 w
+10 PA f
+(can be uniquely decoded as a 4-)6 1464 1 3576 4416 t
+(point)720 4536 w
+10 CW f
+(6)980 4536 w
+10 PA f
+(, while)1 297 1 1040 4536 t
+10 CW f
+(\\s36)1362 4536 w
+10 PA f
+(is simply a switch into size 36.)6 1333 1 1627 4536 t
+8 PA f
+(TROFF)970 4692 w
+10 PA f
+( are physically isomor-)3 1017(makes the assumption that there are four fonts, three of which)10 2770 2 1253 4692 t
+( each\) and one ``special'' font that)6 1492(phic \(that is, the same characters appear in the same position in)11 2828 2 720 4812 t
+( font name)2 481( reserved)1 411( The)1 220(is logically a part of each of the others.)8 1721 4 720 4932 t
+10 CW f
+(S)3582 4932 w
+10 PA f
+(finds its way into several com-)5 1369 1 3671 4932 t
+(mands and receives special treatment in a variety of contexts.)9 2708 1 720 5052 t
+( their definition; for exam-)4 1177(Some commands have the basic resolution of the CAT wired into)10 2893 2 970 5208 t
+(ple, the units of the)4 862 1 720 5328 t
+10 CW f
+(.ss)1610 5328 w
+10 PA f
+( the size of the inter-word spacing\) are 36th's of an)10 2252(command \(which sets)2 970 2 1818 5328 t
+(em, because the CAT typesetter itself works in those units.)9 2583 1 720 5448 t
+( example, the option)3 922( For)1 207( idiosyncrasies of the CAT.)4 1211(Some command line options reflect)4 1579 4 970 5604 t
+10 CW f
+(-p)4920 5604 w
+10 PA f
+( output all be printed in one size; since the CAT is excruciatingly slow at chang-)15 3578(requests that the)2 742 2 720 5724 t
+( The)1 240( this prints an approximation to final output comparatively quickly.)9 3204(ing point sizes,)2 708 3 720 5844 t
+10 CW f
+(-g)4920 5844 w
+10 PA f
+( file for the benefit of the operations staff at)9 1906(option causes font information to appear in the output)8 2414 2 720 5964 t
+(the Murray Hill Computer Center.)4 1528 1 720 6084 t
+( inte-)1 232(At the same time, there are myriad places where the characteristics of the CAT are an)15 3838 2 970 6240 t
+(gral part of the code for)5 1046 1 720 6360 t
+8 PA f
+(TROFF)1791 6360 w
+10 PA f
+( of these are quite evident; others are subtle indeed.)9 2275(. Some)1 319 2 2047 6360 t
+( Within)1 360( encoding of a character.)4 1091(The most obvious instance is the internal)6 1816 3 970 6516 t
+8 PA f
+(TROFF)4265 6516 w
+10 PA f
+(, objects are)2 519 1 4521 6516 t
+( are two fundamental objects \320 printable characters)7 2401( There)1 320(passed around as 16 bit quantities.)5 1599 3 720 6636 t
+( object looks like this:)4 944( An)1 186(and motions.)1 579 3 720 6756 t
+( 8)1 450( 1)1 150( 2)1 300(1 4)1 300 4 2130 6936 t
+10 S f
+(_________________________________)2055 6956 w
+10 CW f
+( c)1 450( z)1 150( f)1 300(m s)1 310 4 2125 7076 t
+10 S f
+(_________________________________ \347)1 0 1 2055 7096 t
+(\347)2055 7056 w
+(\347)2205 7096 w
+(\347)2205 7056 w
+(\347)2605 7096 w
+(\347)2605 7056 w
+(\347)2805 7096 w
+(\347)2805 7056 w
+(\347)2905 7096 w
+(\347)2905 7056 w
+(\347)3705 7096 w
+(\347)3705 7056 w
+10 PA f
+(If the)1 233 1 720 7276 t
+10 CW f
+(m)980 7276 w
+10 PA f
+( is something to be printed.)5 1223(bit is a 1, the object represents a motion; if it is zero, the object)14 2750 2 1067 7276 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 2 4
+%%Page: 3 5
+/saveobj save def
+mark
+5 pagesetup
+10 PA f
+(- 3 -)2 166 1 2797 480 t
+(In that case,)2 535 1 720 840 t
+10 CW f
+(s)1285 840 w
+10 PA f
+(is the size \(actually an index into a table of legal sizes\),)11 2458 1 1375 840 t
+10 CW f
+(f)3863 840 w
+10 PA f
+(is the font,)2 474 1 3953 840 t
+10 CW f
+(z)4457 840 w
+10 PA f
+(is the zero-)2 494 1 4546 840 t
+(motion bit \(i.e., no space after printing\), and)7 1953 1 720 960 t
+10 CW f
+(c)2699 960 w
+10 PA f
+( the high order bit of)5 919( If)1 118(is the character.)2 694 3 2785 960 t
+10 CW f
+(c)4542 960 w
+10 PA f
+(is set, the)2 412 1 4628 960 t
+( example,)1 430(character is to be looked up in a table of special names \(for)12 2654 2 720 1080 t
+10 CW f
+(0200)3834 1080 w
+10 PA f
+(is the hyphen)2 608 1 4104 1080 t
+10 CW f
+(\\\(hy)4742 1080 w
+10 PA f
+(\);)4982 1080 w
+(otherwise it is)2 623 1 720 1200 t
+8 PA f
+(ASCII)1370 1200 w
+10 PA f
+( if)1 89(. Furthermore,)1 668 2 1585 1200 t
+10 CW f
+(c)2369 1200 w
+10 PA f
+( octal 370, the character)4 1044(is less than octal 40 or greater than)7 1540 2 2456 1200 t
+(is actually some encoded control function or very special character such as)11 3289 1 720 1320 t
+10 CW f
+(\\e)4034 1320 w
+10 PA f
+(or)4179 1320 w
+10 CW f
+(\\{)4299 1320 w
+10 PA f
+(.)4419 1320 w
+( packing makes it utterly impossible to add another size or font \320 there are)14 3349(Clearly the tight)2 721 2 970 1476 t
+( limits on the number of characters in a font and on the number of)14 2926( also implies)2 555( It)1 119(no bits left over.)3 720 4 720 1596 t
+(special names \(names of the form)5 1475 1 720 1716 t
+10 CW f
+(\\\(xx)2220 1716 w
+10 PA f
+(\).)2460 1716 w
+(Motions are encoded as)3 1047 1 970 1872 t
+( 13)1 725(1 1 1)2 250 2 2130 2052 t
+10 S f
+(_________________________________)2055 2072 w
+10 CW f
+( mag)1 760(m v n)2 260 2 2125 2192 t
+10 S f
+(_________________________________ \347)1 0 1 2055 2212 t
+(\347)2055 2172 w
+(\347)2205 2212 w
+(\347)2205 2172 w
+(\347)2305 2212 w
+(\347)2305 2172 w
+(\347)2405 2212 w
+(\347)2405 2172 w
+(\347)3705 2212 w
+(\347)3705 2172 w
+10 CW f
+(m)720 2392 w
+10 PA f
+(is the ``motion bit'', which is 1 for a motion,)9 1930 1 806 2392 t
+10 CW f
+(v)2762 2392 w
+10 PA f
+(is 1 for a vertical motion, and)6 1296 1 2848 2392 t
+10 CW f
+(n)4170 2392 w
+10 PA f
+( for a negative)3 637(is 1)1 147 2 4256 2392 t
+( 13 bits, the maximum)4 1018( there are only)3 671( Since)1 293( remaining 13 bits give the magnitude.)6 1767(motion. The)1 571 5 720 2512 t
+( resolution of 432 units per inch, this is a)9 1788( the CAT's)2 469( With)1 270(amount of motion is 8191 machine units.)6 1793 4 720 2632 t
+( for the Linotron 202 \(resolution 972/inch\), it is only 8.5 inches.)11 2781( But)1 204(generous 19 inches.)2 861 3 720 2752 t
+( in tests and assignments without identifi-)6 1866(Within the code, certain character values are used)7 2204 2 970 2908 t
+( instance the octal value)4 1115(cation. For)1 510 2 720 3028 t
+10 CW f
+(0200)2385 3028 w
+10 PA f
+( of)1 127( But)1 218( as a hyphen.)3 622(is used \(without identification\))3 1408 4 2665 3028 t
+(course the mask)2 740 1 720 3148 t
+10 CW f
+(0200)1498 3148 w
+10 PA f
+( might be imagined, it takes some study to)8 1987( As)1 184( times.)1 304(also occurs many)2 789 4 1776 3148 t
+(determine whether any particular)3 1495 1 720 3268 t
+10 CW f
+(0200)2240 3268 w
+10 PA f
+(is a hyphen or a mask.)5 990 1 2505 3268 t
+( Char-)1 307( horizontally and 144 vertically.)4 1420(The basic resolution of the CAT is 432 units per inch)10 2343 3 970 3424 t
+( are 72 points in an inch.)6 1146( There)1 318(acter widths are given as the number of units at size 6 points.)12 2856 3 720 3544 t
+(Thus the program contains as magic numbers every factor of 432, and)11 3078 1 720 3664 t
+10 S f
+(\261)3823 3664 w
+10 PA f
+(1 from each factor as well.)5 1152 1 3878 3664 t
+(Finally,)970 3820 w
+8 PA f
+(TROFF)1330 3820 w
+10 PA f
+( 7000 lines of vir-)4 768(is simply a big program \(at least by my standards\) \320 about)11 2658 2 1614 3820 t
+( am indebted to Lorinda Cherry for a new version of the C beautifier)13 3133( \(I)1 125(tually uncommented C.)2 1062 3 720 3940 t
+( was implemented before the recent addi-)6 1898( It)1 127( not comprehensible.\))2 976(that made the code legible, if)5 1319 4 720 4060 t
+( so there are no)4 719(tions to C,)2 475 2 720 4180 t
+10 CW f
+(typedef)1950 4180 w
+10 PA f
+('s to distinguish among the various kinds of integers, rela-)9 2670 1 2370 4180 t
+(tively few macros with arguments, no internal)6 2081 1 720 4300 t
+10 CW f
+(static)2833 4300 w
+10 PA f
+(variables, and a startling number of glo-)6 1815 1 3225 4300 t
+(bal variables with two-character names.)4 1758 1 720 4420 t
+( remarks should be taken as denigrating Ossanna's accomplishment with)9 3419(None of these)2 651 2 970 4576 t
+8 PA f
+(TROFF)720 4696 w
+10 PA f
+( taking unbelievable abuse from a variety of pre-)8 2205( has proven a remarkably robust tool,)6 1709(. It)1 150 3 976 4696 t
+( into uses that were never conceived of in the original design, all with)13 3081(processors and being forced)3 1239 2 720 4816 t
+(considerable grace under fire.)3 1314 1 720 4936 t
+10 PB f
+( TROFF)1 359(3. Modifying)1 620 2 720 5176 t
+10 PA f
+( widen the 16-bit internal representation of a character to 32 bits, to)12 3128(The first step was to)4 942 2 970 5332 t
+( current representation is)3 1111( The)1 217(accommodate more sizes and fonts.)4 1573 3 720 5452 t
+( 15)1 825( 1)1 450( 8)1 750(1 7)1 450 4 1330 5632 t
+10 S f
+(_________________________________________________________________)1255 5652 w
+10 CW f
+( c)1 800( m)1 450( f)1 750(z s)1 460 4 1325 5772 t
+10 S f
+(_________________________________________________________________ \347)1 0 1 1255 5792 t
+(\347)1255 5752 w
+(\347)1405 5792 w
+(\347)1405 5752 w
+(\347)2105 5792 w
+(\347)2105 5752 w
+(\347)2905 5792 w
+(\347)2905 5752 w
+(\347)3005 5792 w
+(\347)3005 5752 w
+(\347)4505 5792 w
+(\347)4505 5752 w
+10 PA f
+(If)720 5972 w
+10 CW f
+(m)817 5972 w
+10 PA f
+(is 1, bits 16 and 17 are)6 992 1 907 5972 t
+10 CW f
+(v)1929 5972 w
+10 PA f
+(and)2019 5972 w
+10 CW f
+(n)2218 5972 w
+10 PA f
+( to this representation is entirely through macros; for)8 2384(. Access)1 378 2 2278 5972 t
+( called)1 288(example, a macro)2 783 2 720 6092 t
+10 CW f
+(cbits)1818 6092 w
+10 PA f
+(fetches the character bits, another called)5 1774 1 2145 6092 t
+10 CW f
+(setsfbits)3946 6092 w
+10 PA f
+(sets the size)2 527 1 4513 6092 t
+(and font bits, and so on.)5 1061 1 720 6212 t
+( examine)1 414(This stage took several weeks of meticulous checking, since it was necessary to)12 3656 2 970 6368 t
+( in the program to decide whether it was being used)10 2326(every integer constant, variable and function)5 1994 2 720 6488 t
+( are now all identified and)5 1165( These)1 307(to store an internal character.)4 1291 3 720 6608 t
+10 CW f
+(typedef)3508 6608 w
+10 PA f
+('d for future reference.)3 998 1 3928 6608 t
+( since the program must)4 1104(Widening 16 bits to 32 turns out to be quite costly on the PDP-11,)13 2966 2 970 6764 t
+(process)720 6884 w
+10 CW f
+(long)1085 6884 w
+10 PA f
+( result is approximately a 25% increase in pro-)8 2105( The)1 225(integers instead of short ones.)4 1351 3 1359 6884 t
+( temporary file in which)4 1084( the)1 167( Furthermore)1 619(gram size and perhaps 25% increase in run time.)8 2165 4 720 7004 t
+8 PA f
+(TROFF)4784 7004 w
+10 PA f
+(keeps its macro and string definitions doubles in size \(to 256k bytes\).)11 3037 1 720 7124 t
+( way \320 it still)4 625(Note that at this stage the program has not been changed in any fundamental)13 3445 2 970 7280 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 3 5
+%%Page: 4 6
+/saveobj save def
+mark
+6 pagesetup
+10 PA f
+(- 4 -)2 166 1 2797 480 t
+( a bit-for-bit regression test against the original version can be per-)11 3132(generates CAT output, so)3 1188 2 720 840 t
+( maintaining sanity in both pro-)5 1442( proved to be very important for)6 1471( This)1 246(formed after each change.)3 1161 4 720 960 t
+(gram and programmer.)2 1043 1 720 1080 t
+10 PB f
+( Machine Parameters)2 954(4. Dynamic)1 541 2 720 1320 t
+10 PA f
+( the the numbers in the program that depend on the CAT and)12 2797(The next step was to find all)6 1273 2 970 1476 t
+( contributed marginally to slower execution, since many val-)8 2703( also)1 205( This)1 244(replace them by variables.)3 1168 4 720 1596 t
+(ues and expressions that were constants now became variables.)8 2796 1 720 1716 t
+( make it possible to load a descrip-)7 1564(With parameters identified as such, the next step was to)9 2506 2 970 1872 t
+(tion of the typesetter each time)5 1436 1 720 1992 t
+8 PA f
+(TROFF)2195 1992 w
+10 PA f
+( each)1 238(is run, rather than creating a compiled version for)8 2312 2 2490 1992 t
+( and created for each typesetter)5 1447( a set of description files was designed)7 1771(typesetter. Accordingly,)1 1102 3 720 2112 t
+( parameters of the)3 807( description really comes in two pieces \320 a table describing)10 2664( The)1 220(and each font.)2 629 4 720 2232 t
+( illustrate, here is the parameter file for the CAT:)9 2145( To)1 166(machine, and a table of widths for each font.)8 1960 3 720 2352 t
+9 CW f
+(# Graphic Systems CAT-4)3 1242 1 864 2522 t
+(res 432)1 378 1 864 2632 t
+(hor 1)1 270 1 864 2742 t
+(vert 3)1 324 1 864 2852 t
+(unitwidth 6)1 594 1 864 2962 t
+(sizes 6 7 8 9 10 11 12 14 16 18 20 22 24 28 36 0)16 2592 1 864 3072 t
+(fonts 4 R I B S)5 810 1 864 3182 t
+(charset)864 3292 w
+(\\| \\\303 \\- \\_)3 756 1 864 3402 t
+(hy bu sq em ru 14 12 34 mi fi fl ff Fi Fl de dg sc fm aa ga)19 4212 1 864 3512 t
+(ul sl *a *b *g *d *e *z *y *h *i *k *l *m *n *c *o *p *r *s)19 4212 1 864 3622 t
+(*t *u *f *x *q *w *A *B *G *D *E *Z *Y *H *I *K *L *M *N *C)19 4212 1 864 3732 t
+(*O *P *R *S *T *U *F *X *Q *W sr ts rn >= <= == \304= ap != ->)19 4212 1 864 3842 t
+(<- ua da eq mu di +- cu ca sb sp ib ip if pd gr no is pt es)19 4212 1 864 3952 t
+(mo pl rg co br ct dd rh lh ** bs or ci lt lb rt rb lk rk bv)19 4212 1 864 4062 t
+(lf rf lc rc)3 756 1 864 4172 t
+10 PA f
+(A)720 4352 w
+10 CW f
+(#)828 4352 w
+10 PA f
+(introduces a comment.)2 1019 1 918 4352 t
+10 CW f
+(res)1992 4352 w
+10 PA f
+(is the machine resolution in units per inch.)7 1915 1 2202 4352 t
+10 CW f
+(hor)4172 4352 w
+10 PA f
+(and)4382 4352 w
+10 CW f
+(vert)4581 4352 w
+10 PA f
+(give)4851 4352 w
+( it is possible to move in the corresponding direction.)9 2365(the minimum number of machine units that)6 1955 2 720 4472 t
+10 CW f
+(unitwidth)720 4592 w
+10 PA f
+( which the character widths map directly into machine)8 2564(specifies the point size at)4 1173 2 1303 4592 t
+(units.)720 4712 w
+10 CW f
+(sizes)1021 4712 w
+10 PA f
+( legal point sizes, terminated by a zero.)7 1746(lists the set of)3 612 2 1350 4712 t
+10 CW f
+(fonts)3761 4712 w
+10 PA f
+(lists the default set of)4 951 1 4089 4712 t
+( can be overridden by subsequent)5 1534(fonts \(which)1 559 2 720 4832 t
+10 CW f
+(.fp)2847 4832 w
+10 PA f
+(commands\).)3061 4832 w
+10 CW f
+(charset)3664 4832 w
+10 PA f
+(introduces the set of)3 922 1 4118 4832 t
+(legitimate special names \(names of the form)6 1943 1 720 4952 t
+10 CW f
+(\\\(xx)2688 4952 w
+10 PA f
+(, including some special cases like)5 1497 1 2928 4952 t
+10 CW f
+(\\|)4450 4952 w
+10 PA f
+(\).)4570 4952 w
+( 202 has)2 358( The)1 221( here is the description file for the Mergenthaler Linotron 202.)10 2766(For comparison,)1 725 4 970 5108 t
+( 202 actu-)2 422( \(The)1 251( the CAT, and quite a few more characters as well.)10 2229(many more sizes and fonts than)5 1418 4 720 5228 t
+(ally permits nearly 250 sizes; no use has yet been found for most of them.\))14 3266 1 720 5348 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 4 6
+%%Page: 5 7
+/saveobj save def
+mark
+7 pagesetup
+10 PA f
+(- 5 -)2 166 1 2797 480 t
+9 CW f
+(# Mergenthaler Linotron 202)3 1458 1 1008 830 t
+(fonts 10 R I B BI H HB HK PO CH S)11 1782 1 1008 940 t
+(sizes 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20)16 2592 1 1008 1050 t
+(21 22 23 24 25 26 27 28 29 30 32 34 36 38 40)14 2376 1 1170 1160 t
+(45 50 55 60 66 72 78 84 90 96 102 108 0)12 2106 1 1170 1270 t
+(res 972)1 378 1 1008 1380 t
+(hor 1)1 270 1 1008 1490 t
+(vert 2)1 324 1 1008 1600 t
+(unitwidth 4)1 594 1 1008 1710 t
+(paperwidth 7500)1 810 1 1008 1820 t
+(charset)1008 1930 w
+(\\| \\\303 \\- \\_)3 756 1 1008 2040 t
+(** *C *D *F *G *H *L *P *Q *S *W *a *b *c *d *e *f *g *h)18 3996 1 1008 2150 t
+(*i *k *l *m *n *p *q *r *s *t *w *x *y *z +- -> <- <=)17 3780 1 1008 2260 t
+(== >= L. Sl al aa ap b0 br bs bu bv ca)12 2700 1 1008 2370 t
+(cd ci co ct cu dd de dg di em eq es fe fm ga gr hy)16 3564 1 1008 2480 t
+(ib if ip is l. lh ma mi mo mu no or pd pl pp pt rg rh ru)18 3996 1 1008 2590 t
+(sb sc sl sp sq sr tm tp ts \304= \304\304 ul rn en)13 2916 1 1008 2700 t
+(lf rf lc rc lt rt lb rb lk rk != ua da 12 fa te ma fe)17 3780 1 1008 2810 t
+(hc .. ob bx *o *u b9 14 34 ss vr)10 2268 1 1008 2920 t
+10 CW f
+(paperwidth)720 3100 w
+10 PA f
+(specifies the maximum width of paper in units, overriding the default 7)11 3163 1 1345 3100 t
+10 S1 f
+()4508 3100 w
+cleartomark
+saveobj restore
+%%BeginGlobal
+/build_34 {
+    pop
+    /optsize ptsize def
+    /osize size def
+    /ofont font def
+
+    optsize 2 div dup R exch R f
+    0 size 2 mul 3 div dup neg exch 0 exch rmoveto
+
+    (3) show
+    rmoveto
+    optsize R f
+    (\244) show
+    f
+    (4) show
+
+    optsize ofont f
+} def
+%%EndGlobal
+/saveobj save def
+mark
+10 S1 f
+4508 3100 m
+75 build_34
+4583 3100 m
+10 PA f
+(".)4583 3100 w
+( is one file per font that lists)7 1313(In addition to this description file \(one per typesetter\), there)9 2757 2 970 3256 t
+( is part of the description of Times Roman for the CAT:)11 2431( Here)1 269(properties of that font.)3 996 3 720 3376 t
+9 CW f
+(# Times Roman for CAT-4)4 1242 1 1008 3546 t
+(name R)1 324 1 1008 3656 t
+(internalname 1)1 756 1 1008 3766 t
+(ligatures ff fi fl ffi ffl 0)6 1512 1 1008 3876 t
+(charset)1008 3986 w
+( 0 0)2 864(\\| 6)1 486 2 1008 4096 t
+( 0 0)2 864(\\\303 3)1 486 2 1008 4206 t
+( 025)1 540( 0)1 378(a 17)1 540 3 1008 4316 t
+( 012)1 540( 2)1 378(b 20)1 540 3 1008 4426 t
+( 027)1 540( 0)1 378(c 16)1 540 3 1008 4536 t
+( 011)1 540( 2)1 378(d 20)1 540 3 1008 4646 t
+( 031)1 540( 0)1 378(e 18)1 540 3 1008 4756 t
+( 014)1 540( 2)1 378(f 13)1 540 3 1008 4866 t
+(...)1008 4976 w
+( 0145)1 594( 2)1 378(! 12)1 540 3 1008 5086 t
+( 050)1 540( 2)1 378(& 28)1 540 3 1008 5196 t
+( 0132)1 594( 2)1 378(\( 16)1 540 3 1008 5306 t
+( 0133)1 594( 2)1 378(\) 16)1 540 3 1008 5416 t
+( 0122)1 594( 0)1 378(* 16)1 540 3 1008 5526 t
+( 0143)1 594( 0)1 378(+ 36)1 540 3 1008 5636 t
+( 047)1 540( 0)1 378(, 12)1 540 3 1008 5746 t
+( hyphen)1 594( 040)1 540(hy 13 0)2 918 3 1008 5856 t
+(- " =hy)2 1026 1 1008 5966 t
+( 0123)1 594(\\- 36 0)2 918 2 1008 6076 t
+( 044)1 540( 0)1 378(. 10)1 540 3 1008 6186 t
+( degree)1 540( 0136)1 594(de 15 0)2 918 3 1008 6296 t
+( dagger)1 540( 0137)1 594(dg 20 0)2 918 3 1008 6406 t
+( 0 0150)2 1026(fm 8)1 486 2 1008 6516 t
+( 0141)1 594(rg 20 0)2 918 2 1008 6626 t
+( 0153)1 594(co 20 0)2 918 2 1008 6736 t
+( 0127)1 594(ct 19 0)2 918 2 1008 6846 t
+(...)1008 6956 w
+10 PA f
+(The)970 7172 w
+10 CW f
+(name)1171 7172 w
+10 PA f
+(is the external)2 636 1 1445 7172 t
+8 PA f
+(TROFF)2115 7172 w
+10 PA f
+(name, one or two characters, as used in)7 1805 1 2406 7172 t
+10 CW f
+(.ft)4246 7172 w
+10 PA f
+(and)4461 7172 w
+10 CW f
+(\\f)4665 7172 w
+10 PA f
+(com-)4820 7172 w
+( internal name is not used by)6 1314(mands. The)1 547 2 720 7292 t
+8 PA f
+(TROFF)2612 7292 w
+10 PA f
+( If)1 122( for the postprocessors.)3 1040(itself, but is necessary)3 979 3 2899 7292 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 5 7
+%%Page: 6 8
+/saveobj save def
+mark
+8 pagesetup
+10 PA f
+(- 6 -)2 166 1 2797 480 t
+( font sep-)2 418( is possible to set the width of the space for each)11 2141( It)1 119(the font has ligatures, they are listed.)6 1642 4 720 840 t
+(arately with the)2 708 1 720 960 t
+10 CW f
+(spacewidth)1458 960 w
+10 PA f
+( keyword)1 428( is also a)3 387( There)1 310(command, not illustrated here.)3 1378 4 2088 960 t
+10 CW f
+(special)4620 960 w
+10 PA f
+( if the regular font does not)6 1211(to indicate that the font is a ``special'' font \320 one that is to be searched)15 3109 2 720 1080 t
+( but they should)3 726( is no limit on the number of special fonts,)9 1872( There)1 307(contain the character requested.)3 1415 4 720 1200 t
+(be listed last in the)4 825 1 720 1320 t
+10 CW f
+(fonts)1570 1320 w
+10 PA f
+(part of the description file.)4 1173 1 1895 1320 t
+( ascender/descender infor-)2 1222(The four columns of data are the character name, its width, its)11 2848 2 970 1476 t
+(mation \(1)1 424 1 720 1596 t
+10 S f
+(\256)1172 1596 w
+10 PA f
+(descender, 2)1 553 1 1299 1596 t
+10 S f
+(\256)1880 1596 w
+10 PA f
+(ascender, 3)1 493 1 2006 1596 t
+10 S f
+(\256)2526 1596 w
+10 PA f
+(both\), and the actual typesetter code required to print)8 2388 1 2652 1596 t
+( size is)2 304( the point)2 436(it. When)1 407 3 720 1716 t
+10 CW f
+(unitwidth)1899 1716 w
+10 PA f
+( the)1 171( If)1 124(, the width is the character width in machine units.)9 2306 3 2439 1716 t
+(name is a single character, it is taken simply as a normal)11 2511 1 720 1836 t
+8 PA f
+(ASCII)3259 1836 w
+10 PA f
+( or more characters)3 856(character. Two)1 683 2 3501 1836 t
+(indicate a name of the form)5 1219 1 720 1956 t
+10 CW f
+(\\\(xx)1965 1956 w
+10 PA f
+( exceptions like)2 685(; there are a handful of historical)6 1442 2 2205 1956 t
+10 CW f
+(\\-)4359 1956 w
+10 PA f
+( width of)2 406(. A)1 155 2 4479 1956 t
+(""")720 2076 w
+10 CW f
+(" " ")2 302 1 857 2076 t
+10 PA f
+( the character is a synonym for the immediately preceding character, as in)12 3261(indicates that)1 594 2 1185 2076 t
+10 CW f
+(-)720 2196 w
+10 PA f
+(and)805 2196 w
+10 CW f
+(hy)999 2196 w
+10 PA f
+( may follow the four data fields.)6 1416(above. Comments)1 822 2 1144 2196 t
+( text)1 198(There are significant advantages to having the font and typesetter descriptions merely)11 3872 2 970 2352 t
+(files that can be edited easily, but it is too time-consuming to load all this)14 3287 1 720 2472 t
+8 PA f
+(ASCII)4037 2472 w
+10 PA f
+(information each)1 758 1 4282 2472 t
+(time)720 2592 w
+8 PA f
+(TROFF)959 2592 w
+10 PA f
+( a separate program called)4 1235( Thus)1 287(is invoked.)1 500 3 1256 2592 t
+10 CW f
+(makedev)3319 2592 w
+10 PA f
+( compile it into a)4 808(is used to)2 452 2 3780 2592 t
+(binary file that can be read by)6 1328 1 720 2712 t
+8 PA f
+(TROFF)2075 2712 w
+10 PA f
+( When)1 315( single read.)2 538(in a)1 164 3 2358 2712 t
+8 PA f
+(TROFF)3401 2712 w
+10 PA f
+(is invoked, an argument of the)5 1357 1 3683 2712 t
+(form)720 2832 w
+10 CW f
+(-Txxx)961 2832 w
+10 PA f
+(tells it to load the description file for typesetter)8 2072 1 1286 2832 t
+10 CW f
+(xxx)3383 2832 w
+10 PA f
+(from a standard directory.)3 1167 1 3588 2832 t
+( is)1 114(Descriptions for the default fonts are compiled into the description file; if a new font)14 3956 2 970 2988 t
+(requested by a)2 673 1 720 3108 t
+10 CW f
+(.fp)1431 3108 w
+10 PA f
+( The)1 229(command, its description data replaces the original values.)7 2688 2 1649 3108 t
+10 CW f
+(.ft)4603 3108 w
+10 PA f
+(com-)4820 3108 w
+( if the requested font is not currently ``mounted'', its description)10 2884(mand has been modified so that)5 1436 2 720 3228 t
+( there is only one such position, each new)8 1860( Since)1 285( 0.)1 103(data will be placed in the hidden font position)8 2072 4 720 3348 t
+( make occasional use)3 926( mechanism is intended to)4 1160( This)1 240(non-standard font overlays the previous one.)5 1994 4 720 3468 t
+(of non-standard fonts easy; the)4 1368 1 720 3588 t
+10 CW f
+(.fp)2113 3588 w
+10 PA f
+(mechanism remains necessary for other purposes.)5 2207 1 2318 3588 t
+( of special fonts has been generalized somewhat \320 rather than a single special)13 3581(The notion)1 489 2 970 3744 t
+( algorithm currently used is to search for each character on the cur-)12 2974( The)1 218(font, there can be several.)4 1128 3 720 3864 t
+(rent font; if it is not found there, then the special fonts are searched in order \(as given in the)19 4320 1 720 3984 t
+( than that, the treatment of special fonts is essentially unchanged.)10 2882( Other)1 308(description file\).)1 721 3 720 4104 t
+( stage in the modifications to)5 1279(At this)1 298 2 970 4260 t
+8 PA f
+(TROFF)2573 4260 w
+10 PA f
+(, all internal arithmetic is done in terms of the res-)10 2211 1 2829 4260 t
+( defined by the val-)4 864( character set and character widths are)6 1718( The)1 220(olution of the specified typesetter.)4 1518 4 720 4380 t
+( name to what gets)4 895( the mapping from character)4 1319( Indeed,)1 399(ues loaded from the font description.)5 1707 4 720 4500 t
+(printed is determined by this table \320 fonts are no longer all isomorphic.)12 3193 1 720 4620 t
+( clear)1 244(Although it is certainly convenient for testing during program development, it is not)12 3826 2 970 4776 t
+( for the typesetter each time)5 1241(that loading the font information)4 1470 2 720 4896 t
+8 PA f
+(TROFF)3458 4896 w
+10 PA f
+(is invoked is the right way to)6 1299 1 3741 4896 t
+( a production mode it)4 963( In)1 143( a single kind of typesetter.)5 1200(operate in an environment that supports only)6 2014 4 720 5016 t
+(might be desirable to compile in the default information for the standard typesetter.)12 3706 1 720 5136 t
+10 PB f
+( Language)1 470(5. Output)1 457 2 720 5376 t
+10 PA f
+( output of)2 441(The final step is to modify the)6 1319 2 970 5532 t
+8 PA f
+(TROFF)2756 5532 w
+10 PA f
+( new)1 215( The)1 218(so that it is typesetter-independent.)4 1569 3 3038 5532 t
+(version of)1 448 1 720 5652 t
+8 PA f
+(TROFF)1199 5652 w
+10 PA f
+( it is)2 195( Rather,)1 377(produces output that is not intended to go directly to a typesetter.)11 2982 3 1486 5652 t
+(more or less independent of any typesetter, except that the numbers in it have been computed on)16 4320 1 720 5772 t
+(the basis of the resolution specified in the description file for the intended typesetter.)13 3745 1 720 5892 t
+(The output language is simple:)4 1367 1 970 6048 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 6 8
+%%Page: 7 9
+/saveobj save def
+mark
+9 pagesetup
+10 PA f
+(- 7 -)2 166 1 2797 480 t
+9 CW f
+(s)1008 830 w
+9 PI f
+(n)1062 830 w
+9 CW f
+(size in points)2 756 1 1512 830 t
+(f)1008 940 w
+9 PI f
+(n)1062 940 w
+9 CW f
+(font as number from 1 to)5 1296 1 1512 940 t
+9 PI f
+(n)2862 940 w
+9 CW f
+(c)1008 1050 w
+9 PI f
+(x)1062 1050 w
+9 CW f
+(ASCII character)1 810 1 1512 1050 t
+9 PI f
+(x)2376 1050 w
+9 CW f
+(C)1008 1160 w
+9 PI f
+(xy)1062 1160 w
+9 CW f
+(character \\\()1 648 1 1512 1160 t
+9 PI f
+(xy)2160 1160 w
+9 CW f
+(; terminate)1 594 1 2250 1160 t
+9 PI f
+(xy)2898 1160 w
+9 CW f
+(by white space)2 756 1 3042 1160 t
+(H)1008 1270 w
+9 PI f
+(n)1062 1270 w
+9 CW f
+(go to absolute horizontal position)4 1836 1 1512 1270 t
+9 PI f
+(n)3402 1270 w
+9 CW f
+(. \()1 162 1 3452 1270 t
+9 PI f
+(n)3614 1270 w
+9 CW f
+(> 0\))1 216 1 3718 1270 t
+(V)1008 1380 w
+9 PI f
+(n)1062 1380 w
+9 CW f
+(go to absolute vertical position)4 1728 1 1512 1380 t
+9 PI f
+(n)3294 1380 w
+9 CW f
+(\(down is positive\))2 972 1 3398 1380 t
+(h)1008 1490 w
+9 PI f
+(n)1062 1490 w
+9 CW f
+(go)1512 1490 w
+9 PI f
+(n)1674 1490 w
+9 CW f
+(units horizontally \(to the right;)4 1782 1 1778 1490 t
+9 PI f
+(n)3614 1490 w
+9 CW f
+(> 0\))1 216 1 3718 1490 t
+(v)1008 1600 w
+9 PI f
+(n)1062 1600 w
+9 CW f
+(go)1512 1600 w
+9 PI f
+(n)1674 1600 w
+9 CW f
+(units vertically \(down;)2 1242 1 1778 1600 t
+9 PI f
+(n)3074 1600 w
+9 CW f
+(> 0\))1 216 1 3178 1600 t
+9 PI f
+(nnc)1008 1710 w
+9 CW f
+(move right)1 540 1 1512 1710 t
+9 PI f
+(nn)2106 1710 w
+9 CW f
+(, then print)2 648 1 2206 1710 t
+9 PI f
+(c)2908 1710 w
+9 CW f
+(\()2999 1710 w
+9 PI f
+(nn)3053 1710 w
+9 CW f
+(is exactly 2 digits!\))3 1134 1 3207 1710 t
+(n)1008 1820 w
+9 PI f
+(b a)1 104 1 1062 1820 t
+9 CW f
+(end of line \(information only -- no action needed\))8 2700 1 1512 1820 t
+9 PI f
+(b)1512 1930 w
+9 CW f
+(= space before line,)3 1080 1 1607 1930 t
+9 PI f
+(a)2741 1930 w
+9 CW f
+(= after)1 378 1 2835 1930 t
+( word space \(information only -- no action needed\))8 2700(w paddable)1 936 2 1008 2040 t
+(p)1008 2150 w
+9 PI f
+(n)1062 2150 w
+9 CW f
+(new page)1 432 1 1512 2150 t
+9 PI f
+(n)1998 2150 w
+9 CW f
+(begins -- set V to 0)5 1080 1 2102 2150 t
+( control functions)2 972( device)1 450(x ...\\n)1 378 3 1008 2260 t
+( functions \(graphics\))2 1134( drawing)1 504(D ...\\n)1 378 3 1008 2370 t
+10 PA f
+(Encoding small horizontal motions followed by a character as)8 2770 1 720 2550 t
+10 PI f
+(nnc)3520 2550 w
+10 PA f
+( file size by)3 512(shrinks the output)2 825 2 3703 2550 t
+(about 35% and run-time by about 15%.)6 1718 1 720 2670 t
+( graphics commands are intended as open-ended families, to be)9 2999(The device control and)3 1071 2 970 2826 t
+(expanded as needed.)2 929 1 720 2946 t
+9 CW f
+( init)1 558(x i)1 162 2 1008 3116 t
+(x T)1 162 1 1008 3226 t
+9 PI f
+(s)1224 3226 w
+9 CW f
+(name of typesetter is)3 1134 1 1512 3226 t
+9 PI f
+(s)2700 3226 w
+9 CW f
+(x r)1 162 1 1008 3336 t
+9 PI f
+(n h v)2 186 1 1224 3336 t
+9 CW f
+(resolution is)1 702 1 1512 3336 t
+9 PI f
+(n)2268 3336 w
+9 CW f
+(/inch,)2318 3336 w
+9 PI f
+(h)2696 3336 w
+9 CW f
+(= minimum horizontal motion,)3 1512 1 2795 3336 t
+9 PI f
+(v)4361 3336 w
+9 CW f
+(= min vert)2 540 1 4460 3336 t
+( \(can restart\))2 756( pause)1 612(x p)1 162 3 1008 3446 t
+( -- done forever)3 864( stop)1 558(x s)1 162 3 1008 3556 t
+( trailer)1 432( generate)1 774(x t)1 162 3 1008 3666 t
+(x f)1 162 1 1008 3776 t
+9 PI f
+(n s)1 108 1 1224 3776 t
+9 CW f
+(font position)1 702 1 1512 3776 t
+9 PI f
+(n)2268 3776 w
+9 CW f
+(contains font)1 702 1 2372 3776 t
+9 PI f
+(s)3128 3776 w
+9 CW f
+(x H)1 162 1 1008 3886 t
+9 PI f
+(n)1224 3886 w
+9 CW f
+(set character height to)3 1242 1 1512 3886 t
+9 PI f
+(n)2808 3886 w
+9 CW f
+(x S)1 162 1 1008 3996 t
+9 PI f
+(n)1224 3996 w
+9 CW f
+(set slant to)2 648 1 1512 3996 t
+9 PI f
+(n)2214 3996 w
+10 PA f
+(Subcommands like ``)2 922 1 720 4176 t
+10 CW f
+(i)1642 4176 w
+10 PA f
+('' are often spelled out like ``)6 1254 1 1702 4176 t
+10 CW f
+(init)2956 4176 w
+10 PA f
+(''.)3196 4176 w
+(The drawing functions are)3 1169 1 970 4332 t
+9 CW f
+(Dl)1008 4502 w
+9 PI f
+(dh dv)1 203 1 1170 4502 t
+9 CW f
+(draw line from current position by)5 1836 1 1728 4502 t
+9 PI f
+(dh dv)1 203 1 3618 4502 t
+9 CW f
+(Dc)1008 4612 w
+9 PI f
+(d)1170 4612 w
+9 CW f
+(draw circle of diameter)3 1242 1 1728 4612 t
+9 PI f
+(d)3024 4612 w
+9 CW f
+(with left side here)3 1026 1 3123 4612 t
+(De)1008 4722 w
+9 PI f
+(d1 d2)1 203 1 1170 4722 t
+9 CW f
+(draw ellipse of diameters)3 1350 1 1728 4722 t
+9 PI f
+(d1 d2)1 203 1 3132 4722 t
+9 CW f
+(Da)1008 4832 w
+9 PI f
+(dh1 dv1 dh2 dv2)3 609 1 1170 4832 t
+9 CW f
+(draw arc from current position to)5 1782 1 1728 4942 t
+9 PI f
+(dh1+dh2 dv1+dv2)1 673 1 3564 4942 t
+9 CW f
+(,)4237 4942 w
+(center at)1 486 1 1728 5052 t
+9 PI f
+(dh1 dv1)1 293 1 2268 5052 t
+9 CW f
+(from current position)2 1134 1 2615 5052 t
+(D\304)1008 5162 w
+9 PI f
+(dh1 dv1 dh2 dv2 ...)4 701 1 1170 5162 t
+9 CW f
+(draw B-spline from current position to)5 2052 1 1728 5272 t
+9 PI f
+(dh1 dv1)1 293 1 3834 5272 t
+9 CW f
+(,)4127 5272 w
+(then to)1 378 1 1728 5382 t
+9 PI f
+(dh2 dv2)1 293 1 2160 5382 t
+9 CW f
+(, then to ...)3 702 1 2453 5382 t
+10 PA f
+( of these,)2 410(In all)1 233 2 720 5562 t
+10 PI f
+(dh dv)1 234 1 1397 5562 t
+10 PA f
+(is an increment on the current horizontal and vertical position, with down)11 3375 1 1665 5562 t
+(and right positive.)2 812 1 720 5682 t
+( sepa-)1 261(Blanks, tabs and newlines may occur as separators in the input, and are mandatory to)14 3809 2 970 5838 t
+(rate constructions that would otherwise be confused.)6 2341 1 720 5958 t
+(To illustrate, the following is the output from the input)9 2431 1 970 6114 t
+9 CW f
+(hello)1008 6284 w
+(.br)1008 6394 w
+(.ps 20)1 324 1 1008 6504 t
+(.ft H)1 270 1 1008 6614 t
+(goodbye)1008 6724 w
+10 PA f
+(using)720 6904 w
+10 CW f
+(-Tcat)990 6904 w
+10 PA f
+(:)1290 6904 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 7 9
+%%Page: 8 10
+/saveobj save def
+mark
+10 pagesetup
+10 PA f
+(- 8 -)2 166 1 2797 480 t
+9 CW f
+(x T cat)2 378 1 1008 830 t
+(x res 432 1 3)4 702 1 1008 940 t
+(x init)1 324 1 1008 1050 t
+(x font 1 R)3 540 1 1008 1160 t
+(x font 2 I)3 540 1 1008 1270 t
+(x font 3 B)3 540 1 1008 1380 t
+(x font 4 S)3 540 1 1008 1490 t
+(V0)1008 1600 w
+(p1)1008 1710 w
+(s10)1008 1820 w
+(f1)1008 1930 w
+(H416)1008 2040 w
+(V72)1008 2150 w
+(ch)1008 2260 w
+(35e30l17l17on72 0)1 918 1 1008 2370 t
+(x font 0 H)3 540 1 1008 2480 t
+(f1)1008 2590 w
+(H416)1008 2700 w
+(f0)1008 2810 w
+(s20)1008 2920 w
+(V144)1008 3030 w
+(cg)1008 3140 w
+(70o70o70d73b73y67en72 0)1 1242 1 1008 3250 t
+(x trailer)1 486 1 1008 3360 t
+(V4752)1008 3470 w
+(x stop)1 324 1 1008 3580 t
+10 PA f
+( how the numbers are more than twice as big,)9 2175( Notice)1 360( from the 202.)3 659(Here is the same output)4 1126 4 720 3760 t
+( notice that the font)4 859( Also)1 254( of the 202.)3 477(reflecting the higher resolution)3 1373 4 720 3880 t
+10 CW f
+(H)3708 3880 w
+10 PA f
+(is a standard font on the 202)6 1247 1 3793 3880 t
+(so no special loading is needed to switch to it.)9 2022 1 720 4000 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 8 10
+%%Page: 9 11
+/saveobj save def
+mark
+11 pagesetup
+10 PA f
+(- 9 -)2 166 1 2797 480 t
+9 CW f
+(x T 202)2 378 1 1008 830 t
+(x res 972 1 2)4 702 1 1008 940 t
+(x init)1 324 1 1008 1050 t
+(x font 1 R)3 540 1 1008 1160 t
+(x font 2 I)3 540 1 1008 1270 t
+(x font 3 B)3 540 1 1008 1380 t
+(x font 4 BI)3 594 1 1008 1490 t
+(x font 5 H)3 540 1 1008 1600 t
+(x font 6 HB)3 594 1 1008 1710 t
+(x font 7 HK)3 594 1 1008 1820 t
+(x font 8 PO)3 594 1 1008 1930 t
+(x font 9 CH)3 594 1 1008 2040 t
+(x font 10 S)3 594 1 1008 2150 t
+(V0)1008 2260 w
+(p1)1008 2370 w
+(s10)1008 2480 w
+(f1)1008 2590 w
+(H936)1008 2700 w
+(V156)1008 2810 w
+(ch)1008 2920 w
+(73e63l35l35on156 0)1 972 1 1008 3030 t
+(H936)1008 3140 w
+(f5)1008 3250 w
+(s20)1008 3360 w
+(V312)1008 3470 w
+(cg)1008 3580 w
+(h150co)1008 3690 w
+(h150co)1008 3800 w
+(h150cd)1008 3910 w
+(h150cb)1008 4020 w
+(h150cy)1008 4130 w
+(h135ce)1008 4240 w
+(n156 0)1 324 1 1008 4350 t
+(x trailer)1 486 1 1008 4460 t
+(V10692)1008 4570 w
+(x stop)1 324 1 1008 4680 t
+10 PA f
+( guaranteed to be)3 809(The output is)2 613 2 970 4896 t
+8 PA f
+(ASCII)2430 4896 w
+10 PA f
+(, and thus amenable to processing by all the normal)9 2395 1 2645 4896 t
+( it is straightforward to write a prototype driver for a par-)11 2612( language is simple \320)4 998( The)1 223(Unix tools.)1 487 4 720 5016 t
+( may take)2 441(ticular typesetter, especially when one can steal an existing one as a model, although it)14 3879 2 720 5136 t
+( form also demystifies)3 1027( This)1 257( one of production quality.)4 1250(some effort to make)3 934 4 720 5256 t
+8 PA f
+(TROFF)4230 5256 w
+10 PA f
+(output and)1 512 1 4528 5256 t
+(makes it possible for anyone to write other programs to process or generate it.)13 3452 1 720 5376 t
+( as the output intended for the CAT.)7 1710(On the other hand, it is about twice as voluminous)9 2360 2 970 5532 t
+(Cleverness \(or sacrificing)2 1140 1 720 5652 t
+8 PA f
+(ASCII)1898 5652 w
+10 PA f
+( much more than one byte per)6 1403(-ness\) could bring it down to not)6 1524 2 2113 5652 t
+(character printed, but so far I have not felt this to be very important.)13 3013 1 720 5772 t
+( not really much to say about the post-processors.)8 2232(There is)1 355 2 970 5928 t
+8 PA f
+(D202)3612 5928 w
+10 PA f
+(drives the 202,)2 650 1 3824 5928 t
+8 PA f
+(DCAT)4504 5928 w
+10 PA f
+(drives)4764 5928 w
+( the vital boustrophedon and size-sorting features are)7 2437(the CAT \(although not very efficiently \320)6 1883 2 720 6048 t
+(not there\),)1 458 1 720 6168 t
+8 PA f
+(DAPS)1205 6168 w
+10 PA f
+(drives the APS-5,)2 768 1 1446 6168 t
+8 PA f
+(DCAN)2241 6168 w
+10 PA f
+(drives the Canon, and)3 982 1 2515 6168 t
+8 PA f
+(TC)3524 6168 w
+10 PA f
+(\(notice the parallel name struc-)4 1382 1 3658 6168 t
+( also rough and ready drivers for other display termi-)9 2424( are)1 170( There)1 312(ture\) drives the Tektronix 4014.)4 1414 4 720 6288 t
+(nals.)720 6408 w
+( drivers are able to offer useful)6 1421(Since it is easy to identify page and line boundaries, some)10 2649 2 970 6564 t
+(features that were not feasible with the older)7 2019 1 720 6684 t
+8 PA f
+(TROFF)2770 6684 w
+10 PA f
+( example,)1 431(. For)1 232 2 3026 6684 t
+8 PA f
+(TC)3720 6684 w
+10 PA f
+(permits the user to ask for)5 1183 1 3857 6684 t
+(specific pages by number, and to skip back and forth in the document.)12 3177 1 720 6804 t
+8 PA f
+(D202)3953 6804 w
+10 PA f
+(displays the output)2 873 1 4167 6804 t
+( stop at specified pages if requested.)6 1656(page number on the operator's control panel and will also)9 2664 2 720 6924 t
+(An experimental postprocessor called)3 1677 1 720 7044 t
+8 PA f
+(DSORT)2425 7044 w
+10 PA f
+(sorts the intermediate language by vertical position,)6 2317 1 2723 7044 t
+( complicated)1 573(to minimize vertical motion; it is intended for printing)8 2463 2 720 7164 t
+8 PA f
+(PIC)3788 7164 w
+10 PA f
+(diagrams and for circuit)3 1088 1 3952 7164 t
+(diagrams produced by)2 1028 1 720 7284 t
+8 PA f
+(PLTROFF)1784 7284 w
+10 PA f
+(. \()1 119 1 2137 7284 t
+8 PA f
+(PLTROFF)2256 7284 w
+10 PA f
+(converts the standard Unix plot language into)6 2102 1 2645 7284 t
+8 PA f
+(TROFF)4784 7284 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 9 11
+%%Page: 10 12
+/saveobj save def
+mark
+12 pagesetup
+10 PA f
+(- 10 -)2 216 1 2772 480 t
+( only)1 247( of the post-processors can scan their input relatively quickly to print)11 3318(commands.\) All)1 755 3 720 840 t
+(selected pages.)1 659 1 720 960 t
+10 PB f
+( Things)1 347(6. New)1 341 2 720 1200 t
+10 PA f
+(During the process of making these changes to)7 2063 1 970 1356 t
+8 PA f
+(TROFF)3058 1356 w
+10 PA f
+( changes to the pro-)4 875(, I have made some)4 851 2 3314 1356 t
+(gram that are visible to users \(thus violating the avowed goal of keeping it compatible\).)14 3861 1 720 1476 t
+( no longer any)3 686( example, there is)3 818( For)1 216(Some changes are simply the easing of restrictions.)7 2350 4 970 1632 t
+( fonts that can occur on a page \(if one's typesetter is up to it\), nor does the)17 3307(limit on the number of)4 1013 2 720 1752 t
+10 CW f
+(.fp)720 1872 w
+10 PA f
+( Fur-)1 250( ``mounting'' a new font have to occur only at the beginning.)11 2798(command that requests)2 1057 3 935 1872 t
+(thermore, a font may be accessed merely by naming it \320 the command)12 3144 1 720 1992 t
+9 CW f
+(\\f\(ARBell Laboratories\\fP)1 1350 1 1008 2162 t
+10 PA f
+(will produce)1 563 1 720 2342 t
+9 AR f
+(Bell Laboratories)1 710 1 1008 2512 t
+10 PA f
+(\(The font)1 404 1 720 2692 t
+10 CW f
+(AR)1149 2692 w
+10 PA f
+(is Avant-Garde Book. Obviously two-letter font names will have to go.\))10 3156 1 1294 2692 t
+( Thus,)1 298( longer have to all be isomorphic.)6 1484(Character sets can be sensibly defined since they no)8 2288 3 970 2848 t
+(for example, on the 202 the ``printout'' font)7 1903 1 720 2968 t
+9 CW f
+(This one)1 432 1 1008 3138 t
+10 PA f
+(includes a complete)2 902 1 720 3318 t
+8 PA f
+(ASCII)1660 3318 w
+10 PA f
+( characters have the same width, even the word)8 2217( of the)2 303(alphabet. All)1 607 3 1913 3318 t
+(space \(defined by the)3 970 1 720 3438 t
+10 CW f
+(spacewidth)1725 3438 w
+10 PA f
+( this font is suit-)4 745( Thus)1 280( description file\).)2 764(attribute in the font)3 891 4 2360 3438 t
+( the other hand, some)4 1030( On)1 205(able for printing program listings without any special precautions.)8 3085 3 720 3558 t
+(fonts are rather small, containing only a handful of characters.)9 2745 1 720 3678 t
+( For)1 210( point sizes are available, although there are still some limitations.)10 3004(Larger and smaller)2 856 3 970 3834 t
+(example,)720 3954 w
+10 CW f
+(\\s72)1158 3954 w
+10 PA f
+(is still parsed as a 7 point)6 1189 1 1436 3954 t
+10 CW f
+(2)2663 3954 w
+10 PA f
+( least)1 239(, since changing this would affect at)6 1657 2 2723 3954 t
+8 PA f
+(EQN)4656 3954 w
+10 PA f
+(and)4871 3954 w
+( \(Sadly,)1 368(probably other programs as well.)4 1515 2 720 4074 t
+8 PA f
+(EQN)2639 4074 w
+10 PA f
+( be changed anyway \320 it also accepts an)8 1894(had to)1 293 2 2853 4074 t
+(option of the form)3 841 1 720 4194 t
+10 CW f
+(-Txxx)1597 4194 w
+10 PA f
+(.\) But)1 273 1 1897 4194 t
+10 CW f
+(.ps 72)1 360 1 2206 4194 t
+10 PA f
+(works fine: each input size is mapped into the closest)9 2438 1 2602 4194 t
+( point sizes are not allowed and may never be.)9 2051( Fractional)1 494(legal size for the current typesetter.)5 1562 3 720 4314 t
+( those typeset-)2 653(Character height and slant may be set independently of character width, for)11 3417 2 970 4470 t
+( allow these operations.)3 1051(ters that)1 365 2 720 4590 t
+10 CW f
+(\\H'n')2188 4590 w
+10 PA f
+(sets the character height to)4 1189 1 2515 4590 t
+10 CW f
+(n)3731 4590 w
+10 PA f
+(points,)3818 4590 w
+10 CW f
+(\\H')4147 4590 w
+10 S f
+(\261)4327 4590 w
+10 CW f
+(n')4382 4590 w
+10 PA f
+(sets it to)2 369 1 4529 4590 t
+10 S f
+(\261)4925 4590 w
+10 CW f
+(n)4980 4590 w
+10 PA f
+(from the current point size, and)5 1461 1 720 4710 t
+10 CW f
+(\\H'0')2218 4710 w
+10 PA f
+(restores it to normal height.)4 1273 1 2555 4710 t
+10 CW f
+(\\S'n')3890 4710 w
+10 PA f
+(sets the slant to)3 715 1 4227 4710 t
+10 CW f
+(n)4980 4710 w
+10 PA f
+(degrees positive or negative; if)4 1355 1 720 4830 t
+10 CW f
+(n)2100 4830 w
+10 PA f
+(is zero, slanting is turned off.)5 1286 1 2185 4830 t
+( eliminated \(e.g.,)2 749(Some obsolete commands have been)4 1640 2 970 4986 t
+10 CW f
+(.fz)3391 4986 w
+10 PA f
+(,)3571 4986 w
+10 CW f
+(.li)3628 4986 w
+10 PA f
+(; the command line options)4 1232 1 3808 4986 t
+(for constant-size printing and suppressing boustrophedon; all code related to)9 3415 1 720 5106 t
+8 PA f
+(GCOS)4160 5106 w
+10 PA f
+(\).)4383 5106 w
+(A new command)2 805 1 970 5262 t
+10 CW f
+(.sy)1822 5262 w
+10 PA f
+(has been added to permit calling another program from within)9 2990 1 2050 5262 t
+8 PA f
+(TROFF)720 5382 w
+10 PA f
+(:)976 5382 w
+9 CW f
+(.sy)1008 5552 w
+9 PI f
+(command line)1 510 1 1224 5552 t
+10 PA f
+(causes)720 5732 w
+10 PI f
+(command line)1 573 1 1037 5732 t
+10 PA f
+( output is)2 434( The)1 223(to be executed.)2 672 3 1641 5732 t
+10 PI f
+(not)3001 5732 w
+10 PA f
+( the)1 171(automatically collected anywhere, but)3 1704 2 3165 5732 t
+(new number register)2 926 1 720 5852 t
+10 CW f
+(\\n\($$)1672 5852 w
+10 PA f
+(\(the process id of the)4 924 1 1998 5852 t
+8 PA f
+(TROFF)2948 5852 w
+10 PA f
+( create unique file)3 788(process\) can be used to)4 1022 2 3230 5852 t
+( up with subsequent)3 921(names to be picked)3 868 2 720 5972 t
+10 CW f
+(.so)2541 5972 w
+10 PA f
+( built-in string)2 648(commands. The)1 735 2 2753 5972 t
+10 CW f
+(\\*\(.T)4168 5972 w
+10 PA f
+(contains the)1 540 1 4500 5972 t
+(name of the current typesetter obtained from the)7 2154 1 720 6092 t
+10 CW f
+(-T)2899 6092 w
+10 PA f
+(argument or its default.)3 1046 1 3044 6092 t
+10 PB f
+( Commands)1 547(7. Graphics)1 540 2 720 6332 t
+10 PA f
+( significant new facility is the ability to draw simple graphical objects \320 diagonal)13 3656(The most)1 414 2 970 6488 t
+(lines, circles, ellipses, arcs, and splines \320 in)7 1924 1 720 6608 t
+8 PA f
+(TROFF)2669 6608 w
+10 PA f
+(.)2925 6608 w
+(The new graphical commands are)4 1496 1 970 6764 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 10 12
+%%Page: 11 13
+/saveobj save def
+mark
+13 pagesetup
+10 PA f
+(- 11 -)2 216 1 2772 480 t
+9 CW f
+(\\D'l)1008 830 w
+9 PI f
+(dh dv)1 203 1 1247 830 t
+9 CW f
+( line from current position by)5 1620(' draw)1 494 2 1450 830 t
+9 PI f
+(dh, dv)1 226 1 3618 830 t
+9 CW f
+(\\D'c)1008 940 w
+9 PI f
+(d)1247 940 w
+9 CW f
+( circle of diameter)3 1026(' draw)1 652 2 1292 940 t
+9 PI f
+(d)3024 940 w
+9 CW f
+(with left side at current position)5 1836 1 3123 940 t
+(\\D'e)1008 1050 w
+9 PI f
+(d1 d2)1 203 1 1247 1050 t
+9 CW f
+( ellipse of diameters)3 1134(' draw)1 494 2 1450 1050 t
+9 PI f
+(d1 d2)1 203 1 3132 1050 t
+9 CW f
+(\\D'a)1008 1160 w
+9 PI f
+(dh1 dv1 dh2 dv2)3 609 1 1247 1160 t
+9 CW f
+(')1856 1160 w
+(draw arc from current position to)5 1782 1 1728 1270 t
+9 PI f
+(dh1+dh2 dv1+dv2)1 673 1 3564 1270 t
+9 CW f
+(,)4237 1270 w
+(with center at)2 756 1 1728 1380 t
+9 PI f
+(dh1 dv1)1 293 1 2538 1380 t
+9 CW f
+(from current position)2 1134 1 2885 1380 t
+(\\D'\304)1008 1490 w
+9 PI f
+(dh1 dv1 dh2 dv2 ...)4 701 1 1247 1490 t
+9 CW f
+(')1948 1490 w
+(draw B-spline from current position by)5 2052 1 1728 1600 t
+9 PI f
+(dh1 dv1)1 293 1 3834 1600 t
+9 CW f
+(then by)1 378 1 1728 1710 t
+9 PI f
+(dh2 dv2)1 293 1 2160 1710 t
+9 CW f
+(, then by)2 486 1 2453 1710 t
+9 PI f
+(dh2, dv2)1 316 1 2993 1710 t
+9 CW f
+(, then ...)2 540 1 3309 1710 t
+10 PA f
+(For example, the input)3 1095 1 720 1890 t
+10 CW f
+(\\D'e0.2i 0.1i')1 870 1 1870 1890 t
+10 PA f
+(draws the ellipse)2 812 1 2795 1890 t
+cleartomark
+saveobj restore
+%%BeginGlobal
+%
+% Version 3.3.1 drawing procedures for dpost. Automatically pulled in when
+% needed.
+%
+
+/inpath false def
+/savematrix matrix def
+
+/Dl {
+	inpath
+		{pop pop neg lineto}
+		{newpath neg moveto neg lineto stroke}
+	ifelse
+} bind def
+
+/De {
+	/y1 exch 2 div def
+	/x1 exch 2 div def
+	/savematrix savematrix currentmatrix def
+	neg exch x1 add exch translate
+	x1 y1 scale
+	0 0 1 0 360
+	inpath
+		{1 0 moveto arc savematrix setmatrix}
+		{newpath arc savematrix setmatrix stroke}
+	ifelse
+} bind def
+
+/Da {
+	/dy2 exch def
+	/dx2 exch def
+	/dy1 exch def
+	/dx1 exch def
+	dy1 add neg exch dx1 add exch
+	dx1 dx1 mul dy1 dy1 mul add sqrt
+	dy1 dx1 neg atan
+	dy2 neg dx2 atan
+	inpath
+		{arc}
+		{newpath arc stroke}
+	ifelse
+} bind def
+
+/DA {
+	/dy2 exch def
+	/dx2 exch def
+	/dy1 exch def
+	/dx1 exch def
+	dy1 add neg exch dx1 add exch
+	dx1 dx1 mul dy1 dy1 mul add sqrt
+	dy1 dx1 neg atan
+	dy2 neg dx2 atan
+	inpath
+		{arcn}
+		{newpath arcn stroke}
+	ifelse
+} bind def
+
+/Ds {
+	/y2 exch def
+	/x2 exch def
+	/y1 exch def
+	/x1 exch def
+	/y0 exch def
+	/x0 exch def
+	x0 5 x1 mul add 6 div
+	y0 5 y1 mul add -6 div
+	x2 5 x1 mul add 6 div
+	y2 5 y1 mul add -6 div
+	x1 x2 add 2 div
+	y1 y2 add -2 div
+	inpath
+		{curveto}
+		{newpath x0 x1 add 2 div y0 y1 add -2 div moveto curveto stroke}
+	ifelse
+} bind def
+%%EndGlobal
+/saveobj save def
+mark
+10 PA f
+3663 1890 144 72 De
+(, and the input)3 741 1 3823 1890 t
+10 CW f
+(\\D'l.2i)4620 1890 w
+(-.1i'\\D'l.1i .1i')1 1033 1 720 2010 t
+10 PA f
+( the line)2 377(will draw)1 442 2 1791 2010 t
+2791 1938 2647 2010 Dl
+2863 2010 2791 1938 Dl
+( position after a graphical object has been)7 1907(. The)1 254 2 2879 2010 t
+( with other)2 507( As)1 180( ``end'', where for circles and ellipses, the end is at the right side.)13 2981(drawn is at its)3 652 4 720 2130 t
+(commands, default units are ems horizontally and line spaces vertically.)9 3188 1 720 2250 t
+( direct use, but for preprocessors like)6 1658(Realistically, these commands are not intended for)6 2251 2 970 2406 t
+8 PA f
+(PIC)4908 2406 w
+10 PA f
+(and)720 2526 w
+8 PA f
+(IDEAL)914 2526 w
+10 PA f
+(.)1163 2526 w
+( discussion of the)3 797(The output generated by these commands is shown in the)9 2644 2 970 2682 t
+8 PA f
+(TROFF)4447 2682 w
+10 PA f
+(output)4739 2682 w
+( than drawing the shape in)5 1260( Rather)1 361( earlier section.)2 698(language in an)2 684 4 720 2802 t
+8 PA f
+(TROFF)3763 2802 w
+10 PA f
+(, a command with the)4 1021 1 4019 2802 t
+( the device post-processor, which does whatever it can)8 2511(proper parameters is passed through to)5 1809 2 720 2922 t
+(with the request.)2 744 1 720 3042 t
+10 PB f
+( Ends)1 252(8. Loose)1 392 2 720 3282 t
+10 PA f
+(This version of)2 660 1 970 3438 t
+8 PA f
+(TROFF)1657 3438 w
+10 PA f
+( experience with)2 734( of our)2 297( Most)1 277(has been in use since September of 1979.)7 1792 4 1940 3438 t
+( been exercised)2 677(it has been on the 202 and Tektronix scopes, but the CAT and APS-5 drivers have)15 3643 2 720 3558 t
+(to some degree.)2 697 1 720 3678 t
+( or that remain to be)5 938(As mentioned, there are some obvious things that could be improved)10 3132 2 970 3834 t
+( instance,)1 428(added. For)1 524 2 720 3954 t
+8 PA f
+(TROFF)1713 3954 w
+10 PA f
+('s bracket-building function)2 1258 1 1969 3954 t
+10 CW f
+(\\b)3268 3954 w
+10 PA f
+(really ought to be implemented by)5 1611 1 3429 3954 t
+(postprocessor, so that typesetters like the 202 can draw a character like)11 3192 1 720 4074 t
+10 PA f
+0 48 changefont
+({)3943 4194 w
+10 PA f
+( of syn-)2 341(directly instead)1 692 2 4007 4074 t
+( necessary to add ``modes'' to permit graphical)7 2190( also appears to be)4 889( It)1 135(thesizing it from pieces.)3 1106 4 720 4194 t
+(objects to be dotted, dashed, etc.)5 1427 1 720 4314 t
+( is likely to be so forever, especially with the prolifera-)10 2475(Efficiency is always a problem, and)5 1595 2 970 4470 t
+( improvements \(perhaps 10)3 1223( Small)1 303(tion of preprocessors generating ever more complicated input.)7 2794 3 720 4590 t
+( the temporary file upon)4 1141( Placing)1 391( searching.)1 490(percent\) can be had from artifices like better table)8 2298 4 720 4710 t
+(which)720 4830 w
+8 PA f
+(TROFF)1025 4830 w
+10 PA f
+( for another 10-20 percent on machines)6 1756(stores macro definitions in memory is good)6 1970 2 1314 4830 t
+(like the)1 333 1 720 4950 t
+8 PA f
+(VAX)1085 4950 w
+10 PA f
+( speedup is likely without a)5 1263( no order-of-magnitude)2 1058( But)1 211(that have enough memory.)3 1217 4 1291 4950 t
+(gross revision of the basic design.)5 1483 1 720 5070 t
+(It is clear that)3 613 1 970 5226 t
+8 PA f
+(TROFF)1613 5226 w
+10 PA f
+( is far)2 256(ought to be replaced by something better, but, as I said above, it)12 2885 2 1899 5226 t
+( for better or worse,)4 881( So)1 160(from clear how to do the job a lot better.)9 1791 3 720 5346 t
+8 PA f
+(TROFF)3579 5346 w
+10 PA f
+( us for a)3 358(is likely to be with)4 820 2 3862 5346 t
+(long time.)1 446 1 720 5466 t
+10 PB f
+(Acknowledgements)720 5706 w
+10 PA f
+( taming)1 347(I am deeply indebted to Ken Thompson and Joe Condon, without whose efforts in)13 3723 2 970 5862 t
+(the Mergenthaler Linotron 202 the)4 1628 1 720 5982 t
+8 PA f
+(TROFF)2400 5982 w
+10 PA f
+( here would be irrelevant.)4 1245(modifications discussed)1 1087 2 2708 5982 t
+( am also grateful to Chris)5 1161( I)1 93( character-generating software.)2 1393(Thompson also provided most of the)5 1673 4 720 6102 t
+( algorithm)1 464(Van Wyk for the line and circle drawing algorithms and to Theo Pavlidis for the spline)15 3856 2 720 6222 t
+(used by all the postprocessors.)4 1352 1 720 6342 t
+( typography,'')1 639( E. Knuth, ``Mathematical)3 1155(1. Donald)1 580 3 720 6534 t
+10 PI f
+(Bulletin \(New Series\) of the American Mathe-)6 1912 1 3128 6534 t
+(matical Society)1 612 1 970 6654 t
+10 PB f
+(1)1607 6654 w
+10 PA f
+(\(2\) \(1979\).)1 432 1 1657 6654 t
+( Laborato-)1 467( Bell)1 227( Sci. Tech. Rep. 54,)4 852( F. Ossanna, ``NROFF/TROFF User's Manual,'' Comp.)6 2466(2. J.)1 308 5 720 6810 t
+( Hill, NJ \(October 1976\).)4 1056(ries, Murray)1 575 2 970 6930 t
+( A Crude Graphics Language for Typesetting,'' Comp. Sci.)8 2723( W. Kernighan, ``PIC \320)4 1109(3. Brian)1 488 3 720 7086 t
+( in SIGPLAN Symposium on Text)5 1535( Also)1 262( Hill, NJ.)2 402( Murray)1 399( Laboratories,)1 617( Bell)1 226(Tech. Rep. 85,)2 629 7 970 7206 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 11 13
+%%Page: 12 14
+/saveobj save def
+mark
+14 pagesetup
+10 PA f
+(- 12 -)2 216 1 2772 480 t
+(Manipulation, Portland, June 1981.)3 1541 1 970 840 t
+( Typesetting Language,'' SIGPLAN Symposium on)5 2333( J. Van Wyk, ``A Graphics)5 1203(4. Christopher)1 784 3 720 996 t
+(Text Manipulation, Portland \(June, 1981\).)4 1826 1 970 1116 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 12 14
+%%Page: 13 15
+/saveobj save def
+mark
+15 pagesetup
+10 PA f
+(- 13 -)2 216 1 2772 480 t
+10 PB f
+( of Language Changes)3 1009(Appendix: Summary)1 975 2 720 840 t
+10 PA f
+( to the)2 293(This appendix enumerates the changes)4 1746 2 970 996 t
+8 PA f
+(TROFF)3042 996 w
+10 PA f
+(language since the last printing of the)6 1709 1 3331 996 t
+(manual.)720 1116 w
+10 PB f
+(Command line arguments)2 1188 1 720 1356 t
+10 PA f
+(The argument)1 630 1 970 1512 t
+10 CW f
+(-Txxx)1630 1512 w
+10 PA f
+( and character definitions for typesetter)5 1775(loads parameters)1 766 2 1960 1512 t
+10 CW f
+(xxx)4532 1512 w
+10 PA f
+(, which)1 328 1 4712 1512 t
+(at the moment is typically one of)6 1448 1 720 1632 t
+10 CW f
+(202)2193 1632 w
+10 PA f
+(,)2373 1632 w
+10 CW f
+(aps)2423 1632 w
+10 PA f
+(or)2628 1632 w
+10 CW f
+(cat)2748 1632 w
+10 PA f
+(.)2928 1632 w
+10 CW f
+(-Fxxx)970 1788 w
+10 PA f
+( from directory)2 718(causes font information to be loaded)5 1723 2 1317 1788 t
+10 CW f
+(xxx)3806 1788 w
+10 PA f
+(instead of the default)3 1006 1 4034 1788 t
+10 CW f
+(/usr/lib/font/dev202)720 1908 w
+10 PA f
+(.)1920 1908 w
+10 PB f
+(Graphics commands)1 934 1 720 2148 t
+10 PA f
+(As described in section 7.)4 1119 1 970 2304 t
+10 PB f
+(Other new commands)2 1004 1 720 2544 t
+10 CW f
+(.sy)970 2700 w
+10 PI f
+(commandline)1175 2700 w
+10 PA f
+( is not captured anyplace.)4 1133( Output)1 375(executes the command, then returns.)4 1626 3 1742 2700 t
+10 CW f
+(.cf)970 2856 w
+10 PI f
+(file)1192 2856 w
+10 PA f
+(copies)1357 2856 w
+10 PI f
+(file)1677 2856 w
+10 PA f
+(into the)1 357 1 1843 2856 t
+8 PA f
+(TROFF)2243 2856 w
+10 PA f
+( ensues)1 341( Havoc)1 356(output file at this point, uninterpreted.)5 1801 3 2542 2856 t
+( command)1 486( This)1 257( in the file restore current horizontal and vertical position.)9 2713(unless the motions)2 864 4 720 2976 t
+(hasn't been used much, and is probably a bad idea anyway.)10 2636 1 720 3096 t
+10 CW f
+(.pi)970 3252 w
+10 PI f
+(program)1184 3252 w
+10 PA f
+(\(pipe the output into)3 947 1 1562 3252 t
+10 PI f
+(program)2544 3252 w
+10 PA f
+(\) now works in)3 697 1 2888 3252 t
+8 PA f
+(TROFF)3620 3252 w
+10 PA f
+(as well as)2 443 1 3911 3252 t
+8 PA f
+(NROFF)4389 3252 w
+10 PA f
+(, since it)2 378 1 4662 3252 t
+(makes somewhat more sense to allow it.)6 1781 1 720 3372 t
+10 CW f
+(\\H'n')970 3528 w
+10 PA f
+(sets the character height to)4 1193 1 1298 3528 t
+10 CW f
+(n)2519 3528 w
+10 PA f
+( form)1 245( height of the)3 593(points. A)1 433 3 2607 3528 t
+10 S f
+(\261)3907 3528 w
+10 PI f
+(n)3962 3528 w
+10 PA f
+(is an increment on the)4 993 1 4047 3528 t
+(current point size; a height of zero restores the height to the point size.)13 3115 1 720 3648 t
+10 CW f
+(\\S'n')970 3804 w
+10 PA f
+(sets the slant to)3 679 1 1295 3804 t
+10 CW f
+(n)1999 3804 w
+10 PA f
+(degrees.)2084 3804 w
+10 PI f
+(n)2502 3804 w
+10 PA f
+(may be negative.)2 750 1 2583 3804 t
+(The number register)2 902 1 970 3960 t
+10 CW f
+($$)1897 3960 w
+10 PA f
+(contains the process id of the)5 1281 1 2042 3960 t
+8 PA f
+(TROFF)3348 3960 w
+10 PA f
+(process.)3629 3960 w
+(The string)1 450 1 970 4116 t
+10 CW f
+(.T)1445 4116 w
+10 PA f
+(contains the name of the current typesetter \(e.g.,)7 2130 1 1590 4116 t
+10 CW f
+(202)3745 4116 w
+10 PA f
+(,)3925 4116 w
+10 CW f
+(aps)3975 4116 w
+10 PA f
+(,)4155 4116 w
+10 CW f
+(cat)4205 4116 w
+10 PA f
+(\).)4385 4116 w
+(The)970 4272 w
+10 CW f
+(.fp)1169 4272 w
+10 PA f
+( the data for the font to be loaded)8 1538(command accepts a third argument that causes)6 2121 2 1381 4272 t
+( allowing dynamic character defini-)4 1625( has been added as a first step to)8 1542( This)1 254(from that directory.)2 899 4 720 4392 t
+(tions.)720 4512 w
+(The)970 4668 w
+10 CW f
+(.ft)1172 4668 w
+10 PA f
+( position 0 \(which is in all)6 1198(command causes the named font to be loaded on font)9 2455 2 1387 4668 t
+( not currently mounted by default or by a)8 1926(other ways inaccessible\) if the font exists and is)8 2178 2 720 4788 t
+10 CW f
+(.fp)4860 4788 w
+10 PA f
+( font must be still or again in position 0 when the line is printed.)14 2828(command. The)1 686 2 720 4908 t
+(Transparent mode \()2 897 1 970 5064 t
+10 CW f
+(\\!)1867 5064 w
+10 PA f
+( transparent output actually appears in the)6 1962( been fixed so that)4 847(\) has)1 244 3 1987 5064 t
+(output; thus special commands can be passed through to postprocessors by witchcraft like)12 3991 1 720 5184 t
+9 CW f
+(.if "\\*\(.T"202" \\!x ...)3 1242 1 1008 5354 t
+10 PA f
+(\(If this makes no sense to you, you shouldn't be using it anyway.\))12 2897 1 720 5534 t
+10 PB f
+(Deletions)720 5774 w
+10 PA f
+(The)970 5930 w
+10 CW f
+(.fz)1173 5930 w
+10 PA f
+(and)1389 5930 w
+10 CW f
+(.li)1594 5930 w
+10 PA f
+( The)1 229(commands are no more.)3 1104 2 1811 5930 t
+10 CW f
+(-p)3181 5930 w
+10 PA f
+(,)3301 5930 w
+10 CW f
+(-g)3363 5930 w
+10 PA f
+(and)3520 5930 w
+10 CW f
+(+n)3726 5930 w
+10 PA f
+(command line arguments)2 1157 1 3883 5930 t
+(have also been eliminated, as has the)6 1626 1 720 6050 t
+10 CW f
+(hp)2371 6050 w
+10 PA f
+(number register.)1 735 1 2516 6050 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 13 15
+%%Trailer
