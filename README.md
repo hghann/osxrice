@@ -130,33 +130,38 @@ $ make help
 Usage: make <command>
 
 Commands:
-    alacritty        Setup files for alacritty
-    backup           Backup macOS packages using brew
-    base             Install base system
-    doas             Configure doas
-    docker           Docker initial setup
-    duti             Setup default applications
-    grap             install grap - a groff preprocessor for drawing graphs
-    help             Prints out Make help
-    init             Inital deploy dotfiles on osx machine
-    install          Install arch linux packages using pacman
-    jot              install jot - a markdown style preprocessor for groff
-    lf               Setup files for lf
-    mpd              Setup files for mpd
-    mpv              Setup files for mpv
-    ncmpcpp          Setup files for ncmpcpp
-    pip              Install python packages
-    pipbackup        Backup python packages
-    pipupdate        Update python packages
-    pkg_base         Install base packages plus doas because sudo is bloat
-    prog_base        Install base programs
-    testinit         Test initial deploy dotfiles
-    testpath         ECHO PATH
-    update           Update macOS packages and save packages cache
-    vim              Init vim
-    vimupdate        Updates vim config
-    walk             installs plan9 find SUDO NEEDED
-    wm               Setup files for window managers
+
+    alacritty         Deploy Alacritty configs
+    backup            Backup macOS packages using brew
+    base              Install base system
+    doas              Configure doas
+    dock              Apply macOS dock settings
+    duti              Setup default applications
+    grap              Install grap - a groff preprocessor for drawing graphs
+    help              Prints out Make help
+    init              Inital deploy dotfiles on osx machine
+    install           Install arch linux packages using pacman
+    jot               Install jot - a markdown style preprocessor for groff
+    lf                Deploy lf configs
+    macos             Apply macOS system defaults
+    mpd               Deploy mpd configs
+    mpv               Deploy mpv configs
+    ncmpcpp           Deploy ncmpcpp configs
+    pip               Install python packages
+    pipbackup         Backup python packages
+    pipupdate         Update python packages
+    pkg_base          Install base packages plus doas because sudo is bloat
+    prog_base         Install base programs
+    ssh-key_gen       Generate an SSH key
+    sync              Push changes to git repo
+    testinit          Test initial deploy dotfiles
+    testpath          echo $PATH
+    update            Update macOS packages and save packages cache
+    vim               Init vim
+    vimpull           Updates local vim config
+    vimpush           Updates vim repo
+    walk              Installs plan9 find SUDO NEEDED
+    wm                Deploy window manager configs
 ```
 
 ## Customize
