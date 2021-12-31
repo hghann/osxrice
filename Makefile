@@ -137,7 +137,7 @@ ncmpcpp: ## Setup files for ncmpcpp
 	$(LN) $(PWD)/.config/ncmpcpp/config $(HOME)/.config/ncmpcpp/config
 
 duti: ## Setup default applications
-	$(PKGINSTALL) duti; $(PROGINSTALL) macvim;\
+	$(PKGINSTALL) duti; $(PROGINSTALL) skim macvim;\
 	duti -s net.sourceforge.skim-app.skim .pdf all;\
 	duti -s org.vim.MacVim .rem all;\
 	duti -s org.vim.MacVim .ms all;\
@@ -207,14 +207,6 @@ base: ## Install base system
 	xcode-select -install
 	pkg_base prog_base
 
-docker: ## Docker initial setup
-	$(SUDO) pacman -S docker
-	$(SUDO) usermod -aG docker $(USER)
-	$(MKDIR) $(HOME)/.docker
-	$(LN) $(PWD)/.docker/config.json $(HOME)/.docker/config.json
-	$(SUDO) systemctl enable docker.service
-	$(SUDO) systemctl start docker.service
-
 macos: ## Apply macOS system defaults
 	$(PWD)/.local/bin/macOS.sh
 
@@ -229,13 +221,13 @@ backup: ## Backup macOS packages using brew
 	brew list -1 --full-name > $(PWD)/pkg/brewlist
 
 update: ## Update macOS packages and save packages cache
-	sudo softwareupdate -i -a
-	brew upgrade -v;\
+	sudo softwareupdate -i -a;\
+		brew upgrade -v;\
 		cd $(HOME)/.config/brew;\
 		brew bundle -v;\
 		brew cu -afyv;\
-		cd; brew doctor -v
-	    brew update
+		cd; brew doctor -v;\
+		brew update -v
 
 sync: ## Push changes to git repo
 	git pull;\

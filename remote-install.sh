@@ -10,7 +10,7 @@
 
 SOURCE="https://github.com/hghann/osxrice"
 TARBALL="$SOURCE/tarball/master"
-TARGET="$HOME/.osxrice"
+TARGET="$HOME/.dotfiles"
 TAR_CMD="tar -xzv -C "$TARGET" --strip-components=1 --exclude='{.gitignore}'"
 
 is_executable() {
