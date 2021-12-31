@@ -36,7 +36,7 @@ pass:
 	git clone git@github.com:hghann/pass.git $(HOME)/.local/share/password-store
 
 bookmarks:
-	git clone git@github.com:hghann/bookmarks.git $(HOME)/.local/share/bookmarks
+	git clone git@github.com:hghann/bookmarks.git $(HOME)/.local/share/buku
 
 startpage:
 	git clone git@github.com:hghann/startpage.git $(HOME)/.local/share/startpage
@@ -46,7 +46,14 @@ vim: ## Init vim
 	git clone git@github.com:hghann/dotvim $(HOME)/.vim
 	cd $(HOME)/.vim && make -f $(HOME)/.vim/Makefile
 
-vimupdate: ## Updates vim config
+vimpush: ## Updates vim repo
+	cd $(HOME)/.vim;\
+		git pull;\
+		git add .;\
+		git commit -m "push via Makefile";\
+		git push -u origin master
+
+vimpull: ## Updates local vim config
 	cd $(HOME)/.vim;\
 		git pull
 
@@ -112,7 +119,7 @@ wm: ## Setup files for window managers
 	$(LN) $(PWD)/.config/wm/amethyst/com.amethyst.Amethyst.plist $(HOME)/Library/Preferences/com.amethyst.Amethyst.plist
 	$(LN) $(PWD)/.config/wm/rectangle/com.knollsoft.Rectangle.plist $(HOME)/Library/Preferences/com.knollsoft.Rectangle.plist
 
-alacritty: ## Setup files for alacritty
+alacritty: ## Setup files for Alacritty
 	$(MKDIR) $(HOME)/.config/alacritty
 	$(LN) $(PWD)/.config/alacritty/alacritty.yml $(HOME)/.config/alacritty/alacritty.yml
 
