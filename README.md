@@ -116,7 +116,7 @@ make init
 ```
 
 The installation process in the Makefile is tested on every push and every week
-in this [GitHub Action](https://github.com/webpro/dotfiles/actions).
+in this [GitHub Action](https://github.com/hghann/dotfiles/actions).
 
 ## Post-Installation
 
