@@ -3,7 +3,9 @@
 ######################################################################
 # @author      : hg (https://github.com/hghann)
 # @file        : .zshenv
-# @created     : Wed 27 Jab 5:43:18 2021
+# @created     : Wed 27 Jan 5:43:18 2021
+#
+# @description : Runs on login. Environmental variables are set here.
 ######################################################################
 
 # Path
@@ -28,26 +30,36 @@ export TERMINAL="alacritty"
 export COLORTERM="truecolor"
 export EDITOR="nvim"
 export VISUAL="nvim"
+export CODEEDITOR="vscodium"
+export BROWSER="librewolf"
 export READER="xpdf"
 export VIDEO="mpv"
 export IMAGE="sxiv"
-export BROWSER="/Applications/LibreWolf.app/Contents/MacOS/librewolf"
 export PAGER="less"
-export CODEEDITOR="vscodium"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 #export MANPAGER="nvim -c 'set ft=man' -"
-export BACKUP_VOLUME_PATH="/Volumes/samsung-bar/backup"
+
 
 # $HOME Clean-up:
-export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
-export INPUTRC="${XDG_CONFIG_HOME:-$HOME/.config}/shell/inputrc"
 export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
+#export HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/history"
 export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/password-store"
 export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
-export HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/history"
+export INPUTRC="${XDG_CONFIG_HOME:-$HOME/.config}/shell/inputrc"
+export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
+export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
+export ANSIBLE_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/ansible/ansible.cfg"
+export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc-2.0"
 export LESSHISTFILE="-"
+
+# Other program settings:
+export BACKUP_VOLUME_PATH="/Volumes/samsung-bar/backup"
+export SDCV_PAGER='bat --pager "less -RF"'
+#export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
+#export LESS=-R
 
 # This is the list for lf icons:
 export LF_ICONS="\
