@@ -65,8 +65,8 @@ own dotfiles.
 
 ## Packages Overview
 
-- [Homebrew](https://brew.sh) (packages: [Brewfile](./install/Brewfile))
-- [homebrew-cask](https://github.com/Homebrew/homebrew-cask) (packages: [Caskfile](./install/Caskfile))
+- [Homebrew](https://brew.sh) (packages: [Brewfile](./pkg/Brewfile))
+- [homebrew-cask](https://github.com/Homebrew/homebrew-cask) (packages: [Caskfile](./pkg/Caskfile))
 - Latest Git, Bash 4, Python 3, GNU coreutils, and curl
 - `$EDITOR` (and Git editor) is [Vim](https://www.vim.org/)
 
@@ -107,7 +107,7 @@ git clone https://github.com/hghann/osxrice.git ~/.dotfiles
 ```
 
 Use the [Makefile](./Makefile) to install everything
-[listed above](#package-overview), and [config](./config) (using
+[listed above](#package-overview), and [config](./.config) (using
 [make](https://www.gnu.org/software/make/)):
 
 ```bash
