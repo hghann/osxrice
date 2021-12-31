@@ -16,6 +16,7 @@ dav1d
 diction
 docbook
 docbook-xsl
+dockutil
 duti
 exa
 exiftool
@@ -56,7 +57,6 @@ hwloc
 icu4c
 imagemagick
 imath
-imlib2
 isl
 jasper
 jbig2dec
@@ -73,7 +73,6 @@ libassuan
 libbluray
 libde265
 libevent
-libexif
 libffi
 libgcrypt
 libgpg-error
@@ -117,8 +116,6 @@ libxau
 libxcb
 libxdmcp
 libxext
-libxft
-libxinerama
 libxls
 libxlsxwriter
 libxml2
@@ -234,6 +231,7 @@ exifcleaner
 firefox
 freecad
 gimp
+hammerspoon
 hiddenbar
 inkscape
 keepassxc
@@ -257,6 +255,7 @@ rectangle
 rstudio
 signal
 skim
+textmate
 the-unarchiver
 thunderbird
 utm

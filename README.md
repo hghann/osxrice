@@ -97,7 +97,7 @@ macOS). Now there are two options:
 bash -c "`curl -fsSL https://raw.githubusercontent.com/webpro/dotfiles/master/remote-install.sh`"
 ```
 
-This will clone or download, this repo to `~/osxrice` depending on the
+This will clone or download, this repo to `~/.dotfiles` depending on the
 availability of `git`, `curl` or `wget`.
 
 2. Alternatively, clone manually into the desired location:
@@ -111,8 +111,8 @@ Use the [Makefile](./Makefile) to install everything
 [make](https://www.gnu.org/software/make/)):
 
 ```bash
-cd ~/osxrice
-make
+cd ~/.dotfiles
+make init
 ```
 
 The installation process in the Makefile is tested on every push and every week

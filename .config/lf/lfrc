@@ -153,7 +153,7 @@ map <m-up> up
 map <m-down> down
 
 # Movement
-map gr cd ~/osxrice
+map gr cd ~/.dotfiles
 map gc. cd ~/.config
 map gcl cd ~/.config/lf
 map gca cd ~/.config/alacritty
