@@ -237,6 +237,12 @@ update: ## Update macOS packages and save packages cache
 		cd; brew doctor -v
 	    brew update
 
+sync: ## Push changes to git repo
+	git pull;\
+		git add .;\
+		git commit -m "minor edits";\
+		git push -u origin master
+
 pip: ## Install python packages
 	pip install --user --upgrade pip
 	pip install --user 'python-language-server[all]'
