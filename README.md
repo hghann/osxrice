@@ -120,8 +120,8 @@ in this [GitHub Action](https://github.com/webpro/dotfiles/actions).
 
 ## Post-Installation
 
-- `make macos` (set [macOS defaults](./macos/macOS.sh))
-- `make dock` (set [Dock items](./macos/dock.sh))
+- `make macos` (set [macOS defaults](./.local/bin/macOS.sh))
+- `make dock` (set [Dock items](./.local/bin/dock.sh))
 
 ## The `make` command
 
@@ -130,7 +130,6 @@ $ make help
 Usage: make <command>
 
 Commands:
-
     alacritty         Deploy Alacritty configs
     backup            Backup macOS packages using brew
     base              Install base system
