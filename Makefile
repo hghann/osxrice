@@ -115,30 +115,30 @@ init: ## Inital deploy dotfiles on osx machine
 	rm -rf $(HOME)/.local/share/groff
 	$(LNDIR) $(PWD)/.local/share/groff $(HOME)/.local/share/groff
 
-wm: ## Setup files for window managers
+wm: ## Deploy window manager configs
 	$(LN) $(PWD)/.config/wm/amethyst/com.amethyst.Amethyst.plist $(HOME)/Library/Preferences/com.amethyst.Amethyst.plist
 	$(LN) $(PWD)/.config/wm/rectangle/com.knollsoft.Rectangle.plist $(HOME)/Library/Preferences/com.knollsoft.Rectangle.plist
 
-alacritty: ## Setup files for Alacritty
+alacritty: ## Deploy Alacritty configs
 	$(MKDIR) $(HOME)/.config/alacritty
 	$(LN) $(PWD)/.config/alacritty/alacritty.yml $(HOME)/.config/alacritty/alacritty.yml
 
-lf: ## Setup files for lf
+lf: ## Deploy lf configs
 	$(MKDIR) $(HOME)/.config/lf
 	$(LN) $(PWD)/.config/lf/cleaner $(HOME)/.config/lf/cleaner
 	$(LN) $(PWD)/.config/lf/lfrc $(HOME)/.config/lf/lfrc
 	$(LN) $(PWD)/.config/lf/preview $(HOME)/.config/lf/preview
 
-mpv: ## Setup files for mpv
+mpv: ## Deploy mpv configs
 	$(MKDIR) $(HOME)/.config/mpv
 	$(LN) $(PWD)/.config/mpv/input.conf $(HOME)/.config/mpv/input.conf
 	$(LN) $(PWD)/.config/mpv/mpv.conf $(HOME)/.config/mpv/mpv.conf
 
-mpd: ## Setup files for mpd
+mpd: ## Deploy mpd configs
 	$(MKDIR) $(HOME)/.config/mpd/mpd.conf
 	$(LN) $(PWD)/.config/mpd/mpd.conf $(HOME)/.config/mpd/mpd.conf
 
-ncmpcpp: ## Setup files for ncmpcpp
+ncmpcpp: ## Deploy ncmpcpp configs
 	$(MKDIR) $(HOME)/.config/ncmpcpp
 	$(LN) $(PWD)/.config/ncmpcpp/bindings $(HOME)/.config/ncmpcpp/bindings
 	$(LN) $(PWD)/.config/ncmpcpp/config $(HOME)/.config/ncmpcpp/config
