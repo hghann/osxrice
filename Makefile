@@ -222,12 +222,12 @@ backup: ## Backup macOS packages using brew
 
 update: ## Update macOS packages and save packages cache
 	sudo softwareupdate -i -a;\
-		brew upgrade -v;\
+		brew update -v;\
+		brew upgrade -v --display-times;\
 		cd $(HOME)/.config/brew;\
 		brew bundle -v;\
 		brew cu -afyv;\
-		cd; brew doctor -v;\
-		brew update -v
+		cd; brew doctor -v
 
 sync: ## Push changes to git repo
 	git pull;\

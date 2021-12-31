@@ -1,0 +1,17 @@
+#!/usr/bin/env sh
+
+######################################################################
+# @author      : hg (https://github.com/hghann)
+# @file        : sdcvrun.sh
+# @created     : Fri 31 Dec 15:21:16 2021
+#
+# @description : wrapper around sdcv to conveniently format its output
+######################################################################
+
+sdcv -n --utf8-output --color "$@" 2>&1 | \
+gfold --width=$(tput cols) | \
+#less -RF
+bat --pager "less -RF"
+
+# vim: set tw=78 ts=2 et sw=2 sr:
+

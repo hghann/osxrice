@@ -50,11 +50,18 @@ alias \
 	.5='cd ../../../../..'
 
 # brew
-alias bsyu='brew upgrade -v --display-times && cd $HOME/.config/brew && brew bundle -v && brew cu -afyv && cd && brew dr -v'   # update all brew pkgs
-alias bfcrt='cd $HOME/.config/brew && brew bundle dump --describe && cd'    # create brewfile in $HOME/config/brew
-alias bfsyu='cd $HOME/.config/brew && brew bundle dump --force --describe && cd'    # update brewfile
-alias bclean='brew autoremove && brew cleanup && brew doctor -v'    # remove orphaned packages
-alias bldep='brew deps -n --tree --installed --annotate'    # list dependencies
+# update all brew pkgs
+alias bsyu='brew update -v; brew upgrade -v --display-times;\
+		cd $HOME/.config/brew; brew bundle -v;\
+		brew cu -afyv; cd; brew doctor -v'
+# create brewfile in $HOME/.config/brew
+alias bfcrt='cd $HOME/.config/brew && brew bundle dump --describe && cd'
+# update brewfile
+alias bfsyu='cd $HOME/.config/brew && brew bundle dump --force --describe && cd'
+# remove orphaned packages
+alias bclean='brew autoremove && brew cleanup && brew doctor -v'
+# list dependencies
+alias bldep='brew deps -n --tree --installed --annotate'
 alias bgdep='brew deps -n --graph --dot --installed --annotate'
 alias bls='brew list -1 --full-name'
 alias boutdated='brew outdated -v'
@@ -68,8 +75,7 @@ alias \
 	l.='exa -a | egrep "^\."'
 
 # Colorize commands when possible.
-alias \
-	diff="diff --color=auto" \
+alias diff="diff --color=auto" \
 
 # Colorize grep output (good for log files)
 alias \
@@ -90,14 +96,16 @@ alias \
 
 # These common commands are just too long! Abbreviate them.
 alias \
-	ka="killall" \
-	g="git" \
-	sdn="sudo shutdown -h now" \
-	e="$EDITOR" \
-	v="$EDITOR" \
-	b="brew" \
-	z="xpdf" \
-	n="newsboat" \
+	ka='killall' \
+	g='git' \
+	sdn='sudo shutdown -h now' \
+	e='$EDITOR' \
+	v='$EDITOR' \
+	b='brew' \
+	z='xpdf' \
+	n='newsboat' \
+	scim='sc-im' \
+	sdcv='sdcvrun' \
 	YT="youtube-viewer" \
 	trem="transmission-remote"
 
@@ -107,10 +115,32 @@ alias \
 	vifm='./.config/vifm/scripts/vifmrun' \
 	ncmpcpp='ncmpcpp ncmpcpp_directory=$HOME/.config/ncmpcpp/' \
 	mocp='mocp -M "$XDG_CONFIG_HOME"/moc -O MOCDir="$XDG_CONFIG_HOME"/moc' \
-	lynx='lynx -cfg=~/.config/lynx/lynx.cfg -lss=~/.config/lynx/lynx.lss -vikeys'
+	lynx='lynx -cfg=~/.config/lynx/lynx.cfg -lss=~/.config/lynx/lynx.lss -vikeys' \
 #lf='/usr/local/bin/lfrun'
 
-# Git
+# GnuPG encryption
+alias gpg-check="gpg2 --keyserver-options auto-key-retrieve --verify" # verify signature for isos
+alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys" # receive the key of a developer
+
+# Program Specific Aliases
+# remind
+alias \
+	wrem='rem -cl+1 -@'\
+	gcal='remind -cl -pp ~/.reminders/ \
+		| rem2ps -l -st 55 -shd 35 -se 25 -m 30x40cm \
+		| ps2pdf - > ~/.reminders/cal.pdf' \
+	vcal='remind -cl -pp ~/.reminders/ \
+		| rem2ps -l -st 55 -shd 35 -se 25 -m 30x40cm \
+		| ps2pdf - > ~/.reminders/cal.pdf && xpdf ~/.reminders/cal.pdf' \
+	urem='vim ~/.reminders/uni.rem' \
+	prem='vim ~/.reminders/personal.rem'
+# buku
+alias bukud='bukuserver run --host 127.0.0.1 --port 5001'
+# skim (pdf viewer)
+alias \
+	embed='skimpdf embed ' \
+	unembed='skimpdf unembed '
+# git
 alias \
 	gtg='cd $HOME/Downloads/gitthings' \
 	addup='git add -u' \
@@ -125,13 +155,6 @@ alias \
 	status='git status' \
 	tag='git tag' \
 	newtag='git tag -a'
-
-# gpg encryption
-# verify signature for isos
-alias gpg-check="gpg2 --keyserver-options auto-key-retrieve --verify"
-# receive the key of a developer
-alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"
-
 # youtube-dl
 alias \
 	ydl="youtube-dl -x --audio-format mp3 -a $HOME/urls" \
@@ -150,23 +173,6 @@ alias \
 	tobash="sudo chsh $USER -s /bin/bash && echo 'Now log out.'" \
 	tozsh="sudo chsh $USER -s /bin/zsh && echo 'Now log out.'"
 
-# Remind
-alias \
-	wrem='rem -cl+1 -@'\
-	gcal='remind -cl -pp ~/.reminders/ | rem2ps -l -st 55 -shd 35 -se 25 -m 30x40cm | ps2pdf - > ~/.reminders/cal.pdf' \
-	vcal='remind -cl -pp ~/.reminders/ | rem2ps -l -st 55 -shd 35 -se 25 -m 30x40cm | ps2pdf - > ~/.reminders/cal.pdf && xpdf ~/.reminders/cal.pdf' \
-	urem='vim ~/.reminders/uni.rem' \
-	prem='vim ~/.reminders/personal.rem'
-
-# Buku
-alias \
-	bukud='bukuserver run --host 127.0.0.1 --port 5001'
-
-# skim (pdf viewer)
-alias \
-	embed='skimpdf embed ' \
-	unembed='skimpdf unembed '
-
 # Terminal rickroll
 alias rr='curl -s -L https://raw.githubusercontent.com/keroserene/rickrollrc/master/roll.sh | bash'
 
@@ -175,5 +181,12 @@ alias wsd='wget --mirror --convert-links --page-requisites --no-parent -P $HOME/
 
 # Generate and deploy personal website
 alias \
-	gw='cd ~/.websites/hghann.github.io/ && rm -f ~/.websites/hghann.github.io/dst/.files && ~/.websites/hghann.github.io/bin/ssg6 src dst "Steve Blog" "https://hghann.github.io/" && rsync -av ~/.websites/hghann.github.io/dst/ ~/.websites/hghann.github.io/' \
-	dw='cd ~/.websites/hghann.github.io/ && rm -f ~/.websites/hghann.github.io/dst/.files && ~/.websites/hghann.github.io/bin/ssg6 src dst "hghanns Blog" "https://hghann.github.io/" && rsync -av ~/.websites/hghann.github.io/dst/ ~/.websites/hghann.github.io/ && git add . && git commit -m "minor edits" && git push -u origin master'
+	gw='cd ~/.websites/hghann.github.io/ && \
+		rm -f ~/.websites/hghann.github.io/dst/.files && \
+		~/.websites/hghann.github.io/bin/ssg6 src dst "Steve Blog" "https://hghann.github.io/" && \
+		rsync -av ~/.websites/hghann.github.io/dst/ ~/.websites/hghann.github.io/' \
+	dw='cd ~/.websites/hghann.github.io/ && \
+	rm -f ~/.websites/hghann.github.io/dst/.files && \
+	~/.websites/hghann.github.io/bin/ssg6 src dst "hghanns Blog" "https://hghann.github.io/" && \
+	rsync -av ~/.websites/hghann.github.io/dst/ ~/.websites/hghann.github.io/ && \
+	git add . && git commit -m "minor edits" && git push -u origin master'

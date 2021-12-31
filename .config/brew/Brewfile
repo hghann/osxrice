@@ -419,6 +419,8 @@ brew "recutils"
 brew "remind"
 # Spreadsheet program for the terminal, using ncurses
 brew "sc-im"
+# StarDict Console Version
+brew "sdcv"
 # SMART hard drive monitoring
 brew "smartmontools"
 # Command-line interface for https://speedtest.net bandwidth tests
