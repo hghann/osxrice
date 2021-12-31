@@ -171,7 +171,7 @@ PREFIX = /usr/local
 MANPREFIX = $(PREFIX)/share/man
 TMPDIR = $(PWD)/tmp
 
-walk: ## installs plan9 find SUDO NEEDED
+walk: ## Installs plan9 find SUDO NEEDED
 	$(MKDIR) $(TMPDIR)
 	git clone https://github.com/google/walk.git $(TMPDIR)/walk
 	cd $(TMPDIR)/walk && make
@@ -187,14 +187,14 @@ walk: ## installs plan9 find SUDO NEEDED
 	cp -f     $(TMPDIR)/walk/sor.1 $(DESTDIR)$(MANPREFIX)/man1/sor.1
 	chmod 644 $(DESTDIR)$(MANPREFIX)/man1/sor.1
 
-jot: ## install jot - a markdown style preprocessor for note-taking in groff
+jot: ## Install jot - a markdown style preprocessor for groff
 	$(MKDIR) $(TMPDIR)
 	git clone https://gitlab.com/rvs314/jot.git $(TMPDIR)/$<
 	rm -rf $(TMPDIR)
 
 # grap can be found here: https://www.lunabase.org/~faber/Vault/software/grap/
 #               and here: https://github.com/snorerot13/grap
-grap: ## install grap - a groff preprocessor for drawing graphs
+grap: ## Install grap - a groff preprocessor for drawing graphs
 	$(MKDIR) $(TMPDIR)
 	git clone https://github.com/snorerot13/grap.git $(TMPDIR)/$<
 	rm -rf $(TMPDIR)
@@ -253,7 +253,7 @@ pipbackup: ## Backup python packages
 pipupdate: ## Update python packages
 	pip list --user | cut -d" " -f 1 | tail -n +3 | xargs pip install -U --user
 
-testpath: ## ECHO PATH
+testpath: ## echo $PATH
 	PATH=$$PATH
 	@echo $$PATH
 	echo $(PWD)
