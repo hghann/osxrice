@@ -57,7 +57,7 @@ own dotfiles.
 
 - Minimal efforts to install everything, using a [Makefile](./Makefile)
 - Mostly based around Homebrew, Caskroom, latest Bash + GNU Utils
-- Great [Window management](./config/wm/README.md) (using Amethyst and Rectangle)
+- Great [Window management](https://github.com/hghann/osxrice/tree/master/.config/wm) (using Amethyst and Rectangle)
 - Fast and colored prompt
 - Updated macOS defaults
 - Well-organized and easy to customize
@@ -67,7 +67,7 @@ own dotfiles.
 
 - [Homebrew](https://brew.sh) (packages: [Brewfile](./install/Brewfile))
 - [homebrew-cask](https://github.com/Homebrew/homebrew-cask) (packages: [Caskfile](./install/Caskfile))
-- Latest Git, Bash 4, Python 3, GNU coreutils, curl, Ruby
+- Latest Git, Bash 4, Python 3, GNU coreutils, and curl
 - `$EDITOR` (and Git editor) is [Vim](https://www.vim.org/)
 
 ## Install these dotfiles and all dependencies
@@ -88,7 +88,8 @@ sudo softwareupdate -i -a
 xcode-select --install
 ```
 
-The Xcode Command Line Tools includes `git` and `make` (not available on stock macOS). Now there are two options:
+The Xcode Command Line Tools includes `git` and `make` (not available on stock
+macOS). Now there are two options:
 
 1. Install this repo with `curl` available:
 
@@ -96,24 +97,26 @@ The Xcode Command Line Tools includes `git` and `make` (not available on stock m
 bash -c "`curl -fsSL https://raw.githubusercontent.com/webpro/dotfiles/master/remote-install.sh`"
 ```
 
-This will clone or download, this repo to `~/osxrice` depending on the availability of `git`, `curl` or `wget`.
+This will clone or download, this repo to `~/osxrice` depending on the
+availability of `git`, `curl` or `wget`.
 
 2. Alternatively, clone manually into the desired location:
 
 ```bash
-git clone https://github.com/hghann/osxrice.git ~/osxrice
+git clone https://github.com/hghann/osxrice.git ~/.dotfiles
 ```
 
-Use the [Makefile](./Makefile) to install everything [listed above](#package-overview), and symlink [runcom](./runcom)
-and [config](./config) (using [stow](https://www.gnu.org/software/stow/)):
+Use the [Makefile](./Makefile) to install everything
+[listed above](#package-overview), and [config](./config) (using
+[make](https://www.gnu.org/software/make/)):
 
 ```bash
 cd ~/osxrice
 make
 ```
 
-The installation process in the Makefile is tested on every push and every week in this
-[GitHub Action](https://github.com/webpro/dotfiles/actions).
+The installation process in the Makefile is tested on every push and every week
+in this [GitHub Action](https://github.com/webpro/dotfiles/actions).
 
 ## Post-Installation
 

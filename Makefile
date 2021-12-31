@@ -29,11 +29,11 @@ $(HOME)/.local/bin/scripts:
 	@test -d $(SCRIPTS) || git clone git@github.com:hghann/scripts.git $(SCRIPTS)
 
 updatescripts:
-	cd $(HOME)/.scripts;\
+	cd $(HOME)/.local/bin/scripts;\
 		git pull
 
 pass:
-	git clone git@github.com:hghann/pass.git $(HOME)/.password-store
+	git clone git@github.com:hghann/pass.git $(HOME)/.local/share/password-store
 
 bookmarks:
 	git clone git@github.com:hghann/bookmarks.git $(HOME)/.local/share/bookmarks
