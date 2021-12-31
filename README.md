@@ -125,7 +125,7 @@ in this [GitHub Action](https://github.com/webpro/dotfiles/actions).
 
 ## The `make` command
 
-```make
+```Makefile
 $ make help
 Usage: make <command>
 
