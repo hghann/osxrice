@@ -261,6 +261,9 @@ testpath: ## echo $PATH
 	echo $(HOME)
 	HOME=$(HOME)
 
+test:
+	eval $$(fnm env); bats test
+
 osxinstall: base init doas sudo suspend scripts vim vm duti
 
 allinstall: base init
