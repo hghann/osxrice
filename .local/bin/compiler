@@ -19,13 +19,13 @@ base="${file%.*}"
 cd "$dir" || exit
 
 Ifinstalled() {
-	command -v "$1" >/dev/null || { notify-send "📦 <b>$1</b> must be installed for this function." && exit 1; }
+	command -v "$1" >/dev/null || { echo "📦 <b>$1</b> must be installed for this function." && exit 1; }
 }
 
 textype() {
 	command="pdflatex"
 	errorfmt="-file-line-error"
-	# ( sed 5q "$file" | grep -i -q 'xelatex' ) && command="xelatex"
+	# ( gsed 5q "$file" | grep -i -q 'xelatex' ) && command="xelatex"
 	secdir="$(dirname "$dir")"
 	cd "$secdir"
 	if [ -f "${secdir}/Notes.tex" ]; then
@@ -82,6 +82,6 @@ case "$file" in
     *\.sent) setsid sent "$file" 2> /dev/null & ;;
     *\.html) refreshbrowser ;;
     *\.rkt) racket "$file" ;;
-    *) chmod +x "$file" && sed 1q "$file" | grep "^#!/" | sed "s/^#!//" | xargs -r -I % "$file" ;;
+    *) chmod +x "$file" && gsed 1q "$file" | grep "^#!/" | gsed "s/^#!//" | xargs -r -I % "$file" ;;
 esac
 # vim:ft=sh
