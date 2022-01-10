@@ -119,6 +119,7 @@ libxext
 libxls
 libxlsxwriter
 libxml2
+libxmlsec1
 libxmu
 libxrender
 libxt
@@ -147,6 +148,7 @@ nettle
 newsboat
 node
 npth
+oath-toolkit
 oniguruma
 open-mpi
 openblas
@@ -158,6 +160,7 @@ opus
 p11-kit
 pandoc
 pass
+pass-otp
 pcre
 pcre2
 pfetch
@@ -178,8 +181,10 @@ recutils
 remind
 rubberband
 ruby
+rustup-init
 sc-im
 screenresolution
+sdcv
 sdl2
 shared-mime-info
 six
@@ -231,9 +236,10 @@ exifcleaner
 firefox
 freecad
 gimp
-hammerspoon
+goneovim
 hiddenbar
 inkscape
+joplin
 keepassxc
 keepingyouawake
 libreoffice

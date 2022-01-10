@@ -399,6 +399,8 @@ brew "qrencode"
 brew "tree"
 # Password manager
 brew "pass"
+# Pass extension for managing one-time-password tokens
+brew "pass-otp"
 # Perl compatible regular expressions library with a new API
 brew "pcre2"
 # Pretty system information tool written in POSIX sh
@@ -417,6 +419,8 @@ brew "r"
 brew "recutils"
 # Sophisticated calendar and alarm
 brew "remind"
+# Rust toolchain installer
+brew "rustup-init"
 # Spreadsheet program for the terminal, using ncurses
 brew "sc-im"
 # StarDict Console Version
@@ -471,12 +475,14 @@ cask "firefox"
 cask "freecad"
 # Free and open-source image editor
 cask "gimp"
-# Desktop automation application
-cask "hammerspoon"
+# Neovim GUI written in Golang, using a Golang qt backend
+cask "goneovim"
 # Utility to hide menu bar items
 cask "hiddenbar"
 # Vector graphics editor
 cask "inkscape"
+# Note taking and to-do application with synchronization capabilities
+cask "joplin"
 # Password manager app
 cask "keepassxc"
 # Tool to prevent the system from going into sleep mode

@@ -79,6 +79,8 @@ init: ## Inital deploy dotfiles on osx machine
 	$(LNDIR) $(PWD)/.config/alacritty $(HOME)/.config/alacritty
 	rm -rf $(HOME)/.config/lf
 	$(LNDIR) $(PWD)/.config/lf $(HOME)/.config/lf
+	rm -rf $(HOME)/.config/goneovim
+	$(LNDIR) $(PWD)/.config/goneovim $(HOME)/.config/goneovim
 	rm -rf $(HOME)/.config/sc-im
 	$(LNDIR) $(PWD)/.config/sc-im $(HOME)/.config/sc-im
 	rm -rf $(HOME)/.config/mpv
@@ -144,28 +146,28 @@ ncmpcpp: ## Deploy ncmpcpp configs
 	$(LN) $(PWD)/.config/ncmpcpp/config $(HOME)/.config/ncmpcpp/config
 
 duti: ## Setup default applications
-	$(PKGINSTALL) duti; $(PROGINSTALL) skim macvim;\
-	duti -s net.sourceforge.skim-app.skim .pdf all;\
-	duti -s org.vim.MacVim .rem all;\
-	duti -s org.vim.MacVim .ms all;\
-	duti -s org.vim.MacVim .mom all;\
-	duti -s org.vim.MacVim .latex all;\
-	duti -s org.vim.MacVim .md all;\
-	duti -s org.vim.MacVim .txt all;\
-	duti -s org.vim.MacVim .sh all;\
-	duti -s org.vim.MacVim .css all;\
-	duti -s org.vim.MacVim .vim all;\
-	duti -s org.vim.MacVim .snippets all;\
-	duti -s org.vim.MacVim .xml all;\
-	duti -s org.vim.MacVim .org all;\
-	duti -s org.vim.MacVim .toml all;\
-	duti -s org.vim.MacVim .conf all;\
-	duti -s org.vim.MacVim .config all;\
-	duti -s org.vim.MacVim .json all;\
-	duti -s org.vim.MacVim .log all;\
-	duti -s org.vim.MacVim .ini all;\
-	duti -s org.vim.MacVim .yml all;\
-	duti -s org.vim.MacVim .py all
+	$(PKGINSTALL) duti; $(PROGINSTALL) skim goneovim;\
+		duti -s net.sourceforge.skim-app.skim .pdf all;\
+		duti -s com.ident.goneovim .rem all;\
+		duti -s com.ident.goneovim .ms all;\
+		duti -s com.ident.goneovim .mom all;\
+		duti -s com.ident.goneovim .latex all;\
+		duti -s com.ident.goneovim .md all;\
+		duti -s com.ident.goneovim .txt all;\
+		duti -s com.ident.goneovim .sh all;\
+		duti -s com.ident.goneovim .css all;\
+		duti -s com.ident.goneovim .vim all;\
+		duti -s com.ident.goneovim .snippets all;\
+		duti -s com.ident.goneovim .xml all;\
+		duti -s com.ident.goneovim .org all;\
+		duti -s com.ident.goneovim .toml all;\
+		duti -s com.ident.goneovim .conf all;\
+		duti -s com.ident.goneovim .config all;\
+		duti -s com.ident.goneovim .json all;\
+		duti -s com.ident.goneovim .log all;\
+		duti -s com.ident.goneovim .ini all;\
+		duti -s com.ident.goneovim .yml all;\
+		duti -s com.ident.goneovim .py all
 
 PREFIX = /usr/local
 MANPREFIX = $(PREFIX)/share/man
