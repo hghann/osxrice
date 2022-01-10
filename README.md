@@ -159,14 +159,6 @@ Commands:
     wm                Deploy window manager configs
 ```
 
-## Customize
-
-You can put your custom settings, such as Git credentials in the `system/.custom` file which will be sourced from
-`.bash_profile` automatically. This file is in `.gitignore`.
-
-Alternatively, you can have an additional, personal dotfiles repo at `~/.extra`. The runcom `.bash_profile` sources all
-`~/.extra/runcom/*.sh` files.
-
 ## Additional Resources
 
 - [Awesome Dotfiles](https://github.com/webpro/awesome-dotfiles)
