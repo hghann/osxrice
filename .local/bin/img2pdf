@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 normal_input() {
     echo "Files saved as:"
     for arg in "$@"

@@ -1,8 +1,8 @@
 #!/bin/sh
 
-# This script will compile or run another finishing operation on a document. I
-# have this script run via Vim.
-# # tex files: Compiles to pdf, including bibliography if necessary
+# This script will compile or run another finishing operation on a document.
+#
+# tex files: Compiles to pdf, including bibliography if necessary
 # md files: Compiles to pdf via pandoc
 # rmd files: Compiles via R Markdown
 # c files: Compiles via whatever compiler is set to cc. Usually gcc.
@@ -19,7 +19,7 @@ base="${file%.*}"
 cd "$dir" || exit
 
 Ifinstalled() {
-	command -v "$1" >/dev/null || { echo "📦 <b>$1</b> must be installed for this function." && exit 1; }
+	command -v "$1" >/dev/null || { echo "📦 '$1' must be installed for this function." && exit 1; }
 }
 
 textype() {
@@ -84,4 +84,5 @@ case "$file" in
     *\.rkt) racket "$file" ;;
     *) chmod +x "$file" && gsed 1q "$file" | grep "^#!/" | gsed "s/^#!//" | xargs -r -I % "$file" ;;
 esac
+
 # vim:ft=sh

@@ -1,0 +1,6 @@
+#!/bin/sh
+
+command -v "$1" >/dev/null ||
+	{ echo "📦 '$1' must be installed for this function." && exit 1; }
+
+# vim:ft=sh

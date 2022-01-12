@@ -2,15 +2,18 @@
 
 ######################################################################
 # @author      : Gavin Jaeger-Freeborn (gavinfreeborn@gmail.com)
-# @file        : todotemp.sh
+# @editor      : hg
+# @file        : rec2tbl
 # @created     : Tue 22 Sep 2020 04:56:58 PM
+# @modified    : Tue 11 Jan 2022 09:20:34 PM
 #
 # @description : 
 ######################################################################
 
 DATE=$(date)
-RECFILE='schedule.rec'
+RECFILE='uni.rec'
 STATEFMT='{{State = "TODO" ? "\m[R]\fB" & "TODO" & "\fR\m[]" : "\m[G]\fB" & State & "\fR\m[]" }}'
+READER=xpdf
 
 formatDates() 
 {
@@ -53,5 +56,6 @@ EOF
 
 }
 
-groffout | groff -ms -t -Tpdf | zathura -
+groffout | groff -ms -t -Tpdf > uni.pdf
+
 # vim: set tw=78 ts=2 et sw=2 sr:
