@@ -1,4 +1,5 @@
 #!/bin/bash
+
 lpath=$(find ~/.password-store/ -name "*.gpg"  | \
  sed -r 's,(.*)\.password-store/(.*)\.gpg,\2,'   | \
  fzf +m);

@@ -17,10 +17,11 @@ PKGINSTALL = brew install
 PROGINSTALL = brew install --cask
 
 doas: ## Configure doas
-	$(SUDO) echo "permit persist keepenv $(whoami) as root" >> /etc/doas.conf
+	sudo echo "permit persist keepenv $(whoami) as root" >> /etc/doas.conf
 
 ssh-key_gen: ## Generate an SSH key
-	ssh-keygen -t ecdsa -b 521
+	ssh-keygen -t ed25519
+#ssh-keygen -t ecdsa -b 521
 
 scripts:
 	make -s $(HOME)/.local/bin/scripts
@@ -117,6 +118,14 @@ init: ## Inital deploy dotfiles on osx machine
 	rm -rf $(HOME)/.local/share/groff
 	$(LNDIR) $(PWD)/.local/share/groff $(HOME)/.local/share/groff
 
+shell: ## Setup shell and prompt
+	$(LN) $(PWD)/.bash_profile $(HOME)/.bash_profile
+	$(LN) $(PWD)/.bashrc $(HOME)/.bashrc
+	$(LN) $(PWD)/.profile $(HOME)/.profile
+	$(LN) $(PWD)/.zshenv $(HOME)/.zshenv
+	rm -rf $(HOME)/.config/zsh
+	$(LNDIR) $(PWD)/.config/zsh $(HOME)/.config/zsh
+
 wm: ## Deploy window manager configs
 	$(LN) $(PWD)/.config/wm/amethyst/com.amethyst.Amethyst.plist $(HOME)/Library/Preferences/com.amethyst.Amethyst.plist
 	$(LN) $(PWD)/.config/wm/rectangle/com.knollsoft.Rectangle.plist $(HOME)/Library/Preferences/com.knollsoft.Rectangle.plist
@@ -147,27 +156,7 @@ ncmpcpp: ## Deploy ncmpcpp configs
 
 duti: ## Setup default applications
 	$(PKGINSTALL) duti; $(PROGINSTALL) skim goneovim;\
-		duti -s net.sourceforge.skim-app.skim .pdf all;\
-		duti -s com.ident.goneovim .rem all;\
-		duti -s com.ident.goneovim .ms all;\
-		duti -s com.ident.goneovim .mom all;\
-		duti -s com.ident.goneovim .latex all;\
-		duti -s com.ident.goneovim .md all;\
-		duti -s com.ident.goneovim .txt all;\
-		duti -s com.ident.goneovim .sh all;\
-		duti -s com.ident.goneovim .css all;\
-		duti -s com.ident.goneovim .vim all;\
-		duti -s com.ident.goneovim .snippets all;\
-		duti -s com.ident.goneovim .xml all;\
-		duti -s com.ident.goneovim .org all;\
-		duti -s com.ident.goneovim .toml all;\
-		duti -s com.ident.goneovim .conf all;\
-		duti -s com.ident.goneovim .config all;\
-		duti -s com.ident.goneovim .json all;\
-		duti -s com.ident.goneovim .log all;\
-		duti -s com.ident.goneovim .ini all;\
-		duti -s com.ident.goneovim .yml all;\
-		duti -s com.ident.goneovim .py all
+		defaults-xdg.sh
 
 PREFIX = /usr/local
 MANPREFIX = $(PREFIX)/share/man
@@ -229,7 +218,7 @@ backup: ## Backup macOS packages using brew
 	$(MKDIR) $(PWD)/pkg
 	brew list -1 --full-name > $(PWD)/pkg/brewlist
 
-update: ## Update macOS packages and save packages cache
+update: ## Update system and packages, and save packages cache
 	sudo softwareupdate -i -a;\
 		brew update -v;\
 		brew upgrade -v --display-times;\
@@ -238,19 +227,19 @@ update: ## Update macOS packages and save packages cache
 		brew cu -afyv;\
 		cd; brew doctor -v
 
-sync: ## Push changes to git repo
+syncdots: ## Push changes to git repo
 	git pull;\
 		git add .;\
 		git commit -m "minor edits";\
 		git push -u origin master
 
-pip: ## Install python packages
-	pip install --user --upgrade pip
-	pip install --user 'python-language-server[all]'
+#pip: ## Install python packages
+#	pip install --user --upgrade pip
+#	pip install --user 'python-language-server[all]'
 
 pipbackup: ## Backup python packages
 	$(MKDIR) $(PWD)/pkg
-	pip freeze > $(PWD)/pkg/piplist.txt
+	pip freeze > $(PWD)/pkg/piplist
 
 pipupdate: ## Update python packages
 	pip list --user | cut -d" " -f 1 | tail -n +3 | xargs pip install -U --user
