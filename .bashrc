@@ -6,6 +6,30 @@
 # @created     : Wed 3 Feb 9:23:17 2021
 ######################################################################
 
+# Prompt settings
+PS1='\e[1;31m[\e[1;33m\u\e[1;32m@\e[1;34m\h \e[1;35m\w\e[1;31m]\e[0m\$ '
+export PS1;
+
+# Path
+if [ -d "/usr/local/sbin" ] ;
+  then PATH="/usr/local/sbin:$PATH"
+fi
+if [ -d "$HOME/.local/bin" ] ;
+  then PATH="$HOME/.local/bin:$PATH"
+fi
+if [ -d "/Applications" ] ;
+  then PATH="/Applications:$PATH"
+fi
+if [ -d "$HOME/Applications" ] ;
+  then PATH="$HOME/Applications:$PATH"
+fi
+
+# Setting up defaults
+export EDITOR='nvim'
+export TERMINAL='alacritty'
+export BROWSER='firefox'
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
 # Basic bash settings
 complete -d cd
 # set vi mode
@@ -23,30 +47,6 @@ shopt -s expand_aliases # expand aliases
 shopt -s checkwinsize # checks term size when bash regains control
 # ignore upper and lowercase when TAB completion
 bind 'set completion-ignore-case on'
-
-# Path
-if [ -d "/usr/local/sbin" ] ;
-  then PATH="/usr/local/sbin:$PATH"
-fi
-if [ -d "$HOME/.local/bin" ] ;
-  then PATH="$HOME/.local/bin:$PATH"
-fi
-if [ -d "/Applications" ] ;
-  then PATH="/Applications:$PATH"
-fi
-if [ -d "$HOME/Applications" ] ;
-  then PATH="$HOME/Applications:$PATH"
-fi
-
-# Prompt settings
-PS1='\e[1;31m[\e[1;33m\u\e[1;32m@\e[1;34m\h \e[1;35m\w\e[1;31m]\e[0m\$ '
-export PS1;
-
-# Setting up defaults
-export EDITOR='nvim'
-export TERMINAL='alacritty'
-export BROWSER='firefox'
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # Aliases
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc"
