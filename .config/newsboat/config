@@ -8,8 +8,8 @@ unbind-key c
 unbind-key ,
 
 # Env settings
-browser "open -a firefox '%u'"
-macro w set browser "mpv %u" ; open-in-browser ; set browser " open -a librefox %u"
+browser "open -a /Applications/LibreWolf.app/Contents/MacOS/librewolf '%u'"
+macro w set browser "mpv %u" ; open-in-browser ; set browser " open -a /Applications/LibreWolf.app/Contents/MacOS/librewolf %u"
 
 # Feed settings
 prepopulate-query-feeds yes

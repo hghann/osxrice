@@ -32,6 +32,7 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # Basic bash settings
 complete -d cd
+shopt -s globstar
 # set vi mode
 set -o vi
 bind -m vi-command 'Control-l: clear-screen'

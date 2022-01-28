@@ -78,6 +78,8 @@ init: ## Inital deploy dotfiles on osx machine
 	$(LNDIR) $(PWD)/.config/brew $(HOME)/.config/brew
 	rm -rf $(HOME)/.config/alacritty
 	$(LNDIR) $(PWD)/.config/alacritty $(HOME)/.config/alacritty
+	rm -rf $(HOME)/.config/tmux
+	$(LNDIR) $(PWD)/.config/tmux $(HOME)/.config/tmux
 	rm -rf $(HOME)/.config/lf
 	$(LNDIR) $(PWD)/.config/lf $(HOME)/.config/lf
 	rm -rf $(HOME)/.config/goneovim
@@ -161,6 +163,30 @@ duti: ## Setup default applications
 PREFIX = /usr/local
 MANPREFIX = $(PREFIX)/share/man
 TMPDIR = $(PWD)/tmp
+DESTDIR = ?
+PASSEMAIL = johnDoe@email.com
+
+mutt: ## Init neomutt using mutt-wizard by Luke smith
+	$(PROGINSTALL) neomutt isync msmtp pass gpg
+	$(MKDIR) $(TMPDIR)
+	git clone https://github.com/hghann/mutt-wizard.git $(TMPDIR)/$<
+	cd $(TMPDIR)/$<
+		make install
+		gpg --full-gen-key
+		pass init $(PASSEMAIL)
+	rm -rf $(TMPDIR)
+
+jot: ## Install jot - a markdown style preprocessor for groff
+	$(MKDIR) $(TMPDIR)
+	git clone https://gitlab.com/rvs314/jot.git $(TMPDIR)/$<
+	rm -rf $(TMPDIR)
+
+# grap can be found here: https://www.lunabase.org/~faber/Vault/software/grap/
+#               and here: https://github.com/snorerot13/grap
+grap: ## Install grap - a groff preprocessor for drawing graphs
+	$(MKDIR) $(TMPDIR)
+	git clone https://github.com/snorerot13/grap.git $(TMPDIR)/$<
+	rm -rf $(TMPDIR)
 
 walk: ## Installs plan9 find SUDO NEEDED
 	$(MKDIR) $(TMPDIR)
@@ -177,18 +203,6 @@ walk: ## Installs plan9 find SUDO NEEDED
 	chmod 755 $(DESTDIR)$(PREFIX)/bin/sor
 	cp -f     $(TMPDIR)/walk/sor.1 $(DESTDIR)$(MANPREFIX)/man1/sor.1
 	chmod 644 $(DESTDIR)$(MANPREFIX)/man1/sor.1
-
-jot: ## Install jot - a markdown style preprocessor for groff
-	$(MKDIR) $(TMPDIR)
-	git clone https://gitlab.com/rvs314/jot.git $(TMPDIR)/$<
-	rm -rf $(TMPDIR)
-
-# grap can be found here: https://www.lunabase.org/~faber/Vault/software/grap/
-#               and here: https://github.com/snorerot13/grap
-grap: ## Install grap - a groff preprocessor for drawing graphs
-	$(MKDIR) $(TMPDIR)
-	git clone https://github.com/snorerot13/grap.git $(TMPDIR)/$<
-	rm -rf $(TMPDIR)
 
 pkg_base: ## Install base packages plus doas because sudo is bloat
 	$(PKGINSTALL) coreutils cmake groff grap bat fortune cowsay ffmpeg gcc fzf \

@@ -32,6 +32,7 @@ ex ()
 #alias sudo='doas'
 alias \
 	c='clear' \
+	emacs='/Applications/Emacs.app/Contents/MacOS/Emacs-arm64-12' \
 	groff='/usr/local/Cellar/groff/1.22.4_1/bin/groff'    # alias osx groff to homebrew groff
 
 # Utilities
@@ -39,7 +40,8 @@ alias \
 	u='app-cleaner.sh' \
 	wtr='curl wttr.in' \
 	wpass='wifi-password' \
-	myip='curl ifconfig.co'
+	myip='curl ifconfig.co' \
+	spd="speedtest"
 
 # Navigation
 alias \
@@ -90,7 +92,7 @@ alias \
 	rm="rm -iv" \
 	bc="bc -ql" \
 	mkd="mkdir -pv" \
-	yt="youtube-dl --add-metadata -i" \
+	yt="yt-dlp --add-metadata -i" \
 	yta="yt -x -f bestaudio/best" \
 	ffmpeg="ffmpeg -hide_banner"
 
@@ -155,18 +157,17 @@ alias \
 	status='git status' \
 	tag='git tag' \
 	newtag='git tag -a'
-# youtube-dl
+# yt-dlp
 alias \
-	ydl="youtube-dl -x --audio-format mp3 -a $HOME/urls" \
-	yta-aac="youtube-dl --extract-audio --audio-format aac " \
-	yta-best="youtube-dl --extract-audio --audio-format best " \
-	yta-flac="youtube-dl --extract-audio --audio-format flac " \
-	yta-m4a="youtube-dl --extract-audio --audio-format m4a " \
-	yta-mp3="youtube-dl --extract-audio --audio-format mp3 " \
-	yta-opus="youtube-dl --extract-audio --audio-format opus " \
-	yta-vorbis="youtube-dl --extract-audio --audio-format vorbis " \
-	yta-wav="youtube-dl --extract-audio --audio-format wav " \
-	ytv-best="youtube-dl -f bestvideo+bestaudio "
+	ydl="yt-dlp -x --audio-format mp3 -a $HOME/urls" \
+	yta-best="yt-dlp --extract-audio --audio-format best " \
+	yta-flac="yt-dlp --extract-audio --audio-format flac " \
+	yta-m4a="yt-dlp --extract-audio --audio-format m4a " \
+	yta-mp3="yt-dlp --extract-audio --audio-format mp3 " \
+	yta-opus="yt-dlp --extract-audio --audio-format opus " \
+	yta-vorbis="yt-dlp --extract-audio --audio-format vorbis " \
+	yta-wav="yt-dlp --extract-audio --audio-format wav " \
+	ytv-best="yt-dlp -f bestvideo+bestaudio "
 
 # Switch between shells
 alias \

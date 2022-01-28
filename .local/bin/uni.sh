@@ -15,7 +15,7 @@ B:box invis  \"{{Credits}}\" at (A.w.x + 1, A.e.y + 0.5)
 C:box \"{{CourseNumber}}\" invis at ((A.e.x - 0.5), (A.n.y - 0.3))"
 
 # Replace with where ever you placed the included chem.rec file
-UNIREC=$HOME/.local/share/rec/uni.rec
+UNIREC=$HOME/.local/share/database/uni.rec
 
 SYMBOL=$(recsel -C "$UNIREC"  -P "CourseCode,Description" | fzf --preview \
   "recsel -e ' ( CourseCode = \"{}\" ) || ( Description = \"{}\" ) ' $UNIREC")
