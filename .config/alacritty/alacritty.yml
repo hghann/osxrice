@@ -2,6 +2,7 @@ env:
   TERM: xterm-256color
 
 window:
+  opacity: 0.96
   padding:
     x: 4
     y: 4
@@ -194,8 +195,6 @@ schemes:
       cyan:    '#93a1a1' # base1
       white:   '#fdf6e3' # base3
 colors: *doom-one
-
-background_opacity: 0.96
 
 selection:
   semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"

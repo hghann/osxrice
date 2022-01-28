@@ -117,7 +117,7 @@ in this [GitHub Action](https://github.com/hghann/dotfiles/actions).
 ## Post-Installation
 
 - `make macos` (set [macOS defaults](./.local/bin/macOS.sh))
-- `make dock` (set [Dock items](./.local/bin/dock.sh))
+- `make dock` (set [Dock items](./.local/bin/defaults-dock.sh))
 
 ## The `make` command
 

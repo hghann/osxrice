@@ -209,6 +209,8 @@ brew "snappy"
 brew "speex"
 # Secure Reliable Transport
 brew "srt"
+# Zstandard is a real-time compression algorithm
+brew "zstd"
 # OCR (Optical Character Recognition) engine
 brew "tesseract"
 # Open video compression format
@@ -231,8 +233,6 @@ brew "isl"
 brew "mpfr"
 # C library for the arithmetic of high precision complex numbers
 brew "libmpc"
-# Zstandard is a real-time compression algorithm
-brew "zstd"
 # GNU compiler collection
 brew "gcc"
 # Portable abstraction of the hierarchical topology of modern architectures
@@ -463,6 +463,8 @@ cask "amethyst"
 cask "arduino"
 # Web browser focusing on privacy
 cask "brave-browser"
+# E-books management software
+cask "calibre"
 # Multi-platform client-side cloud file encryption tool
 cask "cryptomator"
 # Google Chromium, sans integration with Google
@@ -475,12 +477,12 @@ cask "firefox"
 cask "freecad"
 # Free and open-source image editor
 cask "gimp"
-# Neovim GUI written in Golang, using a Golang qt backend
-cask "goneovim"
 # Utility to hide menu bar items
 cask "hiddenbar"
 # Vector graphics editor
 cask "inkscape"
+# Web browser focusing on security and privacy
+cask "iridium"
 # Note taking and to-do application with synchronization capabilities
 cask "joplin"
 # Password manager app

@@ -14,7 +14,7 @@ B:box invis  \"{{AtomicNumber}}\" at (A.w.x + 0.5, A.e.y)
 C:box \"{{OxidationStates}}\" invis at ((A.e.x - 0.5), (A.n.y - 0.3))"
 
 # Replace with where ever you placed the included chem.rec file
-CHEMREC=$HOME/.local/share/rec/chem.rec
+CHEMREC=$HOME/.local/share/database/chem.rec
 
 SYMBOL=$(recsel -C "$CHEMREC"  -P "Symbol,Name" | fzf --preview \
   "recsel -e ' ( Symbol = \"{}\" ) || ( Name = \"{}\" ) ' $CHEMREC")
