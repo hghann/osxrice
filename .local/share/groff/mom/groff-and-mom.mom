@@ -1,0 +1,760 @@
+.INCLUDE groff-and-mom-style.mom
+.
+.\" Abstract
+.RLD 1.8v
+.ABSTRACT BLOCK
+.SIZESPECS
+.DBX .5 0 \n[.l]u 6v+\n[#DESCENDER]u+9p
+.ALD \n[#CAP_HEIGHT]u+8.25p
+.IB 9p
+.RW .05
+Not everyone coming to \[mom] for the \[fi]rst time is familiar with
+groff, the program responsible for typesetting \[fi]les formatted
+with \[mom].  Equally,
+.EW .1
+those already acquainted with groff from traditional macro packages
+.RW .05
+such as \[ms] or \[me] may \[fi]nd some aspects of her approach
+to formatting unusual.  This document aims to be of use to both
+user groups by outlining basic groff concepts while exploring key
+components of mom.
+.RW 0
+.IQ CLEAR
+.ABSTRACT off
+.
+.HEAD groff "Groff
+.
+.PP
+.RW .03
+In broad terms, the groff document formatting system comprises two
+parts: a typesetter and a formatting language.  The language permits
+\%\[oq]if-else\[cq] and \[oq]while\[cq] constructs, as well as
+variable and string manipulation, making it a specialized, albeit
+rudimentary, programming language.  Its main purpose is for
+writing macros, which group low-level typesetting requests into
+meaningful instructions, for example \[PP] to begin a paragraph, or
+\[UNDERSCORE] to place a rule beneath text.\*[BU4]\c
+.RW 0
+.ENDNOTE
+Macro examples are taken from the \[mom] macro package.
+.ENDNOTE off
+.
+.SUBHEAD workflow "Workflow
+.
+.PP
+Documents to be typeset with groff begin as plain text \[fi]les
+\[("source-files")] interspersed with formatting instructions.  The
+instructions may be either
+.PDF_LINK macros "\*[BD]macros\*[PREV]
+or
+.PDF_LINK requests SUFFIX , "\*[BD]requests\*[PREV]
+and appear on a line by themselves, beginning with a period.
+.PDF_LINK escapes "\*[BD]Escape sequences\*[PREV]
+may also be used to perform typographic manipulation.
+.
+.PP
+When a source \[fi]le is ready to be typeset, it is passed to groff
+at the command line.  Text is justi\[fi]ed, or not, and requests
+and macros executed as they are encountered.  The resulting output,
+redirected to a \[fi]le, is ready to be viewed or printed.
+.
+.SUBHEAD input "Input processing
+.
+.PP
+Effective use of groff bene\[fi]ts from understanding how input
+\[fi]les are processed.
+.
+.PP
+Lines from source \[fi]les are read and processed in the order they
+appear.  If a line begins with a period, it is treated as a request
+or macro and executed immediately.  All other lines are considered
+formattable text.
+.
+.PP
+If the text is being justi\[fi]ed, groff collects words from the
+current and subsequent input lines until the desired output line
+length is reached, at which point the line is justi\[fi]ed and
+groff begins collecting words again.  If the text is not being
+justi\[fi]ed, each input line corresponds to a single output line.
+.
+.PP
+.RW .06
+This
+.PDF_TARGET line-at-a-time line-at-a-time
+approach entails limitations.  Some typesetting decisions have to be
+made in advance of groff having the whole picture.  Groff cannot,
+for example, skip to the end of a paragraph to determine optimal
+line breaks, or scan an entire page to equalize whitespace.  The
+user is expected to effect pleasing solutions to these and other
+common typographical issues with macros and requests.
+.RW 0
+.
+.PP
+The approach also imposes a certain structure on source \[fi]les,
+since, unavoidably, some requests and macros must precede others.
+.
+.SUBHEAD requests "Requests
+.
+.PP
+Requests are the low-level typesetting commands that form the heart
+of groff.  Typically terse, often just two or three lowercase
+letters, they are exemplars of the Unix philosophy: \*[IT]Small
+tools that do one job, and do it well.\*[PREV] They are also
+notoriously dif\[fi]cult to fathom.  Their behaviour and interaction
+can seem whimsical at times, despite being fully and accurately
+documented.\*[BU4]\c
+.ENDNOTE
+See \[info-groff] for documentation.
+.ENDNOTE off
+.
+.PP
+It is unusual for a document to be formatted with groff requests
+alone.  Users are expected to format with macros from a
+.PDF_LINK macros SUFFIX . "\*[BD]macro package\*[PREV]
+Nevertheless, familiarity with groff requests aids in coping with
+typographic challenges.
+.
+.SUBHEAD escapes "Escape sequences
+.
+.PP
+.EW .07
+In addition to requests, groff permits inline formatting\c
+.EW 0
+.FOOTNOTE
+Typesetting instructions embedded in the body of the text.
+.FOOTNOTE off
+.EW .07
+\& through the use of escape sequences.  Introduced by
+the backslash character, escape sequences perform a variety of
+functions, from changing fonts and point sizes to performing drawing
+operations such as rules and boxes.
+.EW 0
+.
+.PP
+As with requests, knowledge of escape sequences is an asset.
+.
+.SUBHEAD nr-registers "N\*[BU1]umber registers
+.
+.PP
+While not strictly analogous, number registers are essentially
+variables, accessed with the construct
+.CODE
+\*[BU6]\en[reg]\*[BU4]\c
+.CODE off
+\&. Groff\*[FU4]'\*[BU2]s built-in registers hold complete
+information about the state of a document at any given point: type
+parameters, justi\[fi]cation style, vertical position, and so on.
+.
+.PP
+Mostly used in writing macros, number registers have their place
+in source \[fi]les.  A rule, for example, can be drawn to half the
+current line length using
+.CODE
+\*[BU4]\en[.l]\*[BU3]/\*[FU2]2\*[BU4]
+.CODE off
+as the length argument to \[DRH]\*[BU7], where
+.CODE
+\*[BU4]\en[.l]\*[BU6]
+.CODE off
+is the built-in register holding the current line length.\*[BU4]\c
+.ENDNOTE
+.RW .07
+Correctly, 
+.CODE
+\*[BU6]\en[.l]u\*[BU3]/\*[FU2]2u\*[FU2]\c
+.CODE off
+\&. Many groff registers, including
+.CODE
+\*[BU4].\*[BU4]l\c
+.CODE off
+\*[FU4], store their values in
+.PDF_TARGET machine-units \[lq]machine units\[rq]\*[BU6],
+typically
+1/1\*[BU3]000 of a PostScript point\*[FU1]; this must be made
+explicit when using number registers as arguments to macros and
+requests by appending the scaling indicator
+\[oq]\*[CODE]u\*[CODE x]\[cq]\*[BU4].
+.RW 0
+.ENDNOTE off
+.
+.PP
+When formatting with one of the
+.PDF_LINK classical SUFFIX , "\*[BD]classical macro packages\*[PREV]
+number registers are also used to set flags and pass arguments to
+macros.  Users must set some registers themselves with the \[.nr]
+request.  For example, when using the \[ms] macros, \[.nr-LL-5i]
+sets the default line length to \[fi]ve inches.
+.
+.SUBHEAD string-registers "S\*[BU1]tring registers
+.
+.PP
+.RW .03
+String registers are similar to number registers except they hold
+text instead of numeric values.  Created with \[.ds-stringname-name]
+\*[BU4]and accessed with the construct
+.CODE
+\e*[string-name]\c
+.CODE off
+\*[BU2], they are useful in source \[fi]les to save repeated typing,
+and serve to set flags and hold user-supplied input in macros.
+.RW 0
+.
+.SUBHEAD macros "M\*[BU1]a\*[FU1]cros and macro packages
+.
+.PP
+.RW .03
+Most formatting for groff is done with macros, which group common,
+routine operations into convenient single commands.  As such, they
+form the primary user interface to groff.  A collection of macros
+is referred to as a "macro package" or "macro set.\*[BU7]"  By
+convention, the macros have uppercase names to distinguish them from
+groff requests.
+.RW 0
+.
+.PP
+.PDF_TARGET classical
+.EW .05
+Nearly all groff documents are formatted with one of the classical
+macro packages\[em]\[ms], \[mm], \[me]\[em]or \[mom], which must be
+named explicitly on the command line.\*[BU4]\c
+.EW 0
+.ENDNOTE
+Also \[man], which is used to format Unix manpages.
+.ENDNOTE off
+.EW .05
+ \*[FU4]All provide similar facilities for basic formatting:
+page headers and footers, headings, paragraphs, footnotes, etc.
+Additional features and conveniences determine the choice of
+package.
+.EW 0
+.
+.PP
+.RW .15
+To a greater or lesser extent, macro packages impose a certain
+style on documents.  The classical macros exhibit a bias toward
+technical reports and papers, while \[mom] leans toward
+the humanities and places greater emphasis on typographic
+re\[fi]nements.  Users can, however, adapt any package to their
+needs with low-level requests and supplementary macros.
+.RW 0
+.
+.SUBHEAD preprocessors "Preprocessors
+.
+.PP
+Preprocessors have been written to simplify a number of
+complex typesetting tasks: \[tbl] (tables)\*[BU1], \[eqn]
+(equations)\*[BU1], \[pic] (diagrams)\*[BU1], and others.  The
+\[refer] preprocessor formats references and works cited from a
+bibliographic database.
+.
+.PP
+In source \[fi]les, preprocessor data and commands are entered
+between a pair of macros reserved for use by the preprocessor,
+which, moreover, must be called explicitly on the command
+line.\*[BU4]\c
+.ENDNOTE
+\*[man-preprocessor] provides complete documentation for any
+preprocessor.
+.ENDNOTE off
+.
+.SUBHEAD output "Output
+.
+.PP
+Groff outputs PostScript or PDF\*[BU3], as well as formatted copy
+suitable for viewing at the terminal.\*[BU4]\c
+.ENDNOTE
+Limited support for html output is also supported.
+.ENDNOTE off
+\& The output driver \[("device")] must called at the command
+line unless groff\*[FU4]'\*[BU2]s default PostScript output is
+desired.  Both PostScript and PDF output must be redirected to a
+\[fi]le.
+.
+.LINEBREAK
+.
+.HEAD mom "Mom
+.
+.PP
+.RW .1
+\[Mom] overcomes two issues that have historically discouraged
+widespread adoption of groff: the classical macro packages\*[BU1]'
+bias toward technical papers and reports, and the level of groff
+pro\[fi]ciency expected from the user.  The latter is dealt with
+by insulating the user, inasmuch as possible, from the need for
+low-level formatting, while the former is addressed by providing
+flexible control over the style of a document.
+.RW 0
+.
+.SUBHEAD categories "Two categories of macros
+.
+.PP
+The macros in \[mom] are grouped into two categories: typesetting
+macros and document processing macros.
+.
+.PP
+.RW .1
+The typesetting macros assist with \[presentational] markup
+and include basic operations such as setting line lengths,
+establishing family and font, changing point size, and altering
+leading.\*[BU6]\c
+.FOOTNOTE
+.RW .05
+\*[IT]Leading\*[PREV] is used throughout this document in preference
+to the term "line spacing" to avoid confusion with groff's \[.ls]
+request, which sets line spacing policy (e.g. single-spaced vs
+double-spaced).
+.RW .0
+.FOOTNOTE off
+\& Additionally, they simplify a number of common typesetting
+routines and assist with typographic re\[fi]nements.
+.
+.PP
+The document processing macros cover \[semantic] markup (\[PP] to
+start a paragraph, \[FOOTNOTE] to insert footnotes, etc) and the
+tools for styling all the semantic elements found in a document. 
+.
+.SUBSUBHEAD typesetting-macros "The typesetting macros
+.
+.PP
+.RW .35
+The typesetting macros are for typesetting directly, ie with no
+semantic markup.\c
+.FOOTNOTE
+.RW 0
+Not all documents need titles, headings, and other sematinc
+markup\[em]order forms, for example, or a wedding invitation.
+.FOOTNOTE off
+\& Some have counterparts in groff requests\*[FU1]; others are
+unique to \[mom].  They can be used in conjunction with the document
+processing macros for occasional presentational markup, or by
+themselves.\c
+.ENDNOTE
+Use of the typesetting macros in conjunction with document
+processing is covered
+.PDF_WWW_LINK \
+  http://www.schaffter.ca/mom/momdoc/docprocessing.html#behaviour \
+  "\*[BD]here\*[PREV]"
+in \[mom]'s html documentation.
+.ENDNOTE off
+\& Beyond the basic operations, they handle
+.SP .15v
+.LIST DASH
+.SHIFT_LIST 18p
+.ITEM
+rag and justi\[fi]cation styles
+.ITEM
+inline character-pair kerning
+.ITEM
+line ("track") kerning
+.ITEM
+word and sentence spacing
+.ITEM
+hyphenation policy
+.ITEM
+vertical and horizontal spacing
+.ITEM
+indenting (left, right, both, temporary, hanging)
+.ITEM
+primitive graphical objects (rules, boxes, ellipses)
+.ITEM
+coloured text
+.ITEM
+arti\[fi]cial fonts (pseudo-italic, -bold, -condensed, -extended)
+.LIST off
+.SP .2v
+and perform other typesetting re\[fi]nements.  \[Mom] also
+introduces some concepts not found in other macro packages:
+.SP .15v
+.LIST
+.SHIFT_LIST 20p
+.ITEM
+.EW .2
+\[autoleading] \[en]
+updates the leading from an absolute value or scaling factor
+whenever the point size is changed with
+\[PT_SIZE]\*[FU1];\c
+.ENDNOTE
+When an absolute value is given, autoleading is equivalent to the
+hot-metal notion of expressing leading in terms of the number of
+strips of lead between lines of galley type. \[.AUTOLEAD-3] means
+"three points of lead between every line, no matter what the point
+size."
+.ENDNOTE off
+ use of autolead in
+.EW .1
+conjunction with the document processing macros should be reserved
+for occasional presentational markup, and is disabled whenever a
+.PDF_LINK document-element-tags "\*[BD]document ele\%ment tag\*[PREV]
+is called\*[FU1];\c
+.ENDNOTE
+Autoleading in conjunction with the document processing macros is
+covered
+.PDF_WWW_LINK \
+  http://www.schaffter.ca/mom/momdoc/docprocessing.html#autolead \
+  "\*[BD]here\*[PREV]"
+in \[mom]'s html documentation.
+.ENDNOTE off
+.ITEM
+\[padding] \[en] takes whitespace remaining at the end of a line and
+inserts it at speci\[fi]ed points in the line, in user-specified
+increments\*[FU1];
+.ITEM
+.WS -2
+.RW .03
+\[typesetting-tabs] \[en] tabs with a unique numeric
+identi\[fi]er\*[FU1]; each tab is the concatenation of an indent, a
+measure, a quad direction, and a justi\[fi]cation style\*[FU1];
+.RW 0
+.WS DEFAULT
+.ITEM
+\[string-tabs] \[en] tabs with a unique numeric identi\[fi]er,
+created by specifying start and end points in a line of text\*[FU1];
+in conjunction with padding, simpli\[fi]es the creation of scalable
+tab structures derived from text-widths.
+.LIST off
+.
+.SUBSUBHEAD document-processing "The document processing macros
+.
+.PP
+Document processing can be summarized as the act of laying out pages
+of running text with consistent presentational features that reflect
+a document's logical structure and flow.
+.
+.PP
+A well-formed \[mom] source \[fi]le has a basic structure that
+starts with metadata: author, title, chapter, and so on.  Next
+comes a stylesheet section, which is introduced by the macro
+\[PRINTSTYLE]\*[BU7].  The stylesheet may be sourced from a \[fi]le.
+.
+.PP
+After the stylesheet, the macro \[START] initiates document
+processing proper, and prepares mom for the body of the text.
+Throughout the text, sensibly-named macros identify the document's
+semantic \[("logical")] elements:  \[HEADING] to identify nested
+levels of headings, \[FOOTNOTE] for footnotes, \[QUOTE] for cited
+material, etc.
+.
+.PP
+Finally, if endnotes, a bibliography, or a table of contents is
+desired, the macros to output them come at the end of the source
+\[fi]le.
+.
+.PP
+Besides the document element tags, mom provides utilities for:
+.SP .15v
+.LIST
+.SHIFT_LIST 20p
+.ITEM
+\[nested-lists] \[en] hierarchical list structures with
+user-speci\[fi]able enumerators\*[FU1];
+.ITEM
+\[line-numbering] \[en] a flexible system for prepending line
+numbers to text\*[FU1];
+.ITEM
+\[margin-notes] \[en] sensible handling of margin notes\*[BU1]' \*[BU4]vertical
+placement\*[FU1];
+.ITEM
+\[insertion-of-graphics] \[en] in either PDF or PostScript
+format\*[FU1];\c
+.FOOTNOTE
+Other image formats must be converted\*[FU1]; use of ImageMagick's
+\[convert] utility is recommended.
+.FOOTNOTE OFF
+.ITEM
+.RW .04
+\[floats] \[en] reserved blocks of text, graphics, or preprocessor
+output that are kept together and deferred to the next page if
+insuf\[fi]cient room prevents their immediate output.
+.RW 0
+.LIST off
+.
+.RLD 1v
+.SUBHEAD discrete "Chapters as discrete documents
+.
+.PP
+.RW .01
+Mom treats each chapter of a document as a document unto itself.
+The end of each chapter in a multi-chapter document is signalled by
+\[COLLATE]\*[BU7], and the beginning of the next by \[START]\*[BU9].
+Changes to metadata and style may come between the two.
+.RW 0
+.
+.PP
+\*[FU4]If the chapters are saved as discrete \[fi]les, they may be
+assembled by concatenating them and piping the output through
+groff.\c
+.FOOTNOTE
+See \[cat](1).
+.FOOTNOTE off
+\& Alternatively, the user may assemble a monolithic \[fi]le from the
+outset.
+.SUBHEAD printstyle "Printstyles
+.
+.PP
+.EW .06
+A unique feature of mom is the \[PRINTSTYLE] macro, which determines
+whether formatted copy is to be typeset or typewritten.  The latter
+formats \[fi]les correctly for "typewritten/double-spaced" in a
+\[fi]xed-width font.  Changing the argument to \[PRINTSTYLE] to
+\[TYPESET] produces typeset copy instead, making it possible to
+generate both drafts and \[fi]nal output copy from the same source
+\[fi]le.
+.EW 0
+.
+.SUBHEAD document-element-tags "Document element tags
+.
+.PP
+Macros that speci\[fi]cally identify semantic elements in a
+document are referred to as document element tags.  They are either
+entered on a line by themselves (e.g. \[PP] to begin a paragraph),
+or require text as an argument on the same line (\[HEADING-<n>-text]
+for nested heading levels), or act as toggles enclosing a block of
+text (\[EPIGRAPH]\*[FU2]/\*[FU6]\[.EPIGRAPH-off]).\*[BU6]\c
+.FOOTNOTE
+Any argument closes, or turns off, toggle macros.  Users may choose
+their own convention, e.g. \[off], \[QUIT], \[Close], \[X], etc.
+.FOOTNOTE off
+.
+.SUBHEAD control-macros "Control macros
+.
+.PP
+The styling of document element tags is managed by "\*[BU3]control
+macros\*[FU1],\*[BU7]" \*[FU2]which relieve users of manipulating
+number registers.  For every tag, as is appropriate, there are
+control macros for family, font, size, leading, quad, indent, and
+colour.  The naming scheme is natural language based, such that
+\[PARA_INDENT] establishes the \[fi]rst-line indent of paragraphs,
+while \[FOOTNOTE_FAMILY] sets the family for footnotes.
+.
+.SUBHEAD non-semantic-elements "Non-semantic elements
+.
+.PP
+Non-semantic elements include page headers, footers, page numbering,
+and any other element that is not part of the running text.  These,
+too, have control macros for setting typographic parameters.
+.
+.SUBHEAD page-balancing "Page balancing
+.
+.PP
+The insertion of headings, images, and other non-textual elements
+into a document, or spacing the paragraphs, can result in text that
+falls short of the bottom margin.  Page balancing refers to how
+\[mom] fills the
+.PDF_LINK page-frame "page frame"
+so that bottom margins remain equal ("flush"\*[FU2]).
+.
+.SUBSUBHEAD page-frame "The page frame
+.
+.PP
+The page frame is the area of a page occupied by running text,
+bounded by whitespace that forms the margins.  The left and right
+margins are usually empty.  The top and bottom margins typically contain
+document metadata (title, author) and page numbers\*[FU1]; material
+contained within the top and bottom margins is referred to as
+"the header" or a "the footer.\*[BU6]"
+.
+.PP
+\[Mom] considers the distance from page top to the top of the frame
+as the top margin of a document, not the distance from page top to
+the header.  Equally, the bottom margin is measured from the bottom
+of the page to the last line of running text, not from page bottom
+to the footer.\c
+.FOOTNOTE
+Footnotes are considered part of the page frame.
+.FOOTNOTE off
+\& This allows the vertical placement of the headers and
+footers to be established independently of the page frame.
+.
+.SUBSUBHEAD adjusted-leading "Adjusted leading
+.
+.PP
+A document's requested leading rarely \[fi]lls the page frame entirely
+to the bottom margin.  Generally, the last line of text falls a few
+points short.\*[BU6]\c
+.FOOTNOTE
+A PostScript point, the unit used by groff, is 1\*[FU2]/\*[FU4]72 of
+an inch.
+.FOOTNOTE off
+\& To compensate, \[mom] introduces the notion of adjusted
+leading.\c
+.FOOTNOTE
+Traditionally called "\*[BU2]carding\*[FU1]" or "feathering.\*[BU8]"
+.FOOTNOTE off
+\& 
+.PDF_LINK machine-units " \*[BD]Machine units\*[PREV]
+are added incrementally to the document's requested leading
+until the baseline grid \[fi]lls the page frame and the last line of
+text falls precisely on the bottom margin.  The difference between
+the requested leading and the adjusted leading is very slight,
+typically less than two hundred machine units, or 1/\*[FU2]5 of a
+point.
+.
+.PP
+If the user does not want adjusted leading, it may be disabled.
+.
+.SUBSUBHEAD baseline-grid "Baseline grid
+.
+.PP
+.RW .01
+Within the page frame, \[mom] establishes a \[fi]xed grid of
+baselines from the leading requested before document processing
+begins.\*[BU6]\c
+.FOOTNOTE
+.RW 0
+I.e. the leading used in paragraphs of running text.
+.FOOTNOTE off
+.RW .01
+\&  \*[BU6]The placement of all document element tags is relative to
+this grid.  Whenever an element's vertical spacing requires placing
+it off the grid, compensation must applied\:\[em]\:before, after,
+or both.  \[Mom] provides two strategies for compensating:
+.PDF_LINK shim "shimming"
+or
+.PDF_LINK flex SUFFIX .\c "flex-spacing"
+.FOOTNOTE
+Shimming and flex-spacing are mutually exclusive.
+.FOOTNOTE off
+\&  Except in impossible situations, e.g. insuf\[fi]cient
+room for a heading with at least one line of text underneath, these
+guarantee that the page frame is properly \[fi]lled and that bottom
+margins are flush.\c
+.RW 0
+.
+.SUBSUBHEAD shim "Shimming
+.
+.PP
+When shimming is enabled, which it is by default, any element of
+running text that strays off the baseline grid is compensated for by
+\[mom] nudging the line afterwards onto the next valid baseline.
+This ensures proper page \[fi]ll and bottom margins that align from
+page to page.
+.
+.PP
+\[Mom] performs shimming automatically for a number of document
+element tags (\*[FU3]headings, cited material, floats, etc).  Users
+may also\:\[em]\:indeed should\:\[em]\:apply it themselves with the
+\[oq]\*[BU4]\[SHIM]\*[FU3]\[cq] macro after any disruption to the
+grid, for example a user-introduced change of leading on the page.
+.
+.PP
+The default shimming of document tags occasionally results in the
+appearance of too much whitespace between elements, notably when
+the amount of shimming applied is close to the current leading
+value.  An explicit negative vertical movement (e.g. \[.RLD-1v] or
+\[.SP-1]\*[FU2]) compensates.\*[BU6]\c
+.FOOTNOTE
+Both forms move up on the page by one line.
+.FOOTNOTE off
+.
+.PP
+Should users not want \[mom]'s default shimming of document
+element tags, it may be disabled and re-invoked at any time.
+Additionally, inserted images and preprocessor blocks have an option
+to disable it selectively.
+.
+.SUBSUBHEAD flex "Flex-spacing
+.
+.PP
+When flex-spacing is enabled, \[mom] divides any whitespace
+remaining before the bottom margin and distributes it equally at
+sensible flex-points on the page, e.g. after headings or graphics.
+The result, as with shimming, is equal bottom margins from
+page-to-page.  In many instances, the visible results of shimming
+and flex-spacing are indistinguishable.  The advantage to
+flex-spacing is that it compensates fully in documents where the paragraphs are
+separated by a small amount of whitespace; shimming cannot guarantee
+this unless the total amount of paragraph spacing on a page equals
+a multiple of the leading in effect.
+.
+.PP
+Flex-points may be inserted by the user with the
+\[oq]\*[BU4]\[FLEX]\*[FU3]\[cq] macro, typically to improve page
+rhythm between selected, spaced paragraphs.  Flex-spacing may
+also be disabled globally and re-invoked at any time, or disabled
+selectively for individual graphics or preprocessor blocks.
+.
+.SUBHEAD pdfmom "Direct to PDF output
+.
+.
+.PP
+A number of \[mom]'s features are only available when the source
+document is intended for PDF output: internal and external links,
+relocatable Table of Contents, flex-spacing, and others.  For
+this reason, \[mom] documents should be processed with the helper
+script, \[pdfmom].  \[Pdfmom] takes care of all processing required
+for direct to PDF output of \[mom] documents, relieving users of
+the need to construct complex command-line invocations of groff.
+.
+.PP
+\[Pdfmom] accepts all the same command-line options as groff,
+including \[-Tps] for documents where PostScript output is
+preferred, minus \[mom]'s PDF features and flex-spacing.
+.
+.COLLATE
+.
+.TITLE           "Appendix"
+.TITLE_UNDERSCORE .5 1.75p
+.HEADING_STYLE 1   \
+  FAMILY GillSans  \
+  FONT   R         \
+  SIZE   +1.5      \
+  NO_CAPS          \
+  BASELINE_ADJUST 3p
+.START
+.RLD 1v
+.PP
+The stylesheet and source file for this document offer examples of
+typical and advanced groff and \[mom] usage.
+.
+.HEAD stylesheet "The stylesheet (groff-mom-style.mom)
+.
+.PP
+The Plantin family used in the text was chosen not only for
+readability, but because the roman font exhibits two peculiarities:
+the keyboard apostrophe isn\*[BU2]'t mapped correctly to the
+close-quote character, and the font has no \*[BD]\[fi]\*[PREV]
+ligature.  It is sometimes simpler to fix small font problems using
+groff requests rather than altering the font files themselves.
+Thus, at the top of the stylesheet file, the groff \[char]
+request is used to map the apostrophe correctly, and to create
+the \*[BD]\[fi]\*[PREV] ligature out of an \*[FU4]\*[BD]f\*[PREV]
+\*[FU2]followed by a dotless\*[FU2]-\*[FU2]\*[BD]i\*[PREV].
+.
+.PP
+The \[char] request is also used extensively to contain the
+formatting for emphasized words, such that when the words appear in
+the source file, they are unemcumbered by inline escapes and appear
+cleanly as \[word]\*[BU3].
+.
+.PP
+The cover, docheader, epigraph, endnotes, and table of contents
+sections of the stylesheet demonstrate the use of control macros
+and style-groups to design various parts of a document.
+.
+.PP
+The three levels of headings are given their own macros.  Only the
+second level, \*[SIZE -.75]SUBHEAD\*[SIZE +.75], requires special
+treatment because of the square bullet, but the other two wrap
+first and third level headings inside HEAD and SUBSUBHEAD so that
+consistency is achieved with respect to semantic tagging.
+.
+.HEAD source-file "The source file (groff-mom.mom)
+.
+.PP
+The use of a comprehensive stylesheet allows the text and document
+element tags to flow sensibly and readably without undue formatting
+interruptions.  Presentational markup is restricted to track and
+character-pair kerning, which were added after previewing the
+completed document.  Kernpairs can be adjusted in the font files
+themselves, but this is not always desirable.  Track kerning is used
+to tighten or loosen paragraphs for optimal word breaks and to avoid
+widows and orphans.
+.
+.PP
+It is worth noting that the relative absence of presentational
+markup makes the file parsable for semantic elements and thus, with
+little difficulty, convertible to other formats, e.g. xml or html.
+.
+.ENDNOTES
+.
+.TOC

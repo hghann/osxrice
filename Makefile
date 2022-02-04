@@ -78,6 +78,8 @@ init: ## Inital deploy dotfiles on osx machine
 	$(LNDIR) $(PWD)/.config/brew $(HOME)/.config/brew
 	rm -rf $(HOME)/.config/alacritty
 	$(LNDIR) $(PWD)/.config/alacritty $(HOME)/.config/alacritty
+	rm -rf $(HOME)/.config/kitty
+	$(LNDIR) $(PWD)/.config/kitty $(HOME)/.config/kitty
 	rm -rf $(HOME)/.config/tmux
 	$(LNDIR) $(PWD)/.config/tmux $(HOME)/.config/tmux
 	rm -rf $(HOME)/.config/lf
@@ -135,6 +137,10 @@ wm: ## Deploy window manager configs
 alacritty: ## Deploy Alacritty configs
 	$(MKDIR) $(HOME)/.config/alacritty
 	$(LN) $(PWD)/.config/alacritty/alacritty.yml $(HOME)/.config/alacritty/alacritty.yml
+
+kitty: ## Deploy Kitty configs
+	$(MKDIR) $(HOME)/.config/kitty
+	$(LN) $(PWD)/.config/kitty/kitty.conf $(HOME)/.config/kitty/kitty.conf
 
 lf: ## Deploy lf configs
 	$(MKDIR) $(HOME)/.config/lf
