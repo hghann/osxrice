@@ -1,0 +1,329 @@
+.\" Fixes to Monotype Plantin
+.\"   - has no fi ligature
+.\"   - close quote isn't mapped correctly
+.\"   - italic is a little small
+.char \[fi] f\[.i]
+.char ' \[cq]
+.am CODE
+. char ' \[cq]
+..
+.fzoom PlantinI 1050  \" make Plantin italic a little larger
+.
+.CONDENSE 85  \" for Courier Bold
+.
+.de special   \" Macro for emphasized words
+. nr args \\n[.$]
+. nr argc 0 1
+. if '\\$0'bold' \{\
+.   while \\n+[argc]<=\\n[args] \{\
+.     char \[\\$1] \fB\\$1
+.     shift
+.   \}
+. \}
+. if '\\$0'bold-italic' \{\
+.   while \\n+[argc]<=\\n[args] \{\
+.     char \[\\$1] \f[BI]\\$1
+.     shift
+.   \}
+. \}
+. if '\\$0'flags' \{\
+.   while \\n+[argc]<=\\n[args] \{\
+.     char \[\\$1] \fB\\$1
+.     shift
+.   \}
+. \}
+. if '\\$0'italic' \{\
+.   while \\n+[argc]<=\\n[args] \{\
+.     char \[\\$1] \fI\\$1
+.     shift
+.   \}
+. \}
+. if '\\$0'keywords' \{\
+.   while \\n+[argc]<=\\n[args] \{\
+.     char \[\\$1] \[oq]\*[FU1]\f[CB]\s[+1]\*[COND]\\$1\*[CONDX]\s[-1]\f[]\*[FU3]\[cq]
+.     shift
+.   \}
+. \}
+. if '\\$0'macros' \{\
+.   while \\n+[argc]<=\\n[args] \{\
+.     char \[\\$1] \[oq]\*[BU7]\f[CB]\s[+1]\*[COND].\\$1\*[CONDX]\s[-1]\f[]\*[FU3]\[cq]
+.     shift
+.   \}
+. \}
+. if '\\$0'macsets' \{\
+.   while \\n+[argc]<=\\n[args] \{\
+.     char \[\\$1] \fI\\$1\/
+.     shift
+.   \}
+. \}
+. if '\\$0'preprocessors' \{\
+.   while \\n+[argc]<=\\n[args] \{\
+.     char \[\\$1] \fB\\$1
+.     shift
+.   \}
+. \}
+. if '\\$0'programs' \{\
+.   while \\n+[argc]<=\\n[args] \{\
+.     char \[\\$1] \fB\\$1
+.     shift
+.   \}
+. \}
+..
+.
+.\" Aliases to special
+.als bold          special
+.als bold-italic   special
+.als flags         special
+.als italic        special
+.als keywords      special
+.als macros        special
+.als macsets       special
+.als preprocessors special
+.als programs      special
+.
+.\" Emphasized words
+.bold \
+  autoleading padding convert floats off QUIT Close X
+.flags -Tps
+.italic        presentational semantic
+.macros \
+  COLLATE DOC_LEAD DRH EPIGRAPH FOOTNOTE FOOTNOTE \
+  FOOTNOTE_FAMILY HEADING NEWPAGE PARA_INDENT PP PP \
+  PRINTSTYLE PRINTSTYLE PT_SIZE QUOTE START UNDERSCORE
+.keywords      TYPESET
+.macsets       man me mm Mom mom ms
+.preprocessors eqn pic refer tbl
+.programs      cat pdfmom Pdfmom
+.
+.\" Emphasized strings and special words
+.
+.ds kbd-open \
+  "\[oq]\*[BU6]\f[CB]\s[+1]\*[COND]
+.ds kbd-close \
+  "\*[CONDX]\s[-1]\f[]\[cq]
+.
+.ds .AUTOLEAD-3 \
+  "\*[kbd-open].AUTOLEAD 3\*[kbd-close]
+.ds .char \
+  "\[oq]\*[BU7]\f[CB]\s[+.5]\*[COND].char\*[CONDX]\s[-.5]\f[]\*[FU3]\[cq]
+.ds the-device \
+  "\*[UP .075m](\*[DOWN .075m]\*[BU1]\[lq]\*[BU2]device\[rq]\*[FU1]\*[UP .075m])\*[DOWN .075m]
+.ds .ds-stringname-name \
+  "\*[kbd-open].ds\~\*[BU8]string-name\~\*[BU8]string\*[FU4]\*[kbd-close]
+.ds .EPIGRAPH-off \
+  "\*[kbd-open].EPIGRAPH \*[BU6]off\*[kbd-close]
+.ds .FLEX \
+  ".\f[CB]\s[+1]\*[COND]FLEX\*[CONDX]\f[]
+.ds HEADING-<n>-text \
+  "\*[kbd-open].HEADING <n> \[lq]text\[rq]\*[kbd-close]
+.ds info-groff \
+  "\*[kbd-open]\*[FU4]info \*[BU12]groff\*[FU2]\*[kbd-close]
+.ds insertion-of-graphics \
+  "\f[B]insertion of graphics\f[]
+.ds logical \
+  "\*[UP .075m](\*[DOWN .075m]\*[BU1]"\*[FU1]logical"\*[FU1]\*[UP .075m])\*[DOWN .075m]
+.ds margin-notes \
+  "\f[B]margin notes\f[]
+.ds nested-lists \
+  "\f[B]nested lists\f[]
+.ds .nr \
+  "\*[kbd-open].nr\*[kbd-close]
+.ds .nr-LL-5i \
+  "\*[kbd-open].nr\~\*[BU8]LL\~\*[BU8]5i\*[kbd-close]
+.ds line-numbering \
+  "\f[B]line numbering\f[]
+.ds .ls \
+  "\*[kbd-open].ls\*[kbd-close]
+.ds man-preprocessor \
+  "\f[CB]\s[+.5]\*[COND]man\*[CONDX] \*[BU12]\f[CBI]\*[COND]preprocessor\*[CONDX]\fR\s[0]\s[12]
+.ds .RLD-1v \
+  "\*[kbd-open].RLD 1v\*[kbd-close]
+.ds .SHIM \
+  ".\f[CB]\s[+1]\*[COND]SHIM\*[CONDX]\f[]
+.ds source-files  \
+  "\*[UP .075m](\*[DOWN .075m]\*[BU1]\[lq]source \[fi]les\[rq]\*[FU1]\*[UP .075m])\*[DOWN .075m]
+.ds .SP-1 \
+  "\*[kbd-open].SP \-1\*[kbd-close]
+.ds string-tabs \
+  "\f[B]string tabs\f[]
+.ds typesetting-tabs \
+  "\f[B]typesetting tabs\f[]
+.ds word \
+  "\f[VeraMonoB]\s[-1.75]\e\*[BU2][word]\s[+1.75]\f[]
+.
+.char \[.AUTOLEAD-3]           \*[.AUTOLEAD-3]
+.char \[char]                  \*[.char]
+.char \[("device")]            \*[the-device]
+.char \[.ds-stringname-name]   \*[.ds-stringname-name]
+.char \[.EPIGRAPH-off]         \*[.EPIGRAPH-off]
+.char \[HEADING-<n>-text]      \*[HEADING-<n>-text]
+.char \[info-groff]            \*[info-groff]
+.char \[insertion-of-graphics] \*[insertion-of-graphics]
+.char \[nested-lists]          \*[nested-lists]
+.char \[.nr]                   \*[.nr]
+.char \[.nr-LL-5i]             \*[.nr-LL-5i]
+.char \[line-numbering]        \*[line-numbering]
+.char \[("logical")]           \*[logical]
+.char \[.ls]                   \*[.ls]
+.char \[man-preprocessor]      \*[man-preprocessor]
+.char \[margin-notes]          \*[margin-notes]
+.char \[.RLD-1v]               \*[.RLD-1v]
+.char \[FLEX]                  \*[.FLEX]
+.char \[SHIM]                  \*[.SHIM]
+.char \[("source-files")]      \*[source-files]
+.char \[.SP-1]                 \*[.SP-1]
+.char \[string-tabs]           \*[string-tabs]
+.char \[typesetting-tabs]      \*[typesetting-tabs]
+.char \[word]                  \*[word]
+.
+.\" hyphenation list
+.hw ac-quainted
+.hw bene-fit
+.hw in-suf-\[fi]cient
+.hw type-setting
+.hw with-in
+.
+.\" Metadata
+.TITLE     "Gro\*[FU1]f\*[FU1]f and mom:" "an o\*[BU1]v\*[FU1]erview"
+.PDF_TITLE "Groff and mom: an overview"
+.AUTHOR    "Peter Schaffter
+.COPYRIGHT "20\*[BU3]1\*[BU2]3, 2017 Peter Schaffter"
+.COVER     TITLE AUTHOR COPYRIGHT COVERTEXT
+.
+.\" Style
+.PRINTSTYLE TYPESET
+.
+.L_MARGIN        1.25i
+.R_MARGIN        1.25i
+.HEADER_GAP      3P+3p
+.FOOTER_GAP      2P+9p
+.HEADER_RULE_GAP 3p
+.
+.FAMILY      Plantin
+.PT_SIZE     12
+.AUTOLEAD    3
+.SS          +2
+.WS          -1
+.PARA_INDENT 18p
+.
+.RECTO_VERSO
+.
+.\" Docheader style (global)
+.DOCHEADER_STYLE \
+  FAMILY GillSans \
+  LEAD   +2.5
+.\" Docheader title style
+.TITLE_STYLE \
+  FONT R \
+  SIZE +5
+.\" Docheader attribution string and author family
+.ATTRIBUTE_FAMILY Plantin
+.AUTHOR_FAMILY    Plantin
+.
+.\" Cover style (global)
+.COVER_STYLE \
+  FAMILY GillSans \
+  LEAD   +2.5
+.\" Cover title, attribution, author, copyright style
+.COVER_TITLE_STYLE \
+  FONT R \
+  SIZE +5
+.COVER_ATTRIBUTE_FAMILY Plantin
+.COVER_AUTHOR_FAMILY    Plantin
+.COVER_COPYRIGHT_FAMILY Plantin
+.
+.\" Epigraph style
+.EPIGRAPH_STYLE \
+  INDENT   2 \
+  SIZE     -1 \
+  AUTOLEAD 2.5
+.rn EPIGRAPH ABSTRACT \" For semantic clarity
+.
+.\" Head and subhead special handling because of box bullet
+.
+.di box-bullet
+. DBX SOLID 0 4p 4p
+.di
+.char \[box] \*[box-bullet]
+.
+.rm HEAD
+.rm SUBHEAD
+.rm SUBSUBHEAD
+.
+.de HEAD
+. HEADING 1 NAMED "\\$1" "\\$2"
+..
+.
+.de SUBHEAD
+. IL 8p
+. HEADING 2 NAMED "\\$1" "\\$2"
+. IQ CLEAR
+. if \\n[.ns] .rs
+. sp -2v+7.5p
+. nop \[box]
+. br
+. sp 7.5p
+..
+.
+.de SUBSUBHEAD
+. HEADING 3 NAMED "\\$1" "\\$2"
+..
+.
+.\" Heading styles
+.HEADING_STYLE 1   \
+  FAMILY GillSans  \
+  FONT   R         \
+  SIZE  +3         \
+  BASELINE_ADJUST 6p
+.
+.HEADING_STYLE 2   \
+  FAMILY GillSans  \
+  FONT   R         \
+  SIZE  +1         \
+  BASELINE_ADJUST 1p
+.
+.HEADING_STYLE 3   \
+  FAMILY GillSans  \
+  FONT   R         \
+  SIZE   -1.5      \
+  CAPS             \
+  BASELINE_ADJUST 2p
+.
+.\" Code
+.CODE_STYLE \
+  FAMILY VeraMono \
+  FONT   B \
+  SIZE   87
+.
+.LINEBREAK_CHAR \l'4P'
+.
+.FOOTNOTE_SPACING 3p
+.
+.\" Endnotes
+.ENDNOTE_FAMILY GillSans
+.ENDNOTES_HEADER_STYLE \
+  FAMILY      GillSans \
+  FONT        R \
+  UNDERSCORE .5 \
+  STRING_SIZE +3 \
+  QUAD       LEFT
+.ENDNOTE_TITLE    ""
+.ENDNOTE_SPACING .3v
+.
+.\" TOC
+.TOC_PT_SIZE       12
+.TOC_LEAD          17
+.TOC_HEADER_STRING "Contents
+.TOC_HEADER_STYLE \
+  FAMILY GillSans \
+  FONT   R \
+  SIZE   +2 \
+  CAPS \
+  UNDERSCORE
+.TOC_ENTRY_STYLE 2 INDENT 1.75m
+.TOC_ENTRY_STYLE 3 INDENT 1m FONT I SIZE -.25
+.TOC_PADDING     2
+.SPACE_TOC_ITEMS
+.AUTO_RELOCATE_TOC
+.
+.START

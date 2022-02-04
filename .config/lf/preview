@@ -14,7 +14,7 @@ batorcat() {
 	shift
 	if command -v bat > /dev/null 2>&1
 	then
-		bat --color=always --theme="ansi" --style=plain --pager=never "$file" "$@"
+		bat --color=always --theme="Visual Studio Dark+" --style=plain --pager=never "$file" "$@"
 	else
 		cat "$file"
 	fi
