@@ -3,6 +3,7 @@ tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/cask-versions"
 tap "homebrew/core"
+tap "homebrew/services"
 # Generic-purpose lossless compression algorithm by Google
 brew "brotli"
 # Library and utilities for processing GIFs
@@ -29,18 +30,18 @@ brew "aom"
 brew "bat"
 # Garbage collector for C and C++
 brew "bdw-gc"
+# Mozilla CA certificate store
+brew "ca-certificates"
+# Cryptography and SSL/TLS Toolkit
+brew "openssl@1.1"
 # C/C++ and Java libraries for Unicode and globalization
 brew "icu4c"
 # Collection of portable C++ source libraries
 brew "boost"
-# Mozilla CA certificate store
-brew "ca-certificates"
 # GNU database manager
 brew "gdbm"
 # Library for decimal floating point arithmetic
 brew "mpdecimal"
-# Cryptography and SSL/TLS Toolkit
-brew "openssl@1.1"
 # Library for command-line editing
 brew "readline"
 # Command-line interface for SQLite
@@ -115,24 +116,6 @@ brew "docbook-xsl"
 brew "dockutil"
 # Select default apps for documents and URL schemes on macOS
 brew "duti"
-# Modern replacement for 'ls'
-brew "exa"
-# Perl lib for reading and writing EXIF metadata
-brew "exiftool"
-# XML 1.0 parser
-brew "expat"
-# ISO AAC audio decoder
-brew "faad2"
-# Simple, fast and user-friendly alternative to find
-brew "fd"
-# Ogg Bitstream Library
-brew "libogg"
-# Free lossless audio codec
-brew "flac"
-# Minimalistic plugin API for video effects
-brew "frei0r"
-# Implementation of the Unicode BiDi algorithm
-brew "fribidi"
 # Macro processing language
 brew "m4"
 # Generic library support script
@@ -157,6 +140,26 @@ brew "p11-kit"
 brew "unbound"
 # GNU Transport Layer Security (TLS) Library
 brew "gnutls"
+# GNU Emacs text editor
+brew "emacs"
+# Modern replacement for 'ls'
+brew "exa"
+# Perl lib for reading and writing EXIF metadata
+brew "exiftool"
+# XML 1.0 parser
+brew "expat"
+# ISO AAC audio decoder
+brew "faad2"
+# Simple, fast and user-friendly alternative to find
+brew "fd"
+# Ogg Bitstream Library
+brew "libogg"
+# Free lossless audio codec
+brew "flac"
+# Minimalistic plugin API for video effects
+brew "frei0r"
+# Implementation of the Unicode BiDi algorithm
+brew "fribidi"
 # Generate introspection data for GObject libraries
 brew "gobject-introspection"
 # Smart font renderer for non-Roman scripts
@@ -171,6 +174,8 @@ brew "little-cms2"
 brew "openjpeg"
 # Image processing and image analysis library
 brew "leptonica"
+# Zstandard is a real-time compression algorithm
+brew "zstd"
 # Subtitle renderer for the ASS/SSA subtitle format
 brew "libass"
 # Blu-Ray disc playback library for media players like VLC
@@ -209,8 +214,6 @@ brew "snappy"
 brew "speex"
 # Secure Reliable Transport
 brew "srt"
-# Zstandard is a real-time compression algorithm
-brew "zstd"
 # OCR (Optical Character Recognition) engine
 brew "tesseract"
 # Open video compression format
@@ -259,10 +262,6 @@ brew "jbig2dec"
 brew "libidn"
 # Interpreter for PostScript and PDF
 brew "ghostscript"
-# Command-line option parsing utility
-brew "gnu-getopt"
-# GNU implementation of the famous stream editor
-brew "gnu-sed"
 # Common error values for all GnuPG components
 brew "libgpg-error"
 # Assuan IPC Library
@@ -279,6 +278,10 @@ brew "npth"
 brew "pinentry"
 # GNU Pretty Good Privacy (PGP) package
 brew "gnupg"
+# Command-line option parsing utility
+brew "gnu-getopt"
+# GNU implementation of the famous stream editor
+brew "gnu-sed"
 # Language for typesetting graphs
 brew "grap"
 # Library for manipulating JPEG-2000 images
@@ -309,6 +312,8 @@ brew "liblqr"
 brew "libomp"
 # Tools and libraries to manipulate images in many formats
 brew "imagemagick"
+# Synchronize a maildir with an IMAP server
+brew "isync"
 # Regular expressions library
 brew "oniguruma"
 # Lightweight and flexible command-line JSON processor
@@ -373,6 +378,8 @@ brew "mas"
 brew "mpd"
 # Library for a binary-based efficient data interchange format
 brew "msgpack"
+# SMTP client that can be used as an SMTP plugin for Mutt
+brew "msmtp"
 # Audio metadata library
 brew "taglib"
 # Ncurses-based client for the Music Player Daemon
@@ -381,6 +388,8 @@ brew "ncmpcpp"
 brew "screenresolution"
 # Fast, highly customisable system info script
 brew "neofetch"
+# E-mail reader with support for Notmuch, NNTP and much more
+brew "neomutt"
 # Parser generator tool and incremental parsing library
 brew "tree-sitter"
 # Ambitious Vim-fork focused on extensibility and agility
@@ -431,6 +440,8 @@ brew "smartmontools"
 brew "speedtest-cli"
 # Cross-shell prompt for astronauts
 brew "starship"
+# Terminal multiplexer
+brew "tmux"
 # Command-line interface to the freedesktop.org trashcan
 brew "trash-cli"
 # Command-line unarchiving tools supporting multiple formats
@@ -469,6 +480,8 @@ cask "calibre"
 cask "cryptomator"
 # Google Chromium, sans integration with Google
 cask "eloston-chromium"
+# Text editor
+cask "emacs"
 # Metadata cleaner
 cask "exifcleaner"
 # Web browser
@@ -481,26 +494,26 @@ cask "gimp"
 cask "hiddenbar"
 # Vector graphics editor
 cask "inkscape"
-# Web browser focusing on security and privacy
-cask "iridium"
 # Note taking and to-do application with synchronization capabilities
 cask "joplin"
 # Password manager app
 cask "keepassxc"
 # Tool to prevent the system from going into sleep mode
 cask "keepingyouawake"
+# GPU-based terminal emulator
+cask "kitty"
 # Office suite
 cask "libreoffice"
 # Web browser
 cask "librewolf"
+# SPICE simulation software, schematic capture and waveform viewer
+cask "ltspice"
 # Open-source firewall to block unknown outgoing connections
 cask "lulu"
 # File system integration
 cask "macfuse"
 # Full TeX Live distribution with GUI applications
 cask "mactex"
-# Text editor
-cask "macvim"
 # Provides updates to various Microsoft products
 cask "microsoft-auto-update"
 # Spreadsheet software
@@ -531,8 +544,6 @@ cask "skim"
 cask "textmate"
 # Unpacks archive files
 cask "the-unarchiver"
-# Customizable email client
-cask "thunderbird"
 # Virtual machines UI using QEMU
 cask "utm"
 # Disk encryption software focusing on security based on TrueCrypt
