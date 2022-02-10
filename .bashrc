@@ -32,14 +32,14 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # Basic bash settings
 complete -d cd
-shopt -s globstar
+#shopt -s globstar
 # set vi mode
 set -o vi
 bind -m vi-command 'Control-l: clear-screen'
 bind -m vi-insert 'Control-l: clear-screen'
 export HISTCONTROL=ignoredups:erasedups # no duplicate entries
 # shopt
-shopt -s autocd # change to named directory
+#shopt -s autocd # change to named directory
 shopt -s cdspell # autocorrects cd misspellings
 shopt -s cmdhist # save multi-line commands in history as single line
 shopt -s dotglob
