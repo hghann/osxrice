@@ -32,7 +32,6 @@ ex ()
 #alias sudo='doas'
 alias \
 	c='clear' \
-	emacs='/Applications/Emacs.app/Contents/MacOS/Emacs-arm64-12' \
 	groff='/usr/local/Cellar/groff/1.22.4_1/bin/groff'    # alias osx groff to homebrew groff
 
 # Utilities
