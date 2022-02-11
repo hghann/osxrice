@@ -414,10 +414,10 @@ brew "pass-otp"
 brew "pcre2"
 # Pretty system information tool written in POSIX sh
 brew "pfetch"
-# Linter for prose
-brew "proselint"
 # Interpreted, interactive, object-oriented programming language
 brew "python@3.10"
+# Linter for prose
+brew "proselint"
 # Cross-platform application and UI framework
 brew "qt@5"
 # Tool Command Language
@@ -474,14 +474,10 @@ cask "amethyst"
 cask "arduino"
 # Web browser focusing on privacy
 cask "brave-browser"
-# E-books management software
-cask "calibre"
 # Multi-platform client-side cloud file encryption tool
 cask "cryptomator"
 # Google Chromium, sans integration with Google
 cask "eloston-chromium"
-# Text editor
-cask "emacs"
 # Metadata cleaner
 cask "exifcleaner"
 # Web browser
@@ -506,8 +502,6 @@ cask "kitty"
 cask "libreoffice"
 # Web browser
 cask "librewolf"
-# SPICE simulation software, schematic capture and waveform viewer
-cask "ltspice"
 # Open-source firewall to block unknown outgoing connections
 cask "lulu"
 # File system integration
@@ -526,8 +520,6 @@ cask "microsoft-teams"
 cask "microsoft-word"
 # Media player based on MPlayer and mplayer2
 cask "mpv"
-# Free and open-source RSS reader
-cask "netnewswire"
 # Cloud storage client
 cask "onedrive"
 # Keyboard-driven, vim-like browser based on PyQt5
