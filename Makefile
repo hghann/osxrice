@@ -154,12 +154,12 @@ mpv: ## Deploy mpv configs
 	$(LN) $(PWD)/.config/mpv/mpv.conf $(HOME)/.config/mpv/mpv.conf
 
 mpd: ## Deploy mpd configs
-	$(MKDIR) $(HOME)/.config/mpd/mpd.conf
+	$(MKDIR) $(HOME)/.config/mpd
+	touch $(HOME)/.config/mpd/{mpd.db,mpd.log,mpd.pid,mpdstate}
 	$(LN) $(PWD)/.config/mpd/mpd.conf $(HOME)/.config/mpd/mpd.conf
 
-ncmpcpp: ## Deploy ncmpcpp configs
+ncmpcpp: mpd ## Deploy ncmpcpp configs
 	$(MKDIR) $(HOME)/.config/ncmpcpp
-	$(LN) $(PWD)/.config/ncmpcpp/bindings $(HOME)/.config/ncmpcpp/bindings
 	$(LN) $(PWD)/.config/ncmpcpp/config $(HOME)/.config/ncmpcpp/config
 
 duti: ## Setup default applications

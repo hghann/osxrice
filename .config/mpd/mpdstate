@@ -1,9 +1,9 @@
 sw_volume: 100
 audio_device_state:1:CoreAudio
 audio_device_state:1:my_fifo
-state: play
-current: 1
-time: 116.882000
+state: pause
+current: 0
+time: 320.562000
 random: 0
 repeat: 0
 single: 0
@@ -12,6 +12,45 @@ crossfade: 0
 mixrampdb: 0.000000
 mixrampdelay: -1.000000
 playlist_begin
-0:Music/Media.localized/Music/Bastana Bel Youm.m4a
+0:Music/Media.localized/Music/Al Habaib.m4a
 1:Music/Media.localized/Music/Albi Saeed.m4a
+2:Music/Media.localized/Music/Ana Asef.m4a
+3:Music/Media.localized/Music/Asaab Fourak.m4a
+4:Music/Media.localized/Music/Baeed Anak.m4a
+5:Music/Media.localized/Music/Bastana Bel Youm.m4a
+6:Music/Media.localized/Music/Bta'atebni 'Ala Kilmat.m4a
+7:Music/Media.localized/Music/Bye7sidouni.m4a
+8:Music/Media.localized/Music/Dobna Ala Ghyabak.m4a
+9:Music/Media.localized/Music/El Dahab Ya Habibi.m4a
+10:Music/Media.localized/Music/El Hawa Sultan.m4a
+11:Music/Media.localized/Music/El Houb El Awalani (2000 Digital Remaster).m4a
+12:Music/Media.localized/Music/El Sabri Tayib.m4a
+13:Music/Media.localized/Music/Erdha Bilnasseb.m4a
+14:Music/Media.localized/Music/Garahouna.m4a
+15:Music/Media.localized/Music/Habait Armi Al Shabbak.m4a
+16:Music/Media.localized/Music/Helaf El Amar.m4a
+17:Music/Media.localized/Music/Inta Gheirhom.m4a
+18:Music/Media.localized/Music/Iskot.m4a
+19:Music/Media.localized/Music/Kalam Ennas.m4a
+20:Music/Media.localized/Music/Kedah Kifayah.m4a
+21:Music/Media.localized/Music/Khesert Koul El Nass.m4a
+22:Music/Media.localized/Music/Kollena Magareeh.m4a
+23:Music/Media.localized/Music/La Trouh.m4a
+24:Music/Media.localized/Music/Laiel El Ashekin.m4a
+25:Music/Media.localized/Music/Law Naweit.m4a
+26:Music/Media.localized/Music/Lisa El Dounia Bikheer.m4a
+27:Music/Media.localized/Music/Min Hena We Rayeh.m4a
+28:Music/Media.localized/Music/Rohi Yanssmah.m4a
+29:Music/Media.localized/Music/Rohow Loh Wisalouh.m4a
+30:Music/Media.localized/Music/Saber Wi Radi.m4a
+31:Music/Media.localized/Music/Salaf Wi Dayn.m4a
+32:Music/Media.localized/Music/Sehert El Layel.m4a
+33:Music/Media.localized/Music/Shoukran.m4a
+34:Music/Media.localized/Music/Sibt El Dounya.m4a
+35:Music/Media.localized/Music/Tabeeb Garah.m4a
+36:Music/Media.localized/Music/Targahali.m4a
+37:Music/Media.localized/Music/Wayya Al Qadar.m4a
+38:Music/Media.localized/Music/Ya Baya'ein El Hawa (2000 Digital Remaster).m4a
+39:Music/Media.localized/Music/Yalle Teabna Snen Be Hawak.m4a
+40:Music/Media.localized/Music/Youm El Wadaa.m4a
 playlist_end

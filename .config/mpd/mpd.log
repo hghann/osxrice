@@ -1385,3 +1385,27 @@ Feb 11 12:00 : client: [2] malformed command "GET /favicon.ico HTTP/1.1"
 Feb 11 12:03 : ffmpeg/mov,mp4,m4a,3gp,3g2,mj2: stream 0, timescale not set
 Feb 11 12:03 : ffmpeg/mjpeg: EOI missing, emulating
 Feb 11 12:03 : ffmpeg/aac: Could not update timestamps for skipped samples.
+Feb 11 12:06 : player: played "Music/Media.localized/Music/Albi Saeed.m4a"
+Feb 11 21:06 : config: inotify: auto_update was disabled. enable during compilation phase
+Feb 11 21:06 : config: option 'auto_resample' on line 36 was not recognized
+Feb 11 21:06 : config: option 'use_mmap' on line 37 was not recognized
+Feb 11 21:06 : ffmpeg/mov,mp4,m4a,3gp,3g2,mj2: stream 0, timescale not set
+Feb 11 21:06 : ffmpeg/mjpeg: EOI missing, emulating
+Feb 11 21:06 : player: played "Music/Media.localized/Music/Albi Saeed.m4a"
+Feb 11 21:06 : config: inotify: auto_update was disabled. enable during compilation phase
+Feb 11 21:06 : config: option 'auto_resample' on line 36 was not recognized
+Feb 11 21:06 : config: option 'use_mmap' on line 37 was not recognized
+Feb 11 21:06 : ffmpeg/mov,mp4,m4a,3gp,3g2,mj2: stream 0, timescale not set
+Feb 11 21:06 : ffmpeg/mjpeg: EOI missing, emulating
+Feb 11 21:10 : player: played "Music/Media.localized/Music/Albi Saeed.m4a"
+Feb 11 21:10 : ffmpeg/mov,mp4,m4a,3gp,3g2,mj2: stream 0, timescale not set
+Feb 11 21:10 : ffmpeg/mjpeg: EOI missing, emulating
+Feb 11 21:10 : ffmpeg/aac: Could not update timestamps for skipped samples.
+Feb 11 21:16 : player: played "Music/Media.localized/Music/Inta Gheirhom.m4a"
+Feb 11 21:16 : ffmpeg/mov,mp4,m4a,3gp,3g2,mj2: stream 0, timescale not set
+Feb 11 21:16 : ffmpeg/mjpeg: EOI missing, emulating
+Feb 11 21:16 : ffmpeg/aac: Could not update timestamps for skipped samples.
+Feb 11 21:16 : player: played "Music/Media.localized/Music/Inta Gheirhom.m4a"
+Feb 12 14:58 : ffmpeg/mov,mp4,m4a,3gp,3g2,mj2: stream 0, timescale not set
+Feb 12 14:58 : ffmpeg/mjpeg: EOI missing, emulating
+Feb 12 14:58 : ffmpeg/aac: Could not update timestamps for skipped samples.
