@@ -32,7 +32,8 @@ ex ()
 #alias sudo='doas'
 alias \
 	c='clear' \
-	groff='/usr/local/Cellar/groff/1.22.4_1/bin/groff'    # alias osx groff to homebrew groff
+    mpd='mpd ~/.config/mpd/mpd.conf' \
+	groff='/usr/local/Cellar/groff/1.22.4_1/bin/groff'
 
 # Utilities
 alias \
@@ -106,6 +107,7 @@ alias \
 	z='xpdf' \
 	n='newsboat' \
 	scim='sc-im' \
+    ytdlp='yt-dlp' \
 	sdcv='sdcvrun' \
 	YT="youtube-viewer" \
 	trem="transmission-remote"
