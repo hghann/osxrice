@@ -78,8 +78,8 @@ autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
 # Setting history file and some options
-HISTSIZE=10000000               # How many lines of history to keep in memory
-SAVEHIST=10000000               # Number of history entries to save to disk
+HISTSIZE=100000000               # How many lines of history to keep in memory
+SAVEHIST=100000000               # Number of history entries to save to disk
 setopt appendhistory            # Append history to the history file (no overwriting)
 setopt sharehistory             # Share history across terminals
 setopt HIST_EXPIRE_DUPS_FIRST HIST_FIND_NO_DUPS HIST_SAVE_NO_DUPS

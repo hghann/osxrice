@@ -38,6 +38,20 @@ brew "openssl@1.1"
 brew "icu4c"
 # Collection of portable C++ source libraries
 brew "boost"
+# GNU multiple precision arithmetic library
+brew "gmp"
+# Integer Set Library for the polyhedral model
+brew "isl"
+# C library for multiple-precision floating-point computations
+brew "mpfr"
+# C library for the arithmetic of high precision complex numbers
+brew "libmpc"
+# Zstandard is a real-time compression algorithm
+brew "zstd"
+# GNU compiler collection
+brew "gcc"
+# Resource monitor. C++ version and continuation of bashtop and bpytop
+brew "btop"
 # GNU database manager
 brew "gdbm"
 # Library for decimal floating point arithmetic
@@ -98,8 +112,6 @@ brew "cjson"
 brew "cmake"
 # Unit testing framework for C
 brew "cmocka"
-# GNU multiple precision arithmetic library
-brew "gmp"
 # GNU File, Shell, and Text utilities
 brew "coreutils"
 # Configurable talking characters in ASCII art
@@ -174,8 +186,6 @@ brew "little-cms2"
 brew "openjpeg"
 # Image processing and image analysis library
 brew "leptonica"
-# Zstandard is a real-time compression algorithm
-brew "zstd"
 # Subtitle renderer for the ASS/SSA subtitle format
 brew "libass"
 # Blu-Ray disc playback library for media players like VLC
@@ -230,14 +240,6 @@ brew "zeromq"
 brew "zimg"
 # Play, record, convert, and stream audio and video
 brew "ffmpeg"
-# Integer Set Library for the polyhedral model
-brew "isl"
-# C library for multiple-precision floating-point computations
-brew "mpfr"
-# C library for the arithmetic of high precision complex numbers
-brew "libmpc"
-# GNU compiler collection
-brew "gcc"
 # Portable abstraction of the hierarchical topology of modern architectures
 brew "hwloc"
 # High performance message passing library
@@ -528,6 +530,8 @@ cask "qutebrowser"
 cask "rectangle"
 # Data science software focusing on R and Python
 cask "rstudio"
+# Image editing application similar to GIMP
+cask "seashore"
 # Instant messaging application focusing on security
 cask "signal"
 # PDF reader and note-taking application
