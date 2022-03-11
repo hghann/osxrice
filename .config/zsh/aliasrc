@@ -63,8 +63,8 @@ alias bfsyu='cd $HOME/.config/brew && brew bundle dump --force --describe && cd'
 # remove orphaned packages
 alias bclean='brew autoremove && brew cleanup && brew doctor -v'
 # list dependencies
-alias bldep='brew deps -n --tree --installed --annotate'
-alias bgdep='brew deps -n --graph --dot --installed --annotate'
+alias bdepls='brew deps -n --tree --installed --annotate'
+alias bdepg='brew deps -n --graph --dot --installed --annotate'
 alias bls='brew list -1 --full-name'
 alias boutdated='brew outdated -v'
 

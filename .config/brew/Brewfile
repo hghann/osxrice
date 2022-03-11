@@ -400,6 +400,8 @@ brew "neovim"
 brew "newsboat"
 # Platform built on V8 to build network applications
 brew "node"
+# Git repository summary on your terminal
+brew "onefetch"
 # Optimized BLAS library
 brew "openblas"
 # Swiss-army knife of markup format conversion
