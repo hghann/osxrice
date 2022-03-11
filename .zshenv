@@ -42,6 +42,7 @@ export PAGER="less"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 #export MANPAGER="nvim -c 'set ft=man' -"
 export BUKUSERVER_PER_PAGE=100
+export GHLENABLECOLOR=1
 
 # $HOME Clean-up:
 export XDG_CONFIG_HOME="$HOME/.config"
