@@ -110,6 +110,8 @@ brew "cairo"
 brew "cjson"
 # Cross-platform make
 brew "cmake"
+# Console Matrix
+brew "cmatrix"
 # Unit testing framework for C
 brew "cmocka"
 # GNU File, Shell, and Text utilities
@@ -128,6 +130,24 @@ brew "docbook-xsl"
 brew "dockutil"
 # Select default apps for documents and URL schemes on macOS
 brew "duti"
+# Modern replacement for 'ls'
+brew "exa"
+# Perl lib for reading and writing EXIF metadata
+brew "exiftool"
+# XML 1.0 parser
+brew "expat"
+# ISO AAC audio decoder
+brew "faad2"
+# Simple, fast and user-friendly alternative to find
+brew "fd"
+# Ogg Bitstream Library
+brew "libogg"
+# Free lossless audio codec
+brew "flac"
+# Minimalistic plugin API for video effects
+brew "frei0r"
+# Implementation of the Unicode BiDi algorithm
+brew "fribidi"
 # Macro processing language
 brew "m4"
 # Generic library support script
@@ -152,26 +172,6 @@ brew "p11-kit"
 brew "unbound"
 # GNU Transport Layer Security (TLS) Library
 brew "gnutls"
-# GNU Emacs text editor
-brew "emacs"
-# Modern replacement for 'ls'
-brew "exa"
-# Perl lib for reading and writing EXIF metadata
-brew "exiftool"
-# XML 1.0 parser
-brew "expat"
-# ISO AAC audio decoder
-brew "faad2"
-# Simple, fast and user-friendly alternative to find
-brew "fd"
-# Ogg Bitstream Library
-brew "libogg"
-# Free lossless audio codec
-brew "flac"
-# Minimalistic plugin API for video effects
-brew "frei0r"
-# Implementation of the Unicode BiDi algorithm
-brew "fribidi"
 # Generate introspection data for GObject libraries
 brew "gobject-introspection"
 # Smart font renderer for non-Roman scripts
@@ -406,14 +406,6 @@ brew "onefetch"
 brew "openblas"
 # Swiss-army knife of markup format conversion
 brew "pandoc"
-# QR Code generation
-brew "qrencode"
-# Display directories as trees (with optional color/HTML output)
-brew "tree"
-# Password manager
-brew "pass"
-# Pass extension for managing one-time-password tokens
-brew "pass-otp"
 # Perl compatible regular expressions library with a new API
 brew "pcre2"
 # Pretty system information tool written in POSIX sh
@@ -422,6 +414,8 @@ brew "pfetch"
 brew "python@3.10"
 # Linter for prose
 brew "proselint"
+# QR Code generation
+brew "qrencode"
 # Cross-platform application and UI framework
 brew "qt@5"
 # Tool Command Language
@@ -436,8 +430,6 @@ brew "remind"
 brew "rustup-init"
 # Spreadsheet program for the terminal, using ncurses
 brew "sc-im"
-# StarDict Console Version
-brew "sdcv"
 # SMART hard drive monitoring
 brew "smartmontools"
 # Command-line interface for https://speedtest.net bandwidth tests
@@ -448,6 +440,8 @@ brew "starship"
 brew "tmux"
 # Command-line interface to the freedesktop.org trashcan
 brew "trash-cli"
+# Display directories as trees (with optional color/HTML output)
+brew "tree"
 # Command-line unarchiving tools supporting multiple formats
 brew "unar"
 # Internet file retriever
@@ -456,8 +450,6 @@ brew "wget"
 brew "wifi-password"
 # Naive linter for English prose
 brew "write-good"
-# Access X11 clipboards from the command-line
-brew "xclip"
 # PDF viewer
 brew "xpdf"
 # Download YouTube videos from the command-line
