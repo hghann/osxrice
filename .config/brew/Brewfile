@@ -484,8 +484,6 @@ cask "gimp"
 cask "hiddenbar"
 # Vector graphics editor
 cask "inkscape"
-# Note taking and to-do application with synchronization capabilities
-cask "joplin"
 # Password manager app
 cask "keepassxc"
 # Tool to prevent the system from going into sleep mode
@@ -532,8 +530,6 @@ cask "skim"
 cask "textmate"
 # Unpacks archive files
 cask "the-unarchiver"
-# Virtual machines UI using QEMU
-cask "utm"
 # Disk encryption software focusing on security based on TrueCrypt
 cask "veracrypt"
 # Access eTextbooks
@@ -546,7 +542,3 @@ cask "vscodium"
 cask "whatsapp"
 # Video communication and virtual meeting platform
 cask "zoom"
-mas "iMovie", id: 408981434
-mas "Keynote", id: 409183694
-mas "Pages", id: 409201541
-mas "Xcode", id: 497799835
