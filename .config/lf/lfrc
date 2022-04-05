@@ -165,8 +165,8 @@ map gp. cd ~/Pictures
 map gps cd ~/Pictures/screenshots
 map gpw cd ~/Pictures/wallpapers
 
-map gts cd ~/documents/university/bachelor-2/semester-2
-map gtu cd ~/OneDrive\ -\ University\ of\ Ottawa/bachelor/bachelor-2
+map gts cd ~/documents/university/bachelor-02/semester-02
+map gtu cd ~/OneDrive\ -\ University\ of\ Ottawa/bachelor/bachelor-02
 
 map gd cd ~/documents
 map gD cd ~/downloads
