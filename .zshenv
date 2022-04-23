@@ -62,6 +62,7 @@ export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc-2.0"
 export LESSHISTFILE="-"
 
 # Other program settings:
+export REFER="$HOME/documents/referbib"
 export BACKUP_VOLUME_PATH="/Volumes/samsung-bar/backup"
 export SDCV_PAGER='bat --pager "less -RF"'
 #export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"

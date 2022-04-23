@@ -110,14 +110,10 @@ brew "cairo"
 brew "cjson"
 # Cross-platform make
 brew "cmake"
-# Console Matrix
-brew "cmatrix"
 # Unit testing framework for C
 brew "cmocka"
 # GNU File, Shell, and Text utilities
 brew "coreutils"
-# Configurable talking characters in ASCII art
-brew "cowsay"
 # AV1 decoder targeted to be small and fast
 brew "dav1d"
 # GNU diction and style
@@ -254,8 +250,6 @@ brew "portaudio"
 brew "fluid-synth"
 # Open-source formatting library for C++
 brew "fmt"
-# Infamous electronic fortune-cookie generator
-brew "fortune"
 # Command-line fuzzy finder written in Go
 brew "fzf"
 # JBIG2 decoder and library (for monochrome documents)
@@ -452,8 +446,6 @@ brew "wifi-password"
 brew "write-good"
 # PDF viewer
 brew "xpdf"
-# Download YouTube videos from the command-line
-brew "youtube-dl"
 # Fork of youtube-dl with additional features and fixes
 brew "yt-dlp"
 # Fish-like fast/unobtrusive autosuggestions for zsh
@@ -474,8 +466,6 @@ cask "eloston-chromium"
 cask "exifcleaner"
 # Web browser
 cask "firefox"
-# 3D parametric modeler
-cask "freecad"
 # Free and open-source image editor
 cask "gimp"
 # Utility to hide menu bar items
@@ -486,8 +476,6 @@ cask "inkscape"
 cask "keepassxc"
 # Tool to prevent the system from going into sleep mode
 cask "keepingyouawake"
-# GPU-based terminal emulator
-cask "kitty"
 # Office suite
 cask "libreoffice"
 # Web browser
@@ -508,6 +496,8 @@ cask "microsoft-powerpoint"
 cask "microsoft-teams"
 # Word processor
 cask "microsoft-word"
+# Tool to control external monitor brightness & volume
+cask "monitorcontrol"
 # Media player based on MPlayer and mplayer2
 cask "mpv"
 # Cloud storage client
@@ -524,18 +514,12 @@ cask "seashore"
 cask "signal"
 # PDF reader and note-taking application
 cask "skim"
-# General-purpose text editor
-cask "textmate"
 # Unpacks archive files
 cask "the-unarchiver"
 # Disk encryption software focusing on security based on TrueCrypt
 cask "veracrypt"
-# Access eTextbooks
-cask "vitalsource-bookshelf"
 # Virtual machine client
 cask "vmware-horizon-client"
-# Binary releases of VS Code without MS branding/telemetry/licensing
-cask "vscodium"
 # Desktop client for WhatsApp
 cask "whatsapp"
 # Video communication and virtual meeting platform

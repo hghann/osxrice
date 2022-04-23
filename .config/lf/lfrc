@@ -45,18 +45,6 @@ cmd fzf_jump ${{
   lf -remote "send $id $cmd \"$res\""
 }}
 
-cmd broot_jump ${{
-  f=$(mktemp)
-  res="$(broot --outcmd $f && cat $f | sed 's/cd //')"
-  rm -f "$f"
-  if [ -f "$res" ]; then
-    cmd="select"
-  elif [ -d "$res" ]; then
-    cmd="cd"
-  fi
-  lf -remote "send $id $cmd \"$res\""
-}}
-
 # Archive bindings
 cmd unarchive ${{
   case "$f" in
@@ -125,8 +113,8 @@ map au unarchive
 
 # Trash Mappings
 map dd trash
-map tc clear_trash
-map tr restore_trash
+map Tc clear_trash
+map Tr restore_trash
 
 # Broot Mapping
 map f fzf_jump

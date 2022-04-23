@@ -1,10 +1,10 @@
 # General settings
 config.load_autoconfig(False)
 c.aliases = {'q': 'quit', 'w': 'session-save', 'wq': 'quit --save', }
-c.downloads.location.directory = '/Users/hadiibrahim/Downloads'
+c.downloads.location.directory = '/Users/hg/Downloads'
 c.tabs.show = 'always'
-c.url.default_page = 'file:///Users/hadiibrahim/.config/startpage/Startpage.html'
-c.url.start_pages = ['file:///Users/hadiibrahim/.config/startpage/startpage.html']
+c.url.default_page = 'file:///Users/hg/.local/share/startpage/startpage.html'
+c.url.start_pages = ['file:///Users/hg/.local/share/startpage/startpage.html']
 c.url.searchengines = {'DEFAULT': 'https://duckduckgo.com/?q={}'}
 # c.window.hide_decoration = True
 
@@ -76,16 +76,8 @@ c.colors.tabs.pinned.even.bg = 'darkseagreen'
 c.colors.tabs.pinned.selected.odd.bg = '#282c34'
 c.colors.tabs.pinned.selected.even.bg = '#282c34'
 c.fonts.default_family = '"SauceCodePro Nerd Font"'
-c.fonts.default_size = '11pt'
-c.fonts.completion.entry = '11pt "SauceCodePro Nerd Font"'
-c.fonts.debug_console = '11pt "SauceCodePro Nerd Font"'
+c.fonts.default_size = '12pt'
+c.fonts.completion.entry = '12pt "SauceCodePro Nerd Font"'
+c.fonts.debug_console = '12pt "SauceCodePro Nerd Font"'
 c.fonts.prompts = 'default_size sans-serif'
-c.fonts.statusbar = '11pt "SauceCodePro Nerd Font"'
-
-# Bindings for cycling through CSS stylesheets from Solarized Everything CSS:
-# https://github.com/alphapapa/solarized-everything-css
-config.bind(',ap', 'config-cycle content.user_stylesheets ~/solarized-everything-css/css/apprentice/apprentice-all-sites.css ""')
-config.bind(',dr', 'config-cycle content.user_stylesheets ~/solarized-everything-css/css/darculized/darculized-all-sites.css ""')
-config.bind(',gr', 'config-cycle content.user_stylesheets ~/solarized-everything-css/css/gruvbox/gruvbox-all-sites.css ""')
-config.bind(',sd', 'config-cycle content.user_stylesheets ~/solarized-everything-css/css/solarized-dark/solarized-dark-all-sites.css ""')
-config.bind(',sl', 'config-cycle content.user_stylesheets ~/solarized-everything-css/css/solarized-light/solarized-light-all-sites.css ""')
+c.fonts.statusbar = '12pt "SauceCodePro Nerd Font"'

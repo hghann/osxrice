@@ -3,36 +3,11 @@
 # Use neovim for vim if present.
 [ -x "$(command -v nvim)" ] && alias vim="nvim" vimdiff="nvim -d"
 
-# ex - archive extractor
-# usage: ex <file>
-ex ()
-{
-  if [ -f $1 ] ; then
-    case $1 in
-      *.tar.bz2)   tar xjf $1   ;;
-      *.tar.gz)    tar xzf $1   ;;
-      *.tar.xz)    tar xJf $1   ;;
-      *.bz2)       bunzip2 $1   ;;
-      *.rar)       unrar x $1     ;;
-      *.gz)        gunzip $1    ;;
-      *.tar)       tar xf $1    ;;
-      *.tbz2)      tar xjf $1   ;;
-      *.tgz)       tar xzf $1   ;;
-      *.zip)       unzip $1     ;;
-      *.Z)         uncompress $1;;
-      *.7z)        7z x $1      ;;
-      *)           echo "'$1' cannot be extracted via ex()" ;;
-    esac
-  else
-    echo "'$1' is not a valid file"
-  fi
-}
-
 # miscellaneous
 #alias sudo='doas'
 alias \
 	c='clear' \
-    mpd='mpd ~/.config/mpd/mpd.conf' \
+	mpd='mpd ~/.config/mpd/mpd.conf' \
 	groff='/usr/local/Cellar/groff/1.22.4_1/bin/groff'
 
 # Utilities
@@ -64,9 +39,8 @@ alias bfsyu='cd $HOME/.config/brew && brew bundle dump --force --describe && cd'
 alias bclean='brew autoremove && brew cleanup && brew doctor -v'
 # list dependencies
 alias bdepls='brew deps -n --tree --installed --annotate'
-alias bdepg='brew deps -n --graph --dot --installed --annotate'
 alias bls='brew list -1 --full-name'
-alias boutdated='brew outdated -v'
+alias boutdtd='brew outdated -v'
 
 # Change "ls" to "exa"
 alias \
@@ -105,9 +79,9 @@ alias \
 	v='$EDITOR' \
 	b='brew' \
 	z='xpdf' \
-	n='newsboat' \
+	nb='newsboat' \
 	scim='sc-im' \
-    ytdlp='yt-dlp' \
+	ytdlp='yt-dlp' \
 	sdcv='sdcvrun' \
 	YT="youtube-viewer" \
 	trem="transmission-remote"
