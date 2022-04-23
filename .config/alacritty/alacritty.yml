@@ -2,7 +2,7 @@ env:
   TERM: xterm-256color
 
 window:
-  opacity: 0.96
+  opacity: 0.9
   padding:
     x: 4
     y: 4
@@ -33,168 +33,34 @@ font:
 
 draw_bold_text_with_bright_colors: true
 
-schemes:
-  default: &default
-    primary:
-      background: '#000000'
-      foreground: '#dddddd'
-    cursor:
-      text: '#111111'
-      cursor: '#cccccc'
-    selection:
-      text: '#000000'
-      background: '#fffacd'
-    normal:
-      black:   '#000000'
-      red:     '#cc0403'
-      green:   '#19cb00'
-      yellow:  '#cecb00'
-      blue:    '#0d73cc'
-      magenta: '#cb1ed1'
-      cyan:    '#0dcdcd'
-      white:   '#dddddd'
-    bright:
-      black:   '#767676'
-      red:     '#f2201f'
-      green:   '#23fd00'
-      yellow:  '#fffd00'
-      blue:    '#1a8fff'
-      magenta: '#fd28ff'
-      cyan:    '#14ffff'
-      white:   '#ffffff'
-  doom-one: &doom-one
-    primary:
-      background: '#282c34'
-      foreground: '#bbc2cf'
-    cursor:
-      text: CellBackground
-      cursor: '#528bff'
-    selection:
-      text: CellForeground
-      background: '#3e4451'
-    normal:
-      black:   '#1c1f24'
-      red:     '#ff6c6b'
-      green:   '#98be65'
-      yellow:  '#da8548'
-      blue:    '#51afef'
-      magenta: '#c678dd'
-      cyan:    '#5699af'
-      white:   '0xbbc2cf'
-    bright:
-      black:   '#5b6268'
-      red:     '#da8548'
-      green:   '#4db5bd'
-      yellow:  '#ecbe7b'
-      blue:    '#3071db'   # This is 2257a0 in Doom Emacs but I lightened it.
-      magenta: '#a9a1e1'
-      cyan:    '#46d9ff'
-      white:   '#dfdfdf'
-  dracula: &dracula
-    colors:
-      primary:
-        background: '#282a36'
-        foreground: '#f8f8f2'
-      cursor:
-        text: CellBackground
-        cursor: CellForeground
-      vi_mode_cursor:
-        text: CellBackground
-        cursor: CellForeground
-      search:
-        matches:
-          foreground: '#44475a'
-          background: '#50fa7b'
-        focused_match:
-          foreground: '#44475a'
-          background: '#ffb86c'
-        bar:
-          background: '#282a36'
-          foreground: '#f8f8f2'
-      line_indicator:
-        foreground: None
-        background: None
-      selection:
-        text: CellForeground
-        background: '#44475a'
-      normal:
-        black:   '#000000'
-        red:     '#ff5555'
-        green:   '#50fa7b'
-        yellow:  '#f1fa8c'
-        blue:    '#bd93f9'
-        magenta: '#ff79c6'
-        cyan:    '#8be9fd'
-        white:   '#bfbfbf'
-      bright:
-        black:   '#4d4d4d'
-        red:     '#ff6e67'
-        green:   '#5af78e'
-        yellow:  '#f4f99d'
-        blue:    '#caa9fa'
-        magenta: '#ff92d0'
-        cyan:    '#9aedfe'
-        white:   '#e6e6e6'
-      dim:
-        black:   '#14151b'
-        red:     '#ff2222'
-        green:   '#1ef956'
-        yellow:  '#ebf85b'
-        blue:    '#4d5b86'
-        magenta: '#ff46b0'
-        cyan:    '#59dffc'
-        white:   '#e6e6d1'
-  solarized-light: &solarized-light
-    primary:
-      background: '#fdf6e3' # base3
-      foreground: '#657b83' # base00
-    cursor:
-      text:   '#fdf6e3' # base3
-      cursor: '#657b83' # base00
-    normal:
-      black:   '#073642' # base02
-      red:     '#dc322f' # red
-      green:   '#859900' # green
-      yellow:  '#b58900' # yellow
-      blue:    '#268bd2' # blue
-      magenta: '#d33682' # magenta
-      cyan:    '#2aa198' # cyan
-      white:   '#eee8d5' # base2
-    bright:
-      black:   '#002b36' # base03
-      red:     '#cb4b16' # orange
-      green:   '#586e75' # base01
-      yellow:  '#657b83' # base00
-      blue:    '#839496' # base0
-      magenta: '#6c71c4' # violet
-      cyan:    '#93a1a1' # base1
-      white:   '#fdf6e3' # base3
-  solarized-dark: &solarized-dark
-    primary:
-      background: '#002b36' # base03
-      foreground: '#839496' # base0
-    cursor:
-      text:   '#002b36' # base03
-      cursor: '#839496' # base0
-    normal:
-      black:   '#073642' # base02
-      red:     '#dc322f' # red
-      green:   '#859900' # green
-      yellow:  '#b58900' # yellow
-      blue:    '#268bd2' # blue
-      magenta: '#d33682' # magenta
-      cyan:    '#2aa198' # cyan
-      white:   '#eee8d5' # base2
-    bright:
-      black:   '#002b36' # base03
-      red:     '#cb4b16' # orange
-      green:   '#586e75' # base01
-      yellow:  '#657b83' # base00
-      blue:    '#839496' # base0
-      magenta: '#6c71c4' # violet
-      cyan:    '#93a1a1' # base1
-      white:   '#fdf6e3' # base3
-colors: *doom-one
+colors:
+  primary:
+    background: '#282c34'
+    foreground: '#bbc2cf'
+  cursor:
+    text: CellBackground
+    cursor: '#528bff'
+  selection:
+    text: CellForeground
+    background: '#3e4451'
+  normal:
+    black:   '#1c1f24'
+    red:     '#ff6c6b'
+    green:   '#98be65'
+    yellow:  '#da8548'
+    blue:    '#51afef'
+    magenta: '#c678dd'
+    cyan:    '#5699af'
+    white:   '0xbbc2cf'
+  bright:
+    black:   '#5b6268'
+    red:     '#da8548'
+    green:   '#4db5bd'
+    yellow:  '#ecbe7b'
+    blue:    '#3071db'   # This is 2257a0 in Doom Emacs but I lightened it.
+    magenta: '#a9a1e1'
+    cyan:    '#46d9ff'
+    white:   '#dfdfdf'
 
 selection:
   semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"

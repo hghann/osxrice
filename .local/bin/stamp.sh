@@ -8,7 +8,7 @@
 # @description : add stamps to pdf documents using imgmagic
 ######################################################################
 
-#Increase the `-density` number for higher quality.
+# Increase the `-density` number for higher quality.
 # Add `+antialias` to stop ImageMagick from antialiasing your images.
 convert -density 300 base_filename null: stamp_filename -compose multiply -layers composite output_filename
 

@@ -3,8 +3,8 @@
 # @file        : Makefile
 # @created     : Wed 7 Jul 11:14:15 2021
 #
-# @description : inspired by this video
-#                https://www.youtube.com/watch?v=aP8eggU2CaU
+# @description : Inspired by Gavin Freeborn's video
+#                (https://www.youtube.com/watch?v=aP8eggU2CaU)
 ######################################################################
 
 BASE = $(PWD)
@@ -16,12 +16,8 @@ SUDO = sudo
 PKGINSTALL = brew install
 PROGINSTALL = brew install --cask
 
-doas: ## Configure doas
-	sudo echo "permit persist keepenv $(whoami) as root" >> /etc/doas.conf
-
 ssh-key_gen: ## Generate an SSH key
 	ssh-keygen -t ed25519
-#ssh-keygen -t ecdsa -b 521
 
 scripts:
 	make -s $(HOME)/.local/bin/scripts
@@ -58,15 +54,6 @@ vimpull: ## Updates local vim config
 	cd $(HOME)/.vim;\
 		git pull
 
-testinit: ## Test initial deploy dotfiles
-	rm -rf $(HOME)/.config/alacritty
-	$(LNDIR) $(PWD)/.config/alacritty $(HOME)/.config/alacritty
-	#rm -rf $(HOME)/.config/$@
-	#$(LNDIR) $(PWD)/.config/$@ $(HOME)/.config/$@
-	#$(PACMAN) $@
-	#test -L $(HOME)/.config/$@/$@.mxl || rm -rf $(HOME)/.config/$@/$@.mxl
-	#ln -vsf {$(PWD),$(HOME)}/.config/$@/$@.mxl
-
 init: ## Inital deploy dotfiles on osx machine
 	$(LN) $(PWD)/.bash_profile $(HOME)/.bash_profile
 	$(LN) $(PWD)/.bashrc $(HOME)/.bashrc
@@ -78,14 +65,8 @@ init: ## Inital deploy dotfiles on osx machine
 	$(LNDIR) $(PWD)/.config/brew $(HOME)/.config/brew
 	rm -rf $(HOME)/.config/alacritty
 	$(LNDIR) $(PWD)/.config/alacritty $(HOME)/.config/alacritty
-	rm -rf $(HOME)/.config/kitty
-	$(LNDIR) $(PWD)/.config/kitty $(HOME)/.config/kitty
-	rm -rf $(HOME)/.config/tmux
-	$(LNDIR) $(PWD)/.config/tmux $(HOME)/.config/tmux
 	rm -rf $(HOME)/.config/lf
 	$(LNDIR) $(PWD)/.config/lf $(HOME)/.config/lf
-	rm -rf $(HOME)/.config/goneovim
-	$(LNDIR) $(PWD)/.config/goneovim $(HOME)/.config/goneovim
 	rm -rf $(HOME)/.config/sc-im
 	$(LNDIR) $(PWD)/.config/sc-im $(HOME)/.config/sc-im
 	rm -rf $(HOME)/.config/mpv
@@ -138,10 +119,6 @@ alacritty: ## Deploy Alacritty configs
 	$(MKDIR) $(HOME)/.config/alacritty
 	$(LN) $(PWD)/.config/alacritty/alacritty.yml $(HOME)/.config/alacritty/alacritty.yml
 
-kitty: ## Deploy Kitty configs
-	$(MKDIR) $(HOME)/.config/kitty
-	$(LN) $(PWD)/.config/kitty/kitty.conf $(HOME)/.config/kitty/kitty.conf
-
 lf: ## Deploy lf configs
 	$(MKDIR) $(HOME)/.config/lf
 	$(LN) $(PWD)/.config/lf/cleaner $(HOME)/.config/lf/cleaner
@@ -171,6 +148,26 @@ MANPREFIX = $(PREFIX)/share/man
 TMPDIR = $(PWD)/tmp
 DESTDIR = ?
 PASSEMAIL = johnDoe@email.com
+
+doas: ## Install and configure doas
+	xcode-select --install
+	$(MKDIR) $(TMPDIR)
+	git clone https://github.com/slicer69/doas.git $(TMPDIR)/$<
+		cd $(TMPDIR)/$<
+		gmake
+		gmake install
+		cp /etc/pam.d/sudo /etc/pam.d/doas
+	rm -rf $(TMPDIR)
+	sudo echo "permit persist keepenv $(whoami) as root" >> /usr/local/etc/doas.conf
+
+# Please also note that macOS systems have been reported to have their /usr
+# and/or /usr/local directories set to be writable to regular user accounts
+# when homebrew is installed. If this is the case, fix this before installing
+# doas. Having these directories, like /usr/local/bin and /usr/local/etc,
+# writable to your user means anyone can remove and replace your doas.conf file
+# or the doas binary, allowing anyone or any program to run commands as root on
+# your system or harvest your password. This is a large security hole and
+# outside the scope of doas.
 
 mutt: ## Init neomutt using mutt-wizard by Luke smith
 	$(PROGINSTALL) neomutt isync msmtp pass gpg
@@ -211,18 +208,19 @@ walk: ## Installs plan9 find SUDO NEEDED
 	chmod 644 $(DESTDIR)$(MANPREFIX)/man1/sor.1
 
 pkg_base: ## Install base packages plus doas because sudo is bloat
-	$(PKGINSTALL) coreutils cmake groff grap bat fortune cowsay ffmpeg gcc fzf \
-		gnupg exa exiftool figlet htop imagemagick lf make mas neofetch neovim newsboat \
-		pandoc pass pfetch sc-im speedtest-cli smartmontools trash-cli wifi-password wget \
-		xpdf youtube-dl zsh-autosuggestions zsh-syntax-highlighting m4 make python@3.9 duti
+	$(PKGINSTALL) coreutils cmake groff grap bat ffmpeg gcc fzf gnupg exa \
+		exiftool figlet htop btop imagemagick lf make mas neofetch neovim \
+		newsboat pandoc pass pfetch sc-im speedtest-cli smartmontools \
+		trash-cli wifi-password wget xpdf yt-dlp zsh-autosuggestions \
+		zsh-syntax-highlighting m4 make duti
 
 prog_base: ## Install base programs
-	$(PROGINSTALL) keepassxc lulu alacritty amethyst librewolf cryptomator firefox mactex \
-		hiddenbar keepingyouawake macfuse mpv qutebrowser rectangle skim signal thunderbird \
-		veracrypt vscodium vmware-horizon-client
+	$(PROGINSTALL) keepassxc lulu alacritty amethyst librewolf cryptomator \
+		mactex hiddenbar keepingyouawake macfuse mpv qutebrowser rectangle \
+		skim signal veracrypt vmware-horizon-client monitorcontrol
 
 base: ## Install base system
-	xcode-select -install
+	xcode-select --install
 	pkg_base prog_base
 
 macos: ## Apply macOS system defaults
