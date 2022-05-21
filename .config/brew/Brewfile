@@ -63,7 +63,7 @@ brew "sqlite"
 # General-purpose data compression with high compression ratio
 brew "xz"
 # Interpreted, interactive, object-oriented programming language
-brew "python@3.9"
+brew "python@3.10"
 # Python 2 and 3 compatibility utilities
 brew "six"
 # Powerful command-line bookmark manager
@@ -80,6 +80,8 @@ brew "gettext"
 brew "libffi"
 # Perl compatible regular expressions library
 brew "pcre"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.9"
 # Core application library for C
 brew "glib"
 # Manage compile and link flags for libraries
@@ -404,8 +406,6 @@ brew "pandoc"
 brew "pcre2"
 # Pretty system information tool written in POSIX sh
 brew "pfetch"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.10"
 # Linter for prose
 brew "proselint"
 # QR Code generation

@@ -2,7 +2,8 @@
 # quick and dirty way to copy your clipboard into a QR code
 
 tmpfile="/tmp/QR.png"
-clip=$(xclip -selection "primary" -o)
+#clip=$(xclip -selection "primary" -o)
+clip="https://www1.shoppersdrugmart.ca/en/home"
 
 qrurl() 
 { 
