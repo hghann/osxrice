@@ -260,6 +260,10 @@ brew "jbig2dec"
 brew "libidn"
 # Interpreter for PostScript and PDF
 brew "ghostscript"
+# Perl compatible regular expressions library with a new API
+brew "pcre2"
+# Distributed revision control system
+brew "git"
 # Common error values for all GnuPG components
 brew "libgpg-error"
 # Assuan IPC Library
@@ -402,20 +406,12 @@ brew "onefetch"
 brew "openblas"
 # Swiss-army knife of markup format conversion
 brew "pandoc"
-# Perl compatible regular expressions library with a new API
-brew "pcre2"
 # Pretty system information tool written in POSIX sh
 brew "pfetch"
-# Linter for prose
-brew "proselint"
 # QR Code generation
 brew "qrencode"
 # Cross-platform application and UI framework
 brew "qt@5"
-# Tool Command Language
-brew "tcl-tk"
-# Software environment for statistical computing
-brew "r"
 # Tools to work with human-editable, plain text data files
 brew "recutils"
 # Sophisticated calendar and alarm
@@ -430,6 +426,8 @@ brew "smartmontools"
 brew "speedtest-cli"
 # Cross-shell prompt for astronauts
 brew "starship"
+# Tool Command Language
+brew "tcl-tk"
 # Terminal multiplexer
 brew "tmux"
 # Command-line interface to the freedesktop.org trashcan
@@ -464,8 +462,6 @@ cask "cryptomator"
 cask "eloston-chromium"
 # Metadata cleaner
 cask "exifcleaner"
-# Web browser
-cask "firefox"
 # Free and open-source image editor
 cask "gimp"
 # Utility to hide menu bar items
@@ -506,8 +502,6 @@ cask "onedrive"
 cask "qutebrowser"
 # Move and resize windows using keyboard shortcuts or snap areas
 cask "rectangle"
-# Data science software focusing on R and Python
-cask "rstudio"
 # Image editing application similar to GIMP
 cask "seashore"
 # Instant messaging application focusing on security
@@ -524,7 +518,5 @@ cask "vmware-horizon-client"
 cask "whatsapp"
 # Video communication and virtual meeting platform
 cask "zoom"
-mas "iMovie", id: 408981434
 mas "Keynote", id: 409183694
 mas "Pages", id: 409201541
-mas "Xcode", id: 497799835
