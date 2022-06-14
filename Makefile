@@ -16,9 +16,6 @@ SUDO = sudo
 PKGINSTALL = brew install
 PROGINSTALL = brew install --cask
 
-ssh-key_gen: ## Generate an SSH key
-	ssh-keygen -t ed25519
-
 scripts:
 	make -s $(HOME)/.local/bin/scripts
 
@@ -229,7 +226,7 @@ macos: ## Apply macOS system defaults
 dock: ## Apply macOS dock settings
 	$(PWD)/.local/bin/dock.sh
 
-install: ## Install arch linux packages using pacman
+install: ## Install macOS packages using brew
 	xargs $(PKGINSTALL) < $(PWD)/pkg/brewlist
 
 backup: ## Backup macOS packages using brew

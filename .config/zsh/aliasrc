@@ -28,7 +28,7 @@ alias \
 
 # brew
 # update all brew pkgs
-alias bsyu='brew update -v; brew upgrade -v --display-times;\
+alias bsyu='brew update -v; brew upgrade -v --display-times --greedy;\
 		cd $HOME/.config/brew; brew bundle -v;\
 		brew cu -afyv; cd; brew doctor -v'
 # create brewfile in $HOME/.config/brew
@@ -158,12 +158,5 @@ alias wsd='wget --mirror --convert-links --page-requisites --no-parent -P $HOME/
 
 # Generate and deploy personal website
 alias \
-	gw='cd ~/.websites/hghann.github.io/ && \
-		rm -f ~/.websites/hghann.github.io/dst/.files && \
-		~/.websites/hghann.github.io/bin/ssg6 src dst "Steve Blog" "https://hghann.github.io/" && \
-		rsync -av ~/.websites/hghann.github.io/dst/ ~/.websites/hghann.github.io/' \
-	dw='cd ~/.websites/hghann.github.io/ && \
-	rm -f ~/.websites/hghann.github.io/dst/.files && \
-	~/.websites/hghann.github.io/bin/ssg6 src dst "hghanns Blog" "https://hghann.github.io/" && \
-	rsync -av ~/.websites/hghann.github.io/dst/ ~/.websites/hghann.github.io/ && \
-	git add . && git commit -m "minor edits" && git push -u origin master'
+	gw='cd ~/.blog/SteveSite/ && rm -f ~/.blog/SteveSite/dst/.files && ~/.blog/SteveSite/bin/ssg6 src dst "Steve Blog" "https://hghann.github.io/" && rsync -av ~/.blog/SteveSite/dst/ ~/.blog/SteveSite/'
+	dw='cd ~/.blog/SteveSite/ && rm -f ~/.blog/SteveSite/dst/.files && ~/.blog/SteveSite/bin/ssg6 src dst "hghanns Blog" "https://hghann.github.io/" && rsync -av ~/.blog/SteveSite/dst/ ~/.blog/SteveSite/ && git add . && git commit -m "minor edits" && git push -u origin master'

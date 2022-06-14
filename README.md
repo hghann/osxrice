@@ -61,8 +61,8 @@ own dotfiles.
 
 ## Packages Overview
 
-- [Homebrew](https://brew.sh) (packages: [Brewfile](./pkg/Brewfile))
-- [homebrew-cask](https://github.com/Homebrew/homebrew-cask) (packages: [Caskfile](./pkg/Caskfile))
+- [Homebrew](https://brew.sh) (packages: [Brewfile](./pkg/brewfile))
+- [homebrew-cask](https://github.com/Homebrew/homebrew-cask) (packages: [Caskfile](./pkg/caskfile))
 - Latest Git, Bash 4, Python 3, GNU coreutils, and curl
 - `$EDITOR` (and Git editor) is [Vim](https://www.vim.org/)
 
