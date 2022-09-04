@@ -1,0 +1,11 @@
+{
+	"groff": {
+		"prefix": "groff",
+		"body": [
+			"```{=ms}",
+      "${0}",
+      "```"
+		],
+		"description": "insert groff text in markdown"
+	}
+}

@@ -51,7 +51,10 @@ vimpull: ## Updates local vim config
 	cd $(HOME)/.vim;\
 		git pull
 
-init: ## Inital deploy dotfiles on osx machine
+amethyst: ## Deploy window manager configs
+	$(LN) $(PWD)/.config/amethyst/com.amethyst.Amethyst.plist $(HOME)/Library/Preferences/com.amethyst.Amethyst.plist
+
+init: amethyst ## Inital deploy dotfiles on osx machine
 	$(LN) $(PWD)/.bash_profile $(HOME)/.bash_profile
 	$(LN) $(PWD)/.bashrc $(HOME)/.bashrc
 	$(LN) $(PWD)/.profile $(HOME)/.profile
@@ -91,8 +94,8 @@ init: ## Inital deploy dotfiles on osx machine
 	$(LN) $(PWD)/.config/starship.toml $(HOME)/.config/starship.toml
 	rm -rf $(HOME)/.config/bat
 	$(LNDIR) $(PWD)/.config/bat $(HOME)/.config/bat
-	rm -rf $(HOME)/.config/wm
-	$(LNDIR) $(PWD)/.config/wm $(HOME)/.config/wm
+	rm -rf $(HOME)/.config/amethyst
+	$(LNDIR) $(PWD)/.config/amethyst $(HOME)/.config/amethyst
 	rm -rf $(HOME)/.qutebrowser
 	$(LNDIR) $(PWD)/.config/qutebrowser $(HOME)/.qutebrowser
 	rm -rf $(HOME)/.local/bin
@@ -107,10 +110,6 @@ shell: ## Setup shell and prompt
 	$(LN) $(PWD)/.zshenv $(HOME)/.zshenv
 	rm -rf $(HOME)/.config/zsh
 	$(LNDIR) $(PWD)/.config/zsh $(HOME)/.config/zsh
-
-wm: ## Deploy window manager configs
-	$(LN) $(PWD)/.config/wm/amethyst/com.amethyst.Amethyst.plist $(HOME)/Library/Preferences/com.amethyst.Amethyst.plist
-	$(LN) $(PWD)/.config/wm/rectangle/com.knollsoft.Rectangle.plist $(HOME)/Library/Preferences/com.knollsoft.Rectangle.plist
 
 alacritty: ## Deploy Alacritty configs
 	$(MKDIR) $(HOME)/.config/alacritty
@@ -137,7 +136,7 @@ ncmpcpp: mpd ## Deploy ncmpcpp configs
 	$(LN) $(PWD)/.config/ncmpcpp/config $(HOME)/.config/ncmpcpp/config
 
 duti: ## Setup default applications
-	$(PKGINSTALL) duti; $(PROGINSTALL) skim goneovim;\
+	$(PKGINSTALL) duti; $(PROGINSTALL) skim;\
 		defaults-xdg.sh
 
 PREFIX = /usr/local

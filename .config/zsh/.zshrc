@@ -1,6 +1,6 @@
 # File: .zshrc
 # Maintainer: worthyox
-#
+
 # Deploy randomcolors script
 /usr/local/bin/randomcolors.sh
 
@@ -10,9 +10,7 @@
 # Enable colors and change prompt:
 autoload -U colors && colors    # Load colors
 PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
-setopt autocd                   # Automatically cd into typed directory.
-stty stop undef                 # Disable ctrl-s to freeze terminal.
-setopt interactive_comments
+
 # Git prompt settings
 autoload -Uz vcs_info
 precmd_vcs_info() { vcs_info }
@@ -21,6 +19,10 @@ setopt prompt_subst
 RPROMPT=\$vcs_info_msg_0_
 zstyle ':vcs_info:git:*' formats '%F{yellow}(%b)%r%f'
 zstyle ':vcs_info:*' enable git
+
+setopt autocd                   # Automatically cd into typed directory.
+stty stop undef                 # Disable ctrl-s to freeze terminal.
+setopt interactive_comments
 
 # Case insensitive tab completion
 autoload -Uz compinit && compinit
@@ -78,12 +80,14 @@ autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
 # Setting history file and some options
-HISTSIZE=100000000               # How many lines of history to keep in memory
-SAVEHIST=100000000               # Number of history entries to save to disk
+HISTSIZE=100000000              # How many lines of history to keep in memory
+SAVEHIST=100000000              # Number of history entries to save to disk
 setopt appendhistory            # Append history to the history file (no overwriting)
 setopt sharehistory             # Share history across terminals
-setopt HIST_EXPIRE_DUPS_FIRST HIST_FIND_NO_DUPS HIST_SAVE_NO_DUPS
-setopt HIST_IGNORE_DUPS HIST_IGNORE_ALL_DUPS HIST_IGNORE_SPACE
+setopt INC_APPEND_HISTORY       # Immediately append commands to history file.
+setopt HIST_IGNORE_ALL_DUPS     # Never add duplicate entries.
+setopt HIST_IGNORE_SPACE        # Ignore commands that start with a space.
+setopt HIST_REDUCE_BLANKS       # Remove unnecessary blank lines.
 
 # Souricing zsh plugins
 source /usr/local/Cellar/zsh-autosuggestions/0.7.0/share/zsh-autosuggestions/zsh-autosuggestions.zsh

@@ -21,9 +21,6 @@ fi
 if [ -d "$HOME/Applications" ] ;
   then PATH="$HOME/Applications:$PATH"
 fi
-#if [ -d "$HOME/.local/share/cargo/bin" ] ;
-#  then PATH="$HOME/.local/share/cargo/bin:$PATH"
-#fi
 
 # Options
 unsetopt PROMPT_SP
@@ -66,6 +63,7 @@ export REFER="$HOME/documents/referbib"
 export BACKUP_VOLUME_PATH="/Volumes/samsung-bar/backup"
 export SDCV_PAGER='bat --pager "less -RF"'
 #export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
+export FZF_DEFAULT_OPTS="--color=dark"
 #export LESS=-R
 
 # This is the list for lf icons:
