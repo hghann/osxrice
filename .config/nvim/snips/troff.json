@@ -1,0 +1,135 @@
+{
+	"bold": {
+		"prefix": "bold",
+		"body": [
+			"\\f[B]${1}\\f[] ${0}"
+		],
+		"description": "bold text"
+	},
+	"bullet": {
+		"prefix": "bullet",
+		"body": [ 
+			".IP - 2",
+      "${0}"
+		],
+		"description": "insert a bullet"
+	},
+	"cbl": {
+			"prefix": "cbl",
+			"body": [
+        ".\\\" this is a code block",
+        ".LD",
+        ".ft CW",
+        "${0:code here}",
+        ".ft",
+        ".DE"
+			],
+			"description": "insert a code block"
+	},
+	"ccol": {
+		"prefix": "ccol",
+		"body": [
+      "ccol{",
+      "{${1}}",
+      "above",
+      "{${2}}",
+      "}",
+      "{${0}}"
+		],
+		"description": "insert a column inside EQN"
+	},
+	"cw": {
+		"prefix": "cw",
+		"body": [
+			"\\f[CW]${1}\\f[] ${0}"
+		]
+  },
+	"eqn": {
+		"prefix": "eqn",
+		"body": [
+      ".EQ",
+      "${0:equation here}",
+      ".EN"
+		],
+		"description": "insert an equation"
+  },
+  "fold": {
+		"prefix": "fold",
+		"body": [
+      "\\\"{{{"
+		],
+		"description": "open fold"
+  },
+  "foldc": {
+		"prefix": "foldc",
+		"body": [
+      "\\\"}}}"
+		],
+		"description": "close fold"
+  },
+  "forpic": {
+		"prefix": "forpic",
+		"body": [
+      "for ${1:i} = ${2:0} to ${3:99} do {",
+      " ${0:# your code here}",
+      "}"
+		],
+		"description": "invoke PIC with a for statement"
+  },
+  "grap": {
+		"prefix": "grap",
+		"body": [
+      ".G1",
+      "${0}",
+      ".G2"
+		],
+		"description": "invoke GRAP"
+  },
+  "ifpic": {
+		"prefix": "ifpic",
+		"body": [
+      "if ${1:i = 1} then {",
+      " ${0:# your code here}",
+      "}"
+		],
+		"description": "invoke PIC with an if statement"
+  },
+	"ital": {
+		"prefix": "ital",
+		"body": [
+			"\\f[I]${1}\\f[] ${0}"
+		],
+		"description": "italise text"
+  },
+  "jot": {
+		"prefix": "jot",
+		"body": [
+      ".JS",
+      "${0}",
+      ".JE"
+		],
+		"description": "invoke JOT"
+  },
+  "left": {
+		"prefix": "left",
+		"body": [
+      "left ${1} ${2} right ${0}"
+		]
+  },
+	"matrix": {
+		"prefix": "matrix",
+		"body": [
+      "left [",
+      "matrix {",
+      "ccol{",
+      "{${1}} above",
+      "{${2}}",
+      "} ccol {",
+      "{${3}} above",
+      "{${4}}",
+      "}} right ]",
+      "${0}"
+		],
+		"description": "insert a matrix inside EQN"
+	}
+}

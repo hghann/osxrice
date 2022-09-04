@@ -1,5 +1,23 @@
 #!/bin/sh
 
+vdiff () {
+    if [ "${#}" -ne 2 ] ; then
+        echo "vdiff requires two arguments"
+        echo "  comparing dirs:  vdiff dir_a dir_b"
+        echo "  comparing files: vdiff file_a file_b"
+        return 1
+    fi
+
+    local left="${1}"
+    local right="${2}"
+
+    if [ -d "${left}" ] && [ -d "${right}" ]; then
+        vim +"DirDiff ${left} ${right}"
+    else
+        vim -d "${left}" "${right}"
+    fi
+}
+
 # Use neovim for vim if present.
 [ -x "$(command -v nvim)" ] && alias vim="nvim" vimdiff="nvim -d"
 
@@ -84,7 +102,7 @@ alias \
 	ytdlp='yt-dlp' \
 	sdcv='sdcvrun' \
 	YT="youtube-viewer" \
-	trem="transmission-remote"
+	alias pf="fzf --preview='less {}' --bind shift-up:preview-page-up,shift-down:preview-page-down" 
 
 # Adding flags
 alias \

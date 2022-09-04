@@ -147,17 +147,17 @@ map gcl cd ~/.config/lf
 map gca cd ~/.config/alacritty
 map gcz cd ~/.config/zsh
 map gcs cd ~/.config/startpage
-map gv cd ~/.vim
+map gcn cd ~/.config/nvim
 
 map gp. cd ~/Pictures
 map gps cd ~/Pictures/screenshots
 map gpw cd ~/Pictures/wallpapers
 
-map gts cd ~/documents/university/bachelor-02/semester-02
-map gtu cd ~/Library/CloudStorage/OneDrive-UniversityofOttawa/bachelor/bachelor-02/semester-02
+map gts cd ~/documents/university/bachelor-02/semester-03
+map gtu cd ~/Library/CloudStorage/OneDrive-UniversityofOttawa/bachelor/bachelor-02/semester-03
 
-map gd cd ~/documents
-map gD cd ~/downloads
+map gD cd ~/documents
+map gd cd ~/downloads
 map gtg cd ~/downloads/gitthings
 map ge cd ~/desktop
 
