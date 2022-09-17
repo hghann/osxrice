@@ -223,7 +223,7 @@ defaults write com.apple.screencapture disable-shadow -bool true
 ######################################################################
 
 # Allow quitting via ⌘ + Q; doing so will also hide desktop icons
-#defaults write com.apple.finder QuitMenuItem -bool true
+defaults write com.apple.finder QuitMenuItem -bool true
 
 # Show hidden files by default
 defaults write com.apple.finder AppleShowAllFiles -bool true
