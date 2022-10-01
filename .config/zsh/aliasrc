@@ -122,6 +122,7 @@ alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys" #
 alias \
 	erem='nvim ~/.reminders/uni.rem'\
 	wrem='rem -cl+1 -@'\
+  mrem='rem -cl -@'\
 	gcal='remind -cl -pp ~/.reminders/ \
 		| rem2ps -l -st 55 -shd 35 -se 25 -m 30x40cm \
 		| ps2pdf - > ~/.reminders/cal.pdf' \
