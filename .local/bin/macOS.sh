@@ -59,11 +59,33 @@ sudo systemsetup -settimezone "America/Toronto" > /dev/null
 # Disable audio feedback when volume is changed
 defaults write com.apple.sound.beep.feedback -bool false
 
-# Disable opening and closing window animations
-#defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
+# Disable opening and closing windows and popovers
+defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
+#defaults write -g NSAutomaticWindowAnimationsEnabled -bool false
 
-# Increase window resize speed for Cocoa applications
-#defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
+# Disable smooth scrolling
+defaults write -g NSScrollAnimationEnabled -bool false
+
+# Disable showing and hiding sheets, resizing windows, zooming windows
+# (increase window resize speed); 
+# float 0 doesn't work; reset with `defaults delete NSGlobalDomain NSWindowResizeTime`
+# default value is 0.2
+defaults write com.apple.NSGlobalDomain NSWindowResizeTime -float 0.001
+#defaults write -g NSWindowResizeTime -float 0.001
+#defaults write com.apple.dock workspaces-swoosh-animation-off -bool YES
+
+# Disable opening and closing Quick Look windows
+defaults write -g QLPanelAnimationDuration -float 0
+
+# Disable Dock Animations
+defaults write com.apple.dock launchanim -bool false
+
+# Disable the “Get Info” Animation
+defaults write com.apple.finder DisableAllAnimations -bool true
+
+# Disabling App Springing Animation
+defaults write com.apple.NSGlobalDomain com.apple.springing.enabled -bool false
+defaults write com.apple.NSGlobalDomain com.apple.springing.delay -float 0
 
 # Automatically expanding printer dialog box & NSNav panel
 # Expand save panel by default
@@ -92,7 +114,7 @@ sudo nvram SystemAudioVolume=" "
 defaults write com.apple.menuextra.battery ShowPercent YES
 
 # Disable Resume system-wide
-#defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool false
+defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool false
 
 # Disable the crash reporter
 defaults write com.apple.CrashReporter DialogType -string "none"
@@ -110,7 +132,7 @@ defaults write com.apple.NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool 
 #defaults write com.apple.NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool NO
 
 # Disables Miniaturize on Double Click
-#defaults write com.apple.NSGlobalDomain AppleMiniaturizeOnDoubleClick -bool NO
+defaults write com.apple.NSGlobalDomain AppleMiniaturizeOnDoubleClick -bool NO
 
 # Setting double click action to minimize
 #defaults write com.apple.NSGlobalDomain AppleActionOnDoubleClick -string "Minimize"
@@ -125,7 +147,7 @@ defaults write com.apple.NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool 
 #defaults write com.apple.NSGlobalDomain NSUseAnimatedFocusRing -bool NO
 
 # Showing scroll bars only when scrolling
-#defaults write com.apple.NSGlobalDomain AppleShowScrollBars -string "WhenScrolling"
+defaults write com.apple.NSGlobalDomain AppleShowScrollBars -string "WhenScrolling"
 
 # Sets default finder view size to 1
 #defaults write com.apple.NSGlobalDomain NSTableViewDefaultSizeMode -int 1
@@ -137,13 +159,6 @@ defaults write com.apple.NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool 
 #defaults write com.apple.NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 #defaults write com.apple.NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 #defaults write com.apple.NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
-
-# Sets Windows Resize Time to the Minimize Possible
-#defaults write com.apple.NSGlobalDomain NSWindowResizeTime -float 0.001
-
-# Disabling App Springing Animation
-#defaults write com.apple.NSGlobalDomain com.apple.springing.enabled -bool false
-#defaults write com.apple.NSGlobalDomain com.apple.springing.delay -float 0
 
 ######################################################################
 # Keyboard & Input                                                   #
@@ -158,7 +173,7 @@ defaults write com.apple.NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool 
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 
 # Disable press-and-hold for keys in favor of key repeat
-#defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
 # Set a blazingly fast keyboard repeat rate
 defaults write NSGlobalDomain KeyRepeat -int 1
@@ -211,7 +226,6 @@ defaults write com.apple.screencapture location -string "${HOME}/Pictures/screen
 # Save screenshots in PNG format (other options: BMP, GIF, JPG, PDF, TIFF)
 defaults write com.apple.screencapture type -string "png"
 
-# Disable shadow in screenshots
 # Disable Screen Capture Shadow
 defaults write com.apple.screencapture disable-shadow -bool true
 
@@ -223,7 +237,7 @@ defaults write com.apple.screencapture disable-shadow -bool true
 ######################################################################
 
 # Allow quitting via ⌘ + Q; doing so will also hide desktop icons
-defaults write com.apple.finder QuitMenuItem -bool true
+#defaults write com.apple.finder QuitMenuItem -bool true
 
 # Show hidden files by default
 defaults write com.apple.finder AppleShowAllFiles -bool true
@@ -435,7 +449,7 @@ defaults write com.apple.dock wvous-bl-corner -int 0
 defaults write com.apple.dock wvous-br-corner -int 0
 
 # No bouncing icons
-#defaults write com.apple.dock  -bool true
+defaults write com.apple.dock  -bool true
 
 ######################################################################
 # Activity Monitor                                                   #

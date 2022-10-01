@@ -4,86 +4,24 @@ tap "homebrew/cask"
 tap "homebrew/cask-versions"
 tap "homebrew/core"
 tap "homebrew/services"
-# Generic-purpose lossless compression algorithm by Google
-brew "brotli"
-# Library and utilities for processing GIFs
-brew "giflib"
-# Library of 2D and 3D vector, matrix, and math operations
-brew "imath"
-# Image manipulation library
-brew "jpeg"
-# Library for manipulating PNG images
-brew "libpng"
-# TIFF library and utilities
-brew "libtiff"
-# High dynamic-range image file format
-brew "openexr"
-# Image format providing lossless and lossy compression for web images
-brew "webp"
-# New file format for still image compression
-brew "jpeg-xl"
-# Perceptual video quality assessment based on multi-method fusion
-brew "libvmaf"
-# Codec library for encoding and decoding AV1 video streams
-brew "aom"
-# Clone of cat(1) with syntax highlighting and Git integration
-brew "bat"
-# Garbage collector for C and C++
-brew "bdw-gc"
 # Mozilla CA certificate store
 brew "ca-certificates"
-# Cryptography and SSL/TLS Toolkit
-brew "openssl@1.1"
-# C/C++ and Java libraries for Unicode and globalization
-brew "icu4c"
-# Collection of portable C++ source libraries
-brew "boost"
-# GNU multiple precision arithmetic library
-brew "gmp"
-# Integer Set Library for the polyhedral model
-brew "isl"
-# C library for multiple-precision floating-point computations
-brew "mpfr"
-# C library for the arithmetic of high precision complex numbers
-brew "libmpc"
-# Zstandard is a real-time compression algorithm
-brew "zstd"
-# GNU compiler collection
-brew "gcc"
-# Resource monitor. C++ version and continuation of bashtop and bpytop
-brew "btop"
-# GNU database manager
-brew "gdbm"
-# Library for decimal floating point arithmetic
-brew "mpdecimal"
-# Library for command-line editing
-brew "readline"
-# Command-line interface for SQLite
-brew "sqlite"
-# General-purpose data compression with high compression ratio
-brew "xz"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.10"
-# Python 2 and 3 compatibility utilities
-brew "six"
-# Powerful command-line bookmark manager
-brew "buku"
-# Asynchronous DNS library
-brew "c-ares"
+# Library for manipulating PNG images
+brew "libpng"
 # Software library to render fonts
 brew "freetype"
 # XML-based font configuration API for X Windows
 brew "fontconfig"
+# GNU database manager
+brew "gdbm"
 # GNU internationalization (i18n) and localization (l10n) library
 brew "gettext"
-# Portable Foreign Function Interface library
-brew "libffi"
-# Perl compatible regular expressions library
-brew "pcre"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.9"
+# Perl compatible regular expressions library with a new API
+brew "pcre2"
 # Core application library for C
 brew "glib"
+# Portable Foreign Function Interface library
+brew "libffi"
 # Manage compile and link flags for libraries
 brew "pkg-config"
 # X.Org: pthread-stubs.pc
@@ -104,10 +42,86 @@ brew "libxext"
 brew "libxrender"
 # Real-time data compression library
 brew "lzo"
+# Library for decimal floating point arithmetic
+brew "mpdecimal"
+# Cryptography and SSL/TLS Toolkit
+brew "openssl@1.1"
+# Perl compatible regular expressions library
+brew "pcre"
 # Low-level library for pixel manipulation
 brew "pixman"
+# Library for command-line editing
+brew "readline"
+# Command-line interface for SQLite
+brew "sqlite"
+# General-purpose data compression with high compression ratio
+brew "xz"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.9"
 # Vector graphics library with cross-device output support
 brew "cairo"
+# Implementation of the Unicode BiDi algorithm
+brew "fribidi"
+# TIFF library and utilities
+brew "libtiff"
+# Smart font renderer for non-Roman scripts
+brew "graphite2"
+# C/C++ and Java libraries for Unicode and globalization
+brew "icu4c"
+# OpenType text shaping engine
+brew "harfbuzz"
+# Icons for the GNOME project
+brew "adwaita-icon-theme"
+# Generic-purpose lossless compression algorithm by Google
+brew "brotli"
+# Library and utilities for processing GIFs
+brew "giflib"
+# Library of 2D and 3D vector, matrix, and math operations
+brew "imath"
+# High dynamic-range image file format
+brew "openexr"
+# Image format providing lossless and lossy compression for web images
+brew "webp"
+# New file format for still image compression
+brew "jpeg-xl"
+# Perceptual video quality assessment based on multi-method fusion
+brew "libvmaf"
+# Codec library for encoding and decoding AV1 video streams
+brew "aom"
+# GNU multiple precision arithmetic library
+brew "gmp"
+# Integer Set Library for the polyhedral model
+brew "isl"
+# C library for multiple-precision floating-point computations
+brew "mpfr"
+# C library for the arithmetic of high precision complex numbers
+brew "libmpc"
+# Zstandard is a real-time compression algorithm
+brew "zstd"
+# GNU compiler collection
+brew "gcc"
+# Portable abstraction of the hierarchical topology of modern architectures
+brew "hwloc"
+# Asynchronous event library
+brew "libevent"
+# High performance message passing library
+brew "open-mpi"
+# Optimized BLAS library
+brew "openblas"
+# Clone of cat(1) with syntax highlighting and Git integration
+brew "bat"
+# Garbage collector for C and C++
+brew "bdw-gc"
+# Collection of portable C++ source libraries
+brew "boost"
+# Resource monitor. C++ version and continuation of bashtop and bpytop
+brew "btop"
+# Python 2 and 3 compatibility utilities
+brew "six"
+# Powerful command-line bookmark manager
+brew "buku"
+# Asynchronous DNS library
+brew "c-ares"
 # Ultralightweight JSON parser in ANSI C
 brew "cjson"
 # Cross-platform make
@@ -128,6 +142,18 @@ brew "docbook-xsl"
 brew "dockutil"
 # Select default apps for documents and URL schemes on macOS
 brew "duti"
+# JBIG2 decoder and library (for monochrome documents)
+brew "jbig2dec"
+# International domain name library
+brew "libidn"
+# Color management engine supporting ICC profiles
+brew "little-cms2"
+# Image manipulation library
+brew "jpeg"
+# Library for JPEG-2000 image manipulation
+brew "openjpeg"
+# Interpreter for PostScript and PDF
+brew "ghostscript"
 # Modern replacement for 'ls'
 brew "exa"
 # Perl lib for reading and writing EXIF metadata
@@ -144,8 +170,6 @@ brew "libogg"
 brew "flac"
 # Minimalistic plugin API for video effects
 brew "frei0r"
-# Implementation of the Unicode BiDi algorithm
-brew "fribidi"
 # Macro processing language
 brew "m4"
 # Generic library support script
@@ -154,8 +178,6 @@ brew "libtool"
 brew "libunistring"
 # GNU Ubiquitous Intelligent Language for Extensions
 brew "guile"
-# Asynchronous event library
-brew "libevent"
 # International domain name library (IDNA2008, Punycode and TR46)
 brew "libidn2"
 # HTTP/2 C Library
@@ -170,20 +192,12 @@ brew "p11-kit"
 brew "unbound"
 # GNU Transport Layer Security (TLS) Library
 brew "gnutls"
-# Generate introspection data for GObject libraries
-brew "gobject-introspection"
-# Smart font renderer for non-Roman scripts
-brew "graphite2"
-# OpenType text shaping engine
-brew "harfbuzz"
 # High quality MPEG Audio Layer III (MP3) encoder
 brew "lame"
-# Color management engine supporting ICC profiles
-brew "little-cms2"
-# Library for JPEG-2000 image manipulation
-brew "openjpeg"
 # Image processing and image analysis library
 brew "leptonica"
+# Generate introspection data for GObject libraries
+brew "gobject-introspection"
 # Subtitle renderer for the ASS/SSA subtitle format
 brew "libass"
 # Blu-Ray disc playback library for media players like VLC
@@ -238,12 +252,12 @@ brew "zeromq"
 brew "zimg"
 # Play, record, convert, and stream audio and video
 brew "ffmpeg"
-# Portable abstraction of the hierarchical topology of modern architectures
-brew "hwloc"
-# High performance message passing library
-brew "open-mpi"
 # C routines to compute the Discrete Fourier Transform
 brew "fftw"
+# Library for manipulating JPEG-2000 images
+brew "jasper"
+# Image manipulation
+brew "netpbm"
 # Banner-like program prints strings as ASCII art
 brew "figlet"
 # Cross-platform library for audio I/O
@@ -254,14 +268,6 @@ brew "fluid-synth"
 brew "fmt"
 # Command-line fuzzy finder written in Go
 brew "fzf"
-# JBIG2 decoder and library (for monochrome documents)
-brew "jbig2dec"
-# International domain name library
-brew "libidn"
-# Interpreter for PostScript and PDF
-brew "ghostscript"
-# Perl compatible regular expressions library with a new API
-brew "pcre2"
 # Distributed revision control system
 brew "git"
 # Common error values for all GnuPG components
@@ -284,18 +290,20 @@ brew "gnupg"
 brew "gnu-getopt"
 # GNU implementation of the famous stream editor
 brew "gnu-sed"
+# Powerful, lightweight programming language
+brew "lua"
+# Cross-platform application and UI framework
+brew "qt@5"
 # Language for typesetting graphs
 brew "grap"
-# Library for manipulating JPEG-2000 images
-brew "jasper"
-# Image manipulation
-brew "netpbm"
 # Collection of PostScript document handling utilities
 brew "psutils"
 # Encoding detector library
 brew "uchardet"
 # GNU troff text-formatting system
 brew "groff"
+# Toolkit for creating graphical user interfaces
+brew "gtk4"
 # Text-based UI library
 brew "ncurses"
 # Improved top (interactive process viewer)
@@ -364,8 +372,6 @@ brew "libxt"
 brew "libxmu"
 # C library for reading, creating, and modifying zip archives
 brew "libzip"
-# Powerful, lightweight programming language
-brew "lua"
 # OpenResty's Branch of LuaJIT 2
 brew "luajit-openresty"
 # Bare libuv bindings for lua
@@ -400,22 +406,22 @@ brew "neovim"
 brew "newsboat"
 # Platform built on V8 to build network applications
 brew "node"
+# High-level interpreted language for numerical computing
+brew "octave"
 # Git repository summary on your terminal
 brew "onefetch"
-# Optimized BLAS library
-brew "openblas"
 # Swiss-army knife of markup format conversion
 brew "pandoc"
 # Pretty system information tool written in POSIX sh
 brew "pfetch"
 # QR Code generation
 brew "qrencode"
-# Cross-platform application and UI framework
-brew "qt@5"
 # Tools to work with human-editable, plain text data files
 brew "recutils"
 # Sophisticated calendar and alarm
 brew "remind"
+# Search tool like grep and The Silver Searcher
+brew "ripgrep"
 # Rust toolchain installer
 brew "rustup-init"
 # Spreadsheet program for the terminal, using ncurses
@@ -456,6 +462,8 @@ cask "adobe-acrobat-reader"
 cask "alacritty"
 # Automatic tiling window manager similar to xmonad
 cask "amethyst"
+# Web browser focusing on privacy
+cask "brave-browser"
 # Multi-platform client-side cloud file encryption tool
 cask "cryptomator"
 # Google Chromium, sans integration with Google
@@ -518,5 +526,7 @@ cask "vmware-horizon-client"
 cask "whatsapp"
 # Video communication and virtual meeting platform
 cask "zoom"
+mas "iMovie", id: 408981434
 mas "Keynote", id: 409183694
 mas "Pages", id: 409201541
+mas "Xcode", id: 497799835
