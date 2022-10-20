@@ -432,6 +432,8 @@ brew "smartmontools"
 brew "speedtest-cli"
 # Cross-shell prompt for astronauts
 brew "starship"
+# Terminal user interface for taskwarrior
+brew "taskwarrior-tui"
 # Tool Command Language
 brew "tcl-tk"
 # Terminal multiplexer

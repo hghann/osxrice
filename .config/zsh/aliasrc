@@ -98,11 +98,12 @@ alias \
 	b='brew' \
 	z='xpdf' \
 	nb='newsboat' \
+  tasktui="taskwarrior-tui" \
 	scim='sc-im' \
 	ytdlp='yt-dlp' \
 	sdcv='sdcvrun' \
 	YT="youtube-viewer" \
-	alias pf="fzf --preview='less {}' --bind shift-up:preview-page-up,shift-down:preview-page-down" 
+	pf="fzf --preview='less {}' --bind shift-up:preview-page-up,shift-down:preview-page-down" 
 
 # Adding flags
 alias \
@@ -154,13 +155,12 @@ alias \
 	newtag='git tag -a'
 # yt-dlp
 alias \
-	ydl="yt-dlp -x --audio-format mp3 -a $HOME/urls" \
+	ydl="yt-dlp -x --audio-format mp3 -a $HOME/Downloads/ytdlp" \
 	yta-best="yt-dlp --extract-audio --audio-format best " \
-	yta-flac="yt-dlp --extract-audio --audio-format flac " \
-	yta-m4a="yt-dlp --extract-audio --audio-format m4a " \
-	yta-mp3="yt-dlp --extract-audio --audio-format mp3 " \
+	ytdl-flac="yt-dlp --extract-audio --audio-format flac " \
+	ytdl-m4a="yt-dlp --extract-audio --audio-format m4a " \
+	ytdl-mp3="yt-dlp --extract-audio --audio-format mp3 " \
 	yta-opus="yt-dlp --extract-audio --audio-format opus " \
-	yta-vorbis="yt-dlp --extract-audio --audio-format vorbis " \
 	yta-wav="yt-dlp --extract-audio --audio-format wav " \
 	ytv-best="yt-dlp -f bestvideo+bestaudio "
 

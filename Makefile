@@ -67,6 +67,10 @@ init: amethyst ## Inital deploy dotfiles on osx machine
 	$(LNDIR) $(PWD)/.config/alacritty $(HOME)/.config/alacritty
 	rm -rf $(HOME)/.config/lf
 	$(LNDIR) $(PWD)/.config/lf $(HOME)/.config/lf
+	rm -rf $(HOME)/.config/nvim
+	$(LNDIR) $(PWD)/.config/nvim $(HOME)/.config/nvim
+	rm -rf $(HOME)/.config/emacs
+	$(LNDIR) $(PWD)/.config/emacs $(HOME)/.config/emacs
 	rm -rf $(HOME)/.config/sc-im
 	$(LNDIR) $(PWD)/.config/sc-im $(HOME)/.config/sc-im
 	rm -rf $(HOME)/.config/mpv
@@ -154,7 +158,7 @@ doas: ## Install and configure doas
 		gmake install
 		cp /etc/pam.d/sudo /etc/pam.d/doas
 	rm -rf $(TMPDIR)
-	sudo echo "permit persist keepenv $(whoami) as root" >> /usr/local/etc/doas.conf
+	sudo echo "permit persist keepenv $(USER) as root" >> /usr/local/etc/doas.conf
 
 # Please also note that macOS systems have been reported to have their /usr
 # and/or /usr/local directories set to be writable to regular user accounts

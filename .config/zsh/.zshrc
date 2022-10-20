@@ -34,9 +34,6 @@ zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
 #[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc"
 #[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/zshnameddirrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/zshnameddirrc"
 
-# Setting key bindings
-bindkey '^ ' autosuggest-accept
-
 # Basic auto/tab complete
 autoload -U compinit
 zstyle ':completion:*' menu select
@@ -90,5 +87,9 @@ setopt HIST_IGNORE_SPACE        # Ignore commands that start with a space.
 setopt HIST_REDUCE_BLANKS       # Remove unnecessary blank lines.
 
 # Souricing zsh plugins
-source /usr/local/Cellar/zsh-autosuggestions/0.7.0/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-emulate -R zsh -c 'source /usr/local/Cellar/zsh-syntax-highlighting/0.7.1/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh'
+#emulate -R zsh -c 'source /opt/homebrew/share/zsh-syntax-highlighting/0.7.1/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh'
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# Setting key bindings
+bindkey '^ ' autosuggest-accept

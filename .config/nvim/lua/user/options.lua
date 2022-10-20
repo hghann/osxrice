@@ -31,7 +31,7 @@ local options = {
   wildignorecase = true,
   wildignore= { "*.git/*" , "*.tags" , "tags" , "*.o" , "*.class" , "*.ccls-cache" },
   numberwidth = 4,                         -- set number column width to 2 {default 4}
-  signcolumn = "no",                       -- always show the sign column, otherwise it would shift the text each time
+  signcolumn = "auto",                     -- show the sign column when necessary, otherwise it would shift the text each time
   wrap = false,                            -- display lines as one long line
   foldmethod = "syntax",                   -- Enable folding
   foldlevel = 99,                          -- Start with all folds open
@@ -49,3 +49,4 @@ end
 vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]
 vim.cmd [[set formatoptions-=cro]]        -- TODO: this doesn't seem to work
+vim.cmd [[set rtp+=/usr/local/opt/fzf]]

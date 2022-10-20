@@ -4,7 +4,7 @@ function! CommandAlias(from, to)
                 \ .' ((getcmdtype() is# ":" && getcmdline() is# "'.a:from.'")'
                 \ .'? ("'.a:to.'") : ("'.a:from.'"))'
 endfunction
-"call CommandAlias('W','w')
+call CommandAlias('W','w')
 call CommandAlias("w'",'w')
 call CommandAlias('Wq','wq')
 call CommandAlias('WQ','wq')
