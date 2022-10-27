@@ -4,24 +4,18 @@ tap "homebrew/cask"
 tap "homebrew/cask-versions"
 tap "homebrew/core"
 tap "homebrew/services"
-# Mozilla CA certificate store
-brew "ca-certificates"
 # Library for manipulating PNG images
 brew "libpng"
 # Software library to render fonts
 brew "freetype"
 # XML-based font configuration API for X Windows
 brew "fontconfig"
-# GNU database manager
-brew "gdbm"
 # GNU internationalization (i18n) and localization (l10n) library
 brew "gettext"
 # Perl compatible regular expressions library with a new API
 brew "pcre2"
 # Core application library for C
 brew "glib"
-# Portable Foreign Function Interface library
-brew "libffi"
 # Manage compile and link flags for libraries
 brew "pkg-config"
 # X.Org: pthread-stubs.pc
@@ -42,22 +36,8 @@ brew "libxext"
 brew "libxrender"
 # Real-time data compression library
 brew "lzo"
-# Library for decimal floating point arithmetic
-brew "mpdecimal"
-# Cryptography and SSL/TLS Toolkit
-brew "openssl@1.1"
-# Perl compatible regular expressions library
-brew "pcre"
 # Low-level library for pixel manipulation
 brew "pixman"
-# Library for command-line editing
-brew "readline"
-# Command-line interface for SQLite
-brew "sqlite"
-# General-purpose data compression with high compression ratio
-brew "xz"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.9"
 # Vector graphics library with cross-device output support
 brew "cairo"
 # Implementation of the Unicode BiDi algorithm
@@ -88,6 +68,8 @@ brew "jpeg-xl"
 brew "libvmaf"
 # Codec library for encoding and decoding AV1 video streams
 brew "aom"
+# Mozilla CA certificate store
+brew "ca-certificates"
 # GNU multiple precision arithmetic library
 brew "gmp"
 # Integer Set Library for the polyhedral model
@@ -96,12 +78,16 @@ brew "isl"
 brew "mpfr"
 # C library for the arithmetic of high precision complex numbers
 brew "libmpc"
+# General-purpose data compression with high compression ratio
+brew "xz"
 # Zstandard is a real-time compression algorithm
 brew "zstd"
 # GNU compiler collection
 brew "gcc"
 # Portable abstraction of the hierarchical topology of modern architectures
 brew "hwloc"
+# Cryptography and SSL/TLS Toolkit
+brew "openssl@1.1"
 # Asynchronous event library
 brew "libevent"
 # High performance message passing library
@@ -116,6 +102,14 @@ brew "bdw-gc"
 brew "boost"
 # Resource monitor. C++ version and continuation of bashtop and bpytop
 brew "btop"
+# GNU database manager
+brew "gdbm"
+# Library for decimal floating point arithmetic
+brew "mpdecimal"
+# Library for command-line editing
+brew "readline"
+# Command-line interface for SQLite
+brew "sqlite"
 # Python 2 and 3 compatibility utilities
 brew "six"
 # Powerful command-line bookmark manager
@@ -148,8 +142,6 @@ brew "jbig2dec"
 brew "libidn"
 # Color management engine supporting ICC profiles
 brew "little-cms2"
-# Image manipulation library
-brew "jpeg"
 # Library for JPEG-2000 image manipulation
 brew "openjpeg"
 # Interpreter for PostScript and PDF
@@ -196,8 +188,6 @@ brew "gnutls"
 brew "lame"
 # Image processing and image analysis library
 brew "leptonica"
-# Generate introspection data for GObject libraries
-brew "gobject-introspection"
 # Subtitle renderer for the ASS/SSA subtitle format
 brew "libass"
 # Blu-Ray disc playback library for media players like VLC
@@ -258,8 +248,6 @@ brew "fftw"
 brew "jasper"
 # Image manipulation
 brew "netpbm"
-# Banner-like program prints strings as ASCII art
-brew "figlet"
 # Cross-platform library for audio I/O
 brew "portaudio"
 # Real-time software synthesizer based on the SoundFont 2 specs
@@ -294,6 +282,8 @@ brew "gnu-sed"
 brew "lua"
 # Cross-platform application and UI framework
 brew "qt@5"
+# Generate introspection data for GObject libraries
+brew "gobject-introspection"
 # Language for typesetting graphs
 brew "grap"
 # Collection of PostScript document handling utilities
@@ -324,6 +314,8 @@ brew "libomp"
 brew "imagemagick"
 # Synchronize a maildir with an IMAP server
 brew "isync"
+# Image manipulation library
+brew "jpeg"
 # Regular expressions library
 brew "oniguruma"
 # Lightweight and flexible command-line JSON processor
@@ -334,6 +326,8 @@ brew "json-c"
 brew "lf"
 # Cross-platform Audio Library
 brew "libao"
+# Portable Foreign Function Interface library
+brew "libffi"
 # X.Org: Inter-Client Exchange Library
 brew "libice"
 # ID3 tag manipulation library
@@ -376,8 +370,6 @@ brew "libzip"
 brew "luajit-openresty"
 # Bare libuv bindings for lua
 brew "luv"
-# Text-based web browser
-brew "lynx"
 # Utility for directing compilation
 brew "make"
 # Mac App Store command-line interface
@@ -406,14 +398,18 @@ brew "neovim"
 brew "newsboat"
 # Platform built on V8 to build network applications
 brew "node"
+# Perl compatible regular expressions library
+brew "pcre"
 # High-level interpreted language for numerical computing
 brew "octave"
-# Git repository summary on your terminal
+# Command-line Git information tool
 brew "onefetch"
 # Swiss-army knife of markup format conversion
 brew "pandoc"
 # Pretty system information tool written in POSIX sh
 brew "pfetch"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.9"
 # QR Code generation
 brew "qrencode"
 # Tools to work with human-editable, plain text data files
@@ -430,8 +426,6 @@ brew "sc-im"
 brew "smartmontools"
 # Command-line interface for https://speedtest.net bandwidth tests
 brew "speedtest-cli"
-# Cross-shell prompt for astronauts
-brew "starship"
 # Terminal user interface for taskwarrior
 brew "taskwarrior-tui"
 # Tool Command Language
@@ -448,8 +442,6 @@ brew "unar"
 brew "wget"
 # Show the current WiFi network password
 brew "wifi-password"
-# Naive linter for English prose
-brew "write-good"
 # PDF viewer
 brew "xpdf"
 # Fork of youtube-dl with additional features and fixes
@@ -510,10 +502,6 @@ cask "mpv"
 cask "onedrive"
 # Keyboard-driven, vim-like browser based on PyQt5
 cask "qutebrowser"
-# Move and resize windows using keyboard shortcuts or snap areas
-cask "rectangle"
-# Image editing application similar to GIMP
-cask "seashore"
 # Instant messaging application focusing on security
 cask "signal"
 # PDF reader and note-taking application
@@ -526,8 +514,6 @@ cask "veracrypt"
 cask "vmware-horizon-client"
 # Desktop client for WhatsApp
 cask "whatsapp"
-# Video communication and virtual meeting platform
-cask "zoom"
 mas "iMovie", id: 408981434
 mas "Keynote", id: 409183694
 mas "Pages", id: 409201541
