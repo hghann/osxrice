@@ -1,5 +1,12 @@
-# File: .zshrc
-# Maintainer: worthyox
+#!/bin/zsh
+
+######################################################################
+# @author      : hg (https://github.com/hghann)
+# @file        : .zshrc
+# @created     : Sun 10 July 11:41:43 2022
+#
+# @description : Runs on login. Various shell (zsh) options are set here.
+######################################################################
 
 # Deploy randomcolors script
 /usr/local/bin/randomcolors.sh

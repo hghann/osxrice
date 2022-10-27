@@ -103,7 +103,8 @@ alias \
 	ytdlp='yt-dlp' \
 	sdcv='sdcvrun' \
 	YT="youtube-viewer" \
-	pf="fzf --preview='less {}' --bind shift-up:preview-page-up,shift-down:preview-page-down" 
+	pf="fzf --preview='less {}' --bind shift-up:preview-page-up,shift-down:preview-page-down"
+  pdfcat=""
 
 # Adding flags
 alias \
