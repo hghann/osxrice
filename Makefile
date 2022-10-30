@@ -16,6 +16,21 @@ SUDO = sudo
 PKGINSTALL = brew install
 PROGINSTALL = brew install --cask
 
+nocupshist: ## Disable CUPS pinter job history on macOS
+	# purges /var/spool/cups
+	cancel -a -x
+	# create /usr/local/sbin director
+	sudo mkdir -p /usr/local/sbin
+	sudo chown ${USER}:admin /usr/local/sbin
+	# create cups.sh script
+	$(SUDO) cp $(PWD)/usr/local/sbin/cups.sh /usr/local/sbin/cups.sh
+	/usr/local/sbin/cups.sh
+	# make cups.sh executable
+	chmod +x /usr/local/sbin/cups.sh
+	# create local.cups.plist launch daemon
+	$(PWD)/.local/bin/nocupshistd
+	# reboot
+
 scripts:
 	make -s $(HOME)/.local/bin/scripts
 
