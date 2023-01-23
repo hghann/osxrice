@@ -60,6 +60,10 @@ brew "giflib"
 brew "imath"
 # High dynamic-range image file format
 brew "openexr"
+# General-purpose data compression with high compression ratio
+brew "xz"
+# Zstandard is a real-time compression algorithm
+brew "zstd"
 # Image format providing lossless and lossy compression for web images
 brew "webp"
 # New file format for still image compression
@@ -78,10 +82,6 @@ brew "isl"
 brew "mpfr"
 # C library for the arithmetic of high precision complex numbers
 brew "libmpc"
-# General-purpose data compression with high compression ratio
-brew "xz"
-# Zstandard is a real-time compression algorithm
-brew "zstd"
 # GNU compiler collection
 brew "gcc"
 # Portable abstraction of the hierarchical topology of modern architectures
@@ -196,14 +196,14 @@ brew "libbluray"
 brew "mbedtls"
 # Reliable Internet Stream Transport (RIST)
 brew "librist"
+# Library for sample rate conversion of audio data
+brew "libsamplerate"
 # Vorbis General Audio Compression Codec
 brew "libvorbis"
 # Audio codec
 brew "opus"
 # C library for files containing sampled sound
 brew "libsndfile"
-# Library for sample rate conversion of audio data
-brew "libsamplerate"
 # NaCl networking and cryptography library
 brew "libsodium"
 # High quality, one-dimensional sample-rate conversion library
@@ -294,6 +294,8 @@ brew "uchardet"
 brew "groff"
 # Toolkit for creating graphical user interfaces
 brew "gtk4"
+# Post-modern modal text editor
+brew "helix"
 # Text-based UI library
 brew "ncurses"
 # Improved top (interactive process viewer)
@@ -308,8 +310,6 @@ brew "shared-mime-info"
 brew "libheif"
 # C/C++ seam carving library
 brew "liblqr"
-# LLVM's OpenMP runtime library
-brew "libomp"
 # Tools and libraries to manipulate images in many formats
 brew "imagemagick"
 # Synchronize a maildir with an IMAP server
@@ -374,6 +374,8 @@ brew "luv"
 brew "make"
 # Mac App Store command-line interface
 brew "mas"
+# Computer algebra system
+brew "maxima"
 # Music Player Daemon
 brew "mpd"
 # Library for a binary-based efficient data interchange format
@@ -426,6 +428,8 @@ brew "sc-im"
 brew "smartmontools"
 # Command-line interface for https://speedtest.net bandwidth tests
 brew "speedtest-cli"
+# Cross-shell prompt for astronauts
+brew "starship"
 # Terminal user interface for taskwarrior
 brew "taskwarrior-tui"
 # Tool Command Language
@@ -442,6 +446,8 @@ brew "unar"
 brew "wget"
 # Show the current WiFi network password
 brew "wifi-password"
+# Cross platform GUI for Maxima
+brew "wxmaxima"
 # PDF viewer
 brew "xpdf"
 # Fork of youtube-dl with additional features and fixes
@@ -478,8 +484,8 @@ cask "joplin"
 cask "keepassxc"
 # Tool to prevent the system from going into sleep mode
 cask "keepingyouawake"
-# Office suite
-cask "libreoffice"
+# Free cross-platform office suite
+cask "libreoffice-still"
 # Web browser
 cask "librewolf"
 # Open-source firewall to block unknown outgoing connections
