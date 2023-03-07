@@ -1,0 +1,61 @@
+enables-layout-hud-on-space-change: false
+
+# Use tall and fullscreen layouts
+layouts:
+    - fullscreen
+    - tall
+    - two-pane
+    - floating
+    - bsp
+
+# Add "command" to the default mods
+mod1:
+    - shift
+    - option
+mod2:
+    - shift
+    - option
+    - control
+mod3:
+    - option
+    - shift
+    - control
+    - command
+
+# Modify the amethyst relaunch to use x and not z
+relaunch-amethyst:
+    mod: mod3
+    key: x
+
+cycle-layout:
+    mod: mod1
+    key: n
+
+cycle-layout-backward:
+    mod: mod2
+    key: n
+
+select-fullscreen-layout:
+    mod: mod1
+    key: a
+
+select-tall-layout:
+    mod: mod1
+    key: s
+
+select-two-pane-layout:
+    mod: mod1
+    key: d
+
+select-floating-layout:
+    mod: mod1
+    key: f
+
+# Enable focus-follows-mouse
+mouse-follows-focus: false
+focus-follows-mouse: false
+
+# Add 10px margin between windows
+window-margins: true
+window-margin-size: 10
+smart-window-margins: true

@@ -58,6 +58,8 @@ brew "brotli"
 brew "giflib"
 # Library of 2D and 3D vector, matrix, and math operations
 brew "imath"
+# Color management engine supporting ICC profiles
+brew "little-cms2"
 # High dynamic-range image file format
 brew "openexr"
 # General-purpose data compression with high compression ratio
@@ -140,8 +142,6 @@ brew "duti"
 brew "jbig2dec"
 # International domain name library
 brew "libidn"
-# Color management engine supporting ICC profiles
-brew "little-cms2"
 # Library for JPEG-2000 image manipulation
 brew "openjpeg"
 # Interpreter for PostScript and PDF
@@ -162,14 +162,8 @@ brew "libogg"
 brew "flac"
 # Minimalistic plugin API for video effects
 brew "frei0r"
-# Macro processing language
-brew "m4"
-# Generic library support script
-brew "libtool"
 # C string library for manipulating Unicode strings
 brew "libunistring"
-# GNU Ubiquitous Intelligent Language for Extensions
-brew "guile"
 # International domain name library (IDNA2008, Punycode and TR46)
 brew "libidn2"
 # HTTP/2 C Library
@@ -258,6 +252,12 @@ brew "fmt"
 brew "fzf"
 # Distributed revision control system
 brew "git"
+# Macro processing language
+brew "m4"
+# Generic library support script
+brew "libtool"
+# GNU Ubiquitous Intelligent Language for Extensions
+brew "guile"
 # Common error values for all GnuPG components
 brew "libgpg-error"
 # Assuan IPC Library
@@ -464,6 +464,8 @@ cask "alacritty"
 cask "amethyst"
 # Electronics prototyping platform
 cask "arduino"
+# Integrated CAD, CAM, CAE, and PCB software
+cask "autodesk-fusion360"
 # Web browser focusing on privacy
 cask "brave-browser"
 # Multi-platform client-side cloud file encryption tool
@@ -472,6 +474,8 @@ cask "cryptomator"
 cask "eloston-chromium"
 # Metadata cleaner
 cask "exifcleaner"
+# Web browser
+cask "firefox"
 # Free and open-source image editor
 cask "gimp"
 # Utility to hide menu bar items
@@ -490,6 +494,8 @@ cask "libreoffice-still"
 cask "librewolf"
 # Open-source firewall to block unknown outgoing connections
 cask "lulu"
+# Adaptive brightness for external displays
+cask "lunar"
 # File system integration
 cask "macfuse"
 # Full TeX Live distribution with GUI applications
@@ -504,8 +510,6 @@ cask "microsoft-powerpoint"
 cask "microsoft-teams"
 # Word processor
 cask "microsoft-word"
-# Tool to control external monitor brightness & volume
-cask "monitorcontrol"
 # Media player based on MPlayer and mplayer2
 cask "mpv"
 # Knowledge base that works on top of a local folder of plain text Markdown files
