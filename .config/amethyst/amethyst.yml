@@ -57,5 +57,5 @@ focus-follows-mouse: false
 
 # Add 10px margin between windows
 window-margins: true
-window-margin-size: 10
+window-margin-size: 5
 smart-window-margins: true
