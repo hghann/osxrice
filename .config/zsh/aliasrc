@@ -46,13 +46,15 @@ alias \
 
 # brew
 # update all brew pkgs
-alias bsyu='brew update -v; brew upgrade -v --display-times --greedy;\
-		cd $HOME/.config/brew; brew bundle -v;\
-		brew cu -afyv; cd; brew doctor -v'
+alias bsyu='cd $HOME/.config/brew; brew update -v;\
+        brew upgrade -v --display-times --greedy;\
+        brew bundle -vf --all --describe;\
+		brew cu -ayv --cleanup --include-mas; cd; bfsyu; bclean'
 # create brewfile in $HOME/.config/brew
 alias bfcrt='cd $HOME/.config/brew && brew bundle dump --describe && cd'
 # update brewfile
-alias bfsyu='cd $HOME/.config/brew && brew bundle dump --force --describe && cd'
+alias bfsyu='cd $HOME/.config/brew; brew bundle dump -vf --all --describe;\
+        brew bundle cleanup -vf --describe; cd'
 # remove orphaned packages
 alias bclean='brew autoremove && brew cleanup && brew doctor -v'
 # list dependencies
