@@ -5,12 +5,12 @@
 # @file        : m4a2mp3.sh
 # @created     : Wed 22 Dec 2020 10:26:46 AM
 #
-# @description : Convert all m4a files in a directory to mp3
+# @description : Convert all mov files in a directory to m4a
 ######################################################################
 
-for f in *.m4a;
+for f in *.mov;
 do
-ffmpeg -i "$f" -acodec libmp3lame -vn -b:a 320k "${f%.m4a}.mp3"
+ffmpeg -i "$f" -acodec libmp3lame -vn -b:a 320k "${f%.mov}.m4a"
 done
 exit 0
 

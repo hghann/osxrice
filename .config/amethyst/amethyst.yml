@@ -12,20 +12,11 @@ layouts:
 mod1:
     - shift
     - option
+
 mod2:
     - shift
     - option
     - control
-mod3:
-    - option
-    - shift
-    - control
-    - command
-
-# Modify the amethyst relaunch to use x and not z
-relaunch-amethyst:
-    mod: mod3
-    key: x
 
 cycle-layout:
     mod: mod1
@@ -51,11 +42,20 @@ select-floating-layout:
     mod: mod1
     key: f
 
+# Column layout keybind broken
+select-column-layout:
+    mod: mod1
+    key: z
+
 # Enable focus-follows-mouse
 mouse-follows-focus: false
 focus-follows-mouse: false
 
-# Add 10px margin between windows
+# Add 5px margin between windows
 window-margins: true
 window-margin-size: 5
 smart-window-margins: true
+
+# List of bundle identifiers for applications to either be automatically floating or automatically tiled based on floating-is-blacklist (default []).
+floating: ['com.exifcleaner', 'com.apple.systempreferences', 'com.objective-see.lulu.app']
+

@@ -16,10 +16,6 @@ brew "gettext"
 brew "pcre2"
 # Core application library for C
 brew "glib"
-# Manage compile and link flags for libraries
-brew "pkg-config"
-# X.Org: pthread-stubs.pc
-brew "libpthread-stubs"
 # X.Org: Protocol Headers
 brew "xorgproto"
 # X.Org: A Sample Authorization Protocol for X
@@ -30,6 +26,10 @@ brew "libxdmcp"
 brew "libxcb"
 # X.Org: Core X11 protocol client library
 brew "libx11"
+# Manage compile and link flags for libraries
+brew "pkg-config"
+# X.Org: pthread-stubs.pc
+brew "libpthread-stubs"
 # X.Org: Library for common extensions to the X11 protocol
 brew "libxext"
 # X.Org: Library for the Render Extension to the X11 protocol
@@ -42,6 +42,10 @@ brew "pixman"
 brew "cairo"
 # Implementation of the Unicode BiDi algorithm
 brew "fribidi"
+# General-purpose data compression with high compression ratio
+brew "xz"
+# Zstandard is a real-time compression algorithm
+brew "zstd"
 # TIFF library and utilities
 brew "libtiff"
 # Smart font renderer for non-Roman scripts
@@ -62,10 +66,6 @@ brew "imath"
 brew "little-cms2"
 # High dynamic-range image file format
 brew "openexr"
-# General-purpose data compression with high compression ratio
-brew "xz"
-# Zstandard is a real-time compression algorithm
-brew "zstd"
 # Image format providing lossless and lossy compression for web images
 brew "webp"
 # New file format for still image compression
@@ -88,10 +88,10 @@ brew "libmpc"
 brew "gcc"
 # Portable abstraction of the hierarchical topology of modern architectures
 brew "hwloc"
-# Cryptography and SSL/TLS Toolkit
-brew "openssl@1.1"
 # Asynchronous event library
 brew "libevent"
+# Cryptography and SSL/TLS Toolkit
+brew "openssl@1.1"
 # High performance message passing library
 brew "open-mpi"
 # Optimized BLAS library
@@ -104,8 +104,6 @@ brew "bdw-gc"
 brew "boost"
 # Resource monitor. C++ version and continuation of bashtop and bpytop
 brew "btop"
-# GNU database manager
-brew "gdbm"
 # Library for decimal floating point arithmetic
 brew "mpdecimal"
 # Library for command-line editing
@@ -250,14 +248,10 @@ brew "fluid-synth"
 brew "fmt"
 # Command-line fuzzy finder written in Go
 brew "fzf"
+# GNU database manager
+brew "gdbm"
 # Distributed revision control system
 brew "git"
-# Macro processing language
-brew "m4"
-# Generic library support script
-brew "libtool"
-# GNU Ubiquitous Intelligent Language for Extensions
-brew "guile"
 # Common error values for all GnuPG components
 brew "libgpg-error"
 # Assuan IPC Library
@@ -280,13 +274,15 @@ brew "gnu-getopt"
 brew "gnu-sed"
 # Powerful, lightweight programming language
 brew "lua"
-# Cross-platform application and UI framework
-brew "qt@5"
 # Generate introspection data for GObject libraries
 brew "gobject-introspection"
 # Language for typesetting graphs
 brew "grap"
-# Collection of PostScript document handling utilities
+# Macro processing language
+brew "m4"
+# Generic library support script
+brew "libtool"
+# Utilities for manipulating PostScript documents
 brew "psutils"
 # Encoding detector library
 brew "uchardet"
@@ -294,6 +290,8 @@ brew "uchardet"
 brew "groff"
 # Toolkit for creating graphical user interfaces
 brew "gtk4"
+# GNU Ubiquitous Intelligent Language for Extensions
+brew "guile"
 # Post-modern modal text editor
 brew "helix"
 # Text-based UI library
@@ -400,14 +398,16 @@ brew "neovim"
 brew "newsboat"
 # Platform built on V8 to build network applications
 brew "node"
-# Perl compatible regular expressions library
-brew "pcre"
+# Cross-platform application and UI framework
+brew "qt@5"
 # High-level interpreted language for numerical computing
 brew "octave"
 # Command-line Git information tool
 brew "onefetch"
 # Swiss-army knife of markup format conversion
 brew "pandoc"
+# Perl compatible regular expressions library
+brew "pcre"
 # Pretty system information tool written in POSIX sh
 brew "pfetch"
 # Interpreted, interactive, object-oriented programming language
@@ -468,14 +468,16 @@ cask "arduino"
 cask "autodesk-fusion360"
 # Web browser focusing on privacy
 cask "brave-browser"
+# E-books management software
+cask "calibre"
 # Multi-platform client-side cloud file encryption tool
 cask "cryptomator"
+# Voice and text chat software
+cask "discord"
 # Google Chromium, sans integration with Google
 cask "eloston-chromium"
 # Metadata cleaner
 cask "exifcleaner"
-# Web browser
-cask "firefox"
 # Free and open-source image editor
 cask "gimp"
 # Utility to hide menu bar items
@@ -488,10 +490,12 @@ cask "joplin"
 cask "keepassxc"
 # Tool to prevent the system from going into sleep mode
 cask "keepingyouawake"
-# Free cross-platform office suite
+# Free cross-platform office suite, stable version recommended for enterprises
 cask "libreoffice-still"
 # Web browser
 cask "librewolf"
+# Support for Logitech G gear
+cask "logitech-g-hub"
 # Open-source firewall to block unknown outgoing connections
 cask "lulu"
 # Adaptive brightness for external displays
@@ -530,9 +534,12 @@ cask "ultimaker-cura"
 cask "veracrypt"
 # Virtual machine client
 cask "vmware-horizon-client"
-# Desktop client for WhatsApp
+# Binary releases of VS Code without MS branding/telemetry/licensing
+cask "vscodium"
+# Native desktop client for WhatsApp
 cask "whatsapp"
+# Video communication and virtual meeting platform
+cask "zoom"
 mas "iMovie", id: 408981434
 mas "Keynote", id: 409183694
 mas "Pages", id: 409201541
-mas "Xcode", id: 497799835
