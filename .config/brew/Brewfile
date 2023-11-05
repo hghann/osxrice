@@ -90,12 +90,12 @@ brew "gcc"
 brew "hwloc"
 # Asynchronous event library
 brew "libevent"
-# Cryptography and SSL/TLS Toolkit
-brew "openssl@1.1"
 # High performance message passing library
 brew "open-mpi"
 # Optimized BLAS library
 brew "openblas"
+# Regular expressions library
+brew "oniguruma"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
 # Garbage collector for C and C++
@@ -234,6 +234,8 @@ brew "zeromq"
 brew "zimg"
 # Play, record, convert, and stream audio and video
 brew "ffmpeg"
+# Cryptography and SSL/TLS Toolkit
+brew "openssl@1.1"
 # C routines to compute the Discrete Fourier Transform
 brew "fftw"
 # Library for manipulating JPEG-2000 images
@@ -300,8 +302,6 @@ brew "ncurses"
 brew "htop"
 # Open h.265 video codec implementation
 brew "libde265"
-# Convert XML to another format (based on XSL or other tools)
-brew "xmlto"
 # Database of common MIME types
 brew "shared-mime-info"
 # ISO/IEC 23008-12:2017 HEIF file format decoder and encoder
@@ -314,8 +314,6 @@ brew "imagemagick"
 brew "isync"
 # Image manipulation library
 brew "jpeg"
-# Regular expressions library
-brew "oniguruma"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
 # JSON parser for C
@@ -398,6 +396,8 @@ brew "neovim"
 brew "newsboat"
 # Platform built on V8 to build network applications
 brew "node"
+# Convert XML to another format (based on XSL or other tools)
+brew "xmlto"
 # Cross-platform application and UI framework
 brew "qt@5"
 # High-level interpreted language for numerical computing
