@@ -228,7 +228,9 @@ pycparser
 pyqt@5
 python-certifi
 python-mutagen
+python-setuptools
 python@3.11
+python@3.12
 python@3.9
 qhull
 qrencode
@@ -280,6 +282,7 @@ unar
 unbound
 unibilium
 utf8proc
+wavpack
 webp
 wget
 wifi-password
@@ -329,7 +332,6 @@ microsoft-powerpoint
 microsoft-teams
 microsoft-word
 mpv
-obsidian
 onedrive
 qutebrowser
 signal
