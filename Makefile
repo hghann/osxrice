@@ -84,6 +84,8 @@ init: amethyst ## Inital deploy dotfiles on osx machine
 	$(LNDIR) $(PWD)/.config/lf $(HOME)/.config/lf
 	rm -rf $(HOME)/.config/nvim
 	$(LNDIR) $(PWD)/.config/nvim $(HOME)/.config/nvim
+	rm -rf $(HOME)/.config/helix
+	$(LNDIR) $(PWD)/.config/helix $(HOME)/.config/helix
 	rm -rf $(HOME)/.config/emacs
 	$(LNDIR) $(PWD)/.config/emacs $(HOME)/.config/emacs
 	rm -rf $(HOME)/.config/sc-im

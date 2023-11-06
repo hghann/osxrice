@@ -30,8 +30,8 @@ unsetopt PROMPT_SP
 # Default Apps
 export TERMINAL="alacritty"
 export COLORTERM="truecolor"
-export EDITOR="nvim"
-export VISUAL="nvim"
+export EDITOR="hx"
+export VISUAL="hx"
 export CODEEDITOR="notepadqq"
 export READER="xpdf"
 export VIDEO="mpv"
