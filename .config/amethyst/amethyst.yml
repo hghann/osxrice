@@ -18,6 +18,11 @@ mod2:
     - option
     - control
 
+# Turn on or off focus-follows-mouse.
+toggle-focus-follows-mouse:
+  mod: mod2
+  key: x
+
 cycle-layout:
     mod: mod1
     key: n
@@ -57,5 +62,5 @@ window-margin-size: 5
 smart-window-margins: true
 
 # List of bundle identifiers for applications to either be automatically floating or automatically tiled based on floating-is-blacklist (default []).
-floating: ['com.exifcleaner', 'com.apple.systempreferences', 'com.objective-see.lulu.app']
+floating: ['com.exifcleaner', 'com.apple.systempreferences', 'com.objective-see.lulu.app', 'com.apple.Stickies']
 

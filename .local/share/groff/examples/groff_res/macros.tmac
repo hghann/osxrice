@@ -1,0 +1,100 @@
+.defcolor special rgb 0.1 0.5 0.9
+.defcolor normal rgb 0.3 0.3 0.3
+
+.de special
+.gcolor special
+..
+
+.de normal
+.gcolor normal
+..
+
+.ds FAM SourceSansPro
+
+.de style
+.fam SourceSansPro
+..
+
+.\" normal font
+.de reg
+.gcolor normal
+.ps 13
+.style
+..
+
+.\" used to customize style of title
+.de tit
+.ce 3
+.ps 24
+.special
+\\$1
+.sp .5
+.ps 12
+.reg
+.small
+.I "\\$2"
+.br
+.sp .10
+\\$3
+..
+
+.\" sections of resume
+.de sec
+.special
+.ps 16
+.style
+..
+
+.\" smaller font
+.de small
+.ps 12
+.style
+..
+
+
+.\" bullet entery
+.de bul
+.IP - 2
+.small
+.style
+..
+
+.\" subsection used in Experiance and Projects
+.de ssec
+.reg
+.B "\\$1" " \\$2"
+.br
+..
+
+.\" description of a ssec
+.de desc
+.small
+.I "\\$1"
+..
+
+.\" used in Awards
+.de awd
+\\$1
+.B "\\$2",
+\\$3
+..
+
+.\" references macro
+.de ref
+.reg
+.B "\\$1"
+.reg
+.\" produce a reference where 
+.\" W for web
+.\" -D for desctiption
+.\" -- end of oprions
+.pdfhref W -D mailto:\\$2 \
+-- "\\$2"
+\\$3
+.br
+.small
+\\$4
+.reg
+..
+
+.style
