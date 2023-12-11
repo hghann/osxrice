@@ -62,13 +62,13 @@ alias bdepls='brew deps -n --tree --installed --annotate'
 alias bls='brew list -1 --full-name'
 alias boutdtd='brew outdated -v'
 
-# Change "ls" to "exa"
+# Change "ls" to "eza"
 alias \
-	ls='exa -al --color=always --group-directories-first --git' \
-	la='exa -a --color=always --group-directories-first --git' \
-	ll='exa -l --color=always --group-directories-first --git' \
-	lt='exa -aT --color=always --group-directories-first --git' \
-	l.='exa -a | egrep "^\."'
+	ls='eza -al --color=always --group-directories-first --git' \
+	la='eza -a --color=always --group-directories-first --git' \
+	ll='eza -l --color=always --group-directories-first --git' \
+	lt='eza -aT --color=always --group-directories-first --git' \
+	l.='eza -a | egrep "^\."'
 
 # Colorize commands when possible.
 alias diff="diff --color=auto" \
@@ -176,7 +176,7 @@ alias \
 alias rr='curl -s -L https://raw.githubusercontent.com/keroserene/rickrollrc/master/roll.sh | bash'
 
 # Wget Command to Retrieve Whole Websites
-alias wsd='wget --mirror --convert-links --page-requisites --no-parent -P $HOME/Documents/website-archives/'
+alias wsa='wget --mirror --convert-links --page-requisites --no-parent -P $HOME/Documents/website-archives/'
 
 # Generate and deploy personal website
 alias \

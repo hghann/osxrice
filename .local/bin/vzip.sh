@@ -2,6 +2,6 @@
 
 for i in *.mp4;
 do
-ffmpeg -i "$i" -c:v libx264 -pix_fmt yuv420p -crf 22 -r:a 384K -c:a libopus "${i%.*}_zip.mp4"
+ffmpeg -i "$i" -c:v libx264 -pix_fmt yuv420p -crf 22 -r:a 384K -c:a libopus "${i%.*}.z.mp4"
 done
 exit 0
