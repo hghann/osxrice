@@ -434,7 +434,7 @@ prep-claws-icon:
 	@echo "$(YELLOW)--- Compile the icns file ---$(NC)"
 	iconutil -c icns /tmp/claws.iconset -o $(ICON_FILE)
 	@echo "$(YELLOW)--- # Cleaning /tmp folder ---$(NC)"
-	#rm -rf /tmp/claws.iconset
+	rm -rf /tmp/claws.iconset
 
 claws-mail: claws-deps ## Setup Claws Mail on OSX: simlink homebrew forulae to ~/Applications (no cask for Claws Mail)
 	@echo "$(YELLOW)--- Ensuring user Applications directory exists ---$(NC)"

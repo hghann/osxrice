@@ -69,7 +69,7 @@ prep-icon:
 	@echo "$(YELLOW)--- Compile the icns file ---$(NC)"
 	iconutil -c icns /tmp/claws.iconset -o $(ICON_FILE)
 	@echo "$(YELLOW)--- # Cleaning /tmp folder ---$(NC)"
-	#rm -rf /tmp/claws.iconset
+	rm -rf /tmp/claws.iconset
 
 claws-mail: install-deps ## Setup Claws Mail on OSX: simlink homebrew forulae to ~/Applications (no cask for Claws Mail)
 	@echo "$(YELLOW)--- Ensuring user Applications directory exists ---$(NC)"
@@ -85,8 +85,9 @@ claws-mail: install-deps ## Setup Claws Mail on OSX: simlink homebrew forulae to
 
 claws-icon: install-deps # Set icon
 	@echo "$(BLUE)--- Setting custom icon for $(APP_BUNDLE) ---$(NC)"
-	fileicon set $(APP_BUNDLE) $(ICON_FILE)
-	touch $(APP_BUNDLE)
+	fileicon set $(APP_BUNDLE) $(ICON_FILE) > /dev/null 2>&1
+	@# Touch the app to force Finder to refresh its cache (optional, but helps)
+	@touch $(APP_BUNDLE)
 	@echo "$(GREEN)--- Icon updated successfully. ---$(NC)"
 
 clean: ## Clean target: Removes the generated files in the Applications folder
