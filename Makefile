@@ -380,85 +380,11 @@ yazi: ## Deploy yazi configs
 	@#$(MKDIR) $(HOME)/.config/yazi/plugins/{easyjump.yazi,full-border.yazi,jump-to-char.yazi,smart-enter.yazi}
 	$(LNDIR) $(PWD)/.config/yazi/plugins $(HOME)/.config/yazi/plugins
 
-CLAWS_PKGS = claws-mail fileicon
-USER_APP_DIR = $(HOME)/Applications
-APP_LINK_PATH = $(USER_APP_DIR)/ClawsMail
-# Create a folder ending in .app, which macOS recognizes as a GUI app
-APP_BUNDLE = $(USER_APP_DIR)/ClawsMail.app
-
-ICON_DIR = $(PWD)/.local/share/icons/hicolor
-ICON_PNG = $(ICON_DIR)/128x128/apps/claws_icon.png
-ICON_FILE = $(ICON_DIR)/scalable/apps/claws_icon.icns
-
-ICON_URL = "https://git.claws-mail.org/?p=claws.git;a=blob_plain;f=claws-mail-128x128.png;hb=HEAD"
-
-claws-deps: # Target to run all dependency checks/installs
-	@#$(call IS_INSTALLED, claws-mail)
-	@#$(call IS_INSTALLED, fileicon)
-	@# Use 'foreach' to iterate  packages and run the IS_INSTALLED  macro for each item
-	@$(foreach PKG, $(CLAWS_PKGS), $(call IS_INSTALLED, $(PKG)))
-
-claws-install: dl-claws-icon prep-claws-icon claws-mail claws-icon
-
-dl-claws-icon:
-	@# Ensure the XDG directories exist quietly
-	@mkdir -p $(ICON_DIR)/{128x128,scalable}/apps
-ifeq ($(wildcard $(ICON_PNG)),)
-	@echo "$(BLUE)--- Downloading icon from $(ICON_URL) ---"
-	@echo "$(NC)"
-	@# Use curl -L to follow redirects and -o to name the file specifically
-	curl -L -o $(ICON_PNG) $(ICON_URL)
-	@echo ""
-	@echo "$(GREEN)--- DONE! ---$(NC)"
-else
-	@echo "$(YELLOW)--- Icon already exists locally. Skipping download. ---$(NC)"
-endif
-
-prep-claws-icon:
-	@echo "$(BLUE)--- Converting PNG to required macOS .icns format ---$(NC)"
-	@echo "$(YELLOW)--- Create the temporary iconset ---$(NC)"
-	mkdir -p /tmp/claws.iconset
-	@echo "$(YELLOW)--- Use standard macOS tools to create a temporary iconset and compile it ---$(NC)"
-	@# Resize commands: Add >/dev/null 2>&1 to each line to silence the verbose output
-	sips -z 16 16   $(ICON_PNG) --out /tmp/claws.iconset/icon_16x16.png > /dev/null 2>&1
-	sips -z 32 32   $(ICON_PNG) --out /tmp/claws.iconset/icon_16x16@2x.png > /dev/null 2>&1
-	@sips -z 32 32   $(ICON_PNG) --out /tmp/claws.iconset/icon_32x32.png > /dev/null 2>&1
-	@sips -z 64 64   $(ICON_PNG) --out /tmp/claws.iconset/icon_32x32@2x.png > /dev/null 2>&1
-	@sips -z 128 128 $(ICON_PNG) --out /tmp/claws.iconset/icon_128x128.png > /dev/null 2>&1
-	@sips -z 256 256 $(ICON_PNG) --out /tmp/claws.iconset/icon_128x128@2x.png > /dev/null 2>&1
-	@sips -z 256 256 $(ICON_PNG) --out /tmp/claws.iconset/icon_256x256.png > /dev/null 2>&1
-	@sips -z 512 512 $(ICON_PNG) --out /tmp/claws.iconset/icon_256x256@2x.png > /dev/null 2>&1
-	@sips -z 512 512 $(ICON_PNG) --out /tmp/claws.iconset/icon_512x512.png > /dev/null 2>&1
-	@echo "..."
-	sips -z 1024 1024 $(ICON_PNG) --out /tmp/claws.iconset/icon_512x512@2x.png > /dev/null 2>&1
-	@echo "$(YELLOW)--- Compile the icns file ---$(NC)"
-	iconutil -c icns /tmp/claws.iconset -o $(ICON_FILE)
-	@echo "$(YELLOW)--- # Cleaning /tmp folder ---$(NC)"
-	rm -rf /tmp/claws.iconset
-
-claws-mail: claws-deps ## Setup Claws Mail on OSX: simlink homebrew forulae to ~/Applications (no cask for Claws Mail)
-	@echo "$(YELLOW)--- Ensuring user Applications directory exists ---$(NC)"
-	mkdir -p $(USER_APP_DIR)
-	@echo "$(BLUE)--- Creating macOS App Wrapper in $(USER_APP_DIR) ---$(NC)"
-	@# Remove any old installations (both symlink and bundle) first
-	rm -rf $(APP_BUNDLE) $(APP_LINK_PATH)
-	@# Create a tiny script bundle that runs the brew executable
-	osacompile -o $(APP_BUNDLE) -e "do shell script \"$(shell which $(CLAWS_PKGS)) > /dev/null 2>&1 &\""
-	@echo "$(GREEN)--- Done! ---$(NC)"
-	@echo "Wrapper created at: $(APP_BUNDLE)"
-	@echo "Spotlight will now index 'ClawsMail' as a real application."
-
-claws-icon: claws-deps # Set icon
-	@echo "$(BLUE)--- Setting custom icon for $(APP_BUNDLE) ---$(NC)"
-	fileicon set $(APP_BUNDLE) $(ICON_FILE)
-	touch $(APP_BUNDLE)
-	@echo "$(GREEN)--- Icon updated successfully. ---$(NC)"
+claws-install: ## Setup Claws Mail on OSX: simlink homebrew forulae to ~/Applications (no cask for Claws Mail)
+	make -f Makefile.clawsmail install
 
 claws-clean: ## Clean target: Removes the generated files in the Applications folder
-	@echo "$(BLUE)--- Cleaning up ClawsMail links/wrappers from $(USER_APP_DIR) ---$(NC)"
-	# Use 'rm -f' to forcefully remove both the .app bundle and the old symlink
-	rm -rf $(APP_LINK_PATH) $(APP_BUNDLE) $(ICON_PNG) $(ICON_FILE) /tmp/claws.iconset
-	@echo "$(GREEN)--- Cleanup complete. Note: Homebrew installation remains untouched. ---$(NC)"
+	make -f Makefile.clawsmail clean
 
 .PHONY: claws-install claws-mail claws-clean claws-icon dl-claws-icon prep-claws-icon claws-deps
 
