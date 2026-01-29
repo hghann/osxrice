@@ -18,6 +18,13 @@ SUDO = sudo
 PKGINSTALL = brew install
 PROGINSTALL = brew install --cask
 
+# Define ANSI color codes for easier use
+BLUE    := \033[0;34m
+GREEN   := \033[0;32m
+YELLOW  := \033[0;33m
+RED     := \033[0;31m
+NC      := \033[0m # No Color (resets terminal color)
+
 check-dirs: ## Check paths in vars
 	@echo "BASE: $(BASE)"
 	@echo "SCRIPTS: $(SCRIPTS)"
@@ -58,14 +65,6 @@ link-ghostty: ## Symlink ghostty dir from dotfiles to .config
 # MACRO: LINK_SPECIAL_PATH
 # Usage: $(call LINK_SPECIAL_PATH,<source_path>,<destination_path>)
 # ----------------------------------------------------------------------
-# define LINK_SPECIAL_PATH
-# 	@if [ -d "$(2)" ] && [ ! -L "$(2)" ]; then \
-# 		echo "Backing up existing directory: $(2).bak"; \
-# 		mv "$(2)" "$(2).bak"; \
-# 	fi; \
-# 	ln -snf "$(1)" "$(2)"; \
-# 	echo "Linked special path: $(2)";
-# endef
 define LINK_SPECIAL_PATH
 	@if [ -L "$(2)" ]; then \
 		echo "Link already exists, skipping: $(2)"; \
@@ -79,21 +78,6 @@ define LINK_SPECIAL_PATH
 	fi
 endef
 
-# ----------------------------------------------------------------------
-# MACRO: LINK_SPECIAL_PATH_OLD {{{
-#
-# define LINK_SPECIAL_PATH
-# 	@if [ -d "$(2)" ] && [ ! -L "$(2)" ]; then \
-# 		echo "Backing up existing directory: $(2).bak"; \
-# 		mv "$(2)" "$(2).bak"; \
-# 	fi; \
-# 	ln -snf "$(1)" "$(2)"; \
-# 	echo "Linked special path: $(2)";
-# endef
-#
-# }}}
-# ----------------------------------------------------------------------
-
 test-spm: ## Temporary debugging target to inspect LINK_SPECIAL_PATH macro expansion
 	@echo "--- Expanded Macro for .local/tmp (Source: $(PWD)/.local/tmp, Dest: $(HOME)/.local/tmp) ---"
 	$(call LINK_SPECIAL_PATH,$(PWD)/.local/tmp,$(HOME)/.local/tmp)
@@ -105,6 +89,20 @@ clean-spm:
 	@echo "--- Cleanup complete ---"
 
 .PHONY: test-spm clean-spm
+
+# ----------------------------------------------------------------------
+# MACRO: IS_INSTALLED
+# Usage: $(call IS_INSTALLED, <pkg_name>)
+# Description: Use 'brew list --formula $(1)' which returns 0 if installed, 1 if not.
+# ----------------------------------------------------------------------
+define IS_INSTALLED
+    if brew list --formula $(1) >/dev/null 2>&1; then \
+        echo "$(BLUE)--- Homebrew: $(1) is already installed. ---$(NC)"; \
+    else \
+        echo "$(YELLOW)--- Homebrew: $(1) not found. Installing... ---$(NC)"; \
+        brew install $(1); \
+    fi;
+endef
 
 nocupshist: ## Disable CUPS pinter job history on macOS
 	# purges /var/spool/cups
@@ -382,13 +380,7 @@ yazi: ## Deploy yazi configs
 	@#$(MKDIR) $(HOME)/.config/yazi/plugins/{easyjump.yazi,full-border.yazi,jump-to-char.yazi,smart-enter.yazi}
 	$(LNDIR) $(PWD)/.config/yazi/plugins $(HOME)/.config/yazi/plugins
 
-# Define ANSI color codes
-GREEN  := \033[0;32m
-YELLOW := \033[0;33m
-NC     := \033[0m # No Color (reset)
-BLUE   := \033[0;34m
-
-PACKAGE_NAME = claws-mail fileicon
+CLAWS_PKGS = claws-mail fileicon
 USER_APP_DIR = $(HOME)/Applications
 APP_LINK_PATH = $(USER_APP_DIR)/ClawsMail
 # Create a folder ending in .app, which macOS recognizes as a GUI app
@@ -400,9 +392,11 @@ ICON_FILE = $(ICON_DIR)/scalable/apps/claws_icon.icns
 
 ICON_URL = "https://git.claws-mail.org/?p=claws.git;a=blob_plain;f=claws-mail-128x128.png;hb=HEAD"
 
-IS_INSTALLED := $(shell brew list --formulae | grep "$(PACKAGE_NAME)" || true)
-
-.PHONY: claws-install claws-mail claws-clean claws-icon dl-claws-icon prep-claws-icon
+claws-deps: # Target to run all dependency checks/installs
+	@#$(call IS_INSTALLED, claws-mail)
+	@#$(call IS_INSTALLED, fileicon)
+	@# Use 'foreach' to iterate  packages and run the IS_INSTALLED  macro for each item
+	@$(foreach PKG, $(CLAWS_PKGS), $(call IS_INSTALLED, $(PKG)))
 
 claws-install: dl-claws-icon prep-claws-icon claws-mail claws-icon
 
@@ -442,37 +436,19 @@ prep-claws-icon:
 	@echo "$(YELLOW)--- # Cleaning /tmp folder ---$(NC)"
 	#rm -rf /tmp/claws.iconset
 
-claws-mail: ## Setup Claws Mail on OSX: simlink homebrew forulae to ~/Applications (no cask for Claws Mail)
-ifeq ($(IS_INSTALLED), $(PACKAGE_NAME))
-	@echo "$(BLUE)--- Homebrew: $(PACKAGE_NAME) is already installed. ---$(NC)"
-else
-	@echo "$(BLUE)--- $(PACKAGE_NAME) not found. Installing... ---$(NC)"
-	brew install $(PACKAGE_NAME)
-endif
+claws-mail: claws-deps ## Setup Claws Mail on OSX: simlink homebrew forulae to ~/Applications (no cask for Claws Mail)
 	@echo "$(YELLOW)--- Ensuring user Applications directory exists ---$(NC)"
 	mkdir -p $(USER_APP_DIR)
 	@echo "$(BLUE)--- Creating macOS App Wrapper in $(USER_APP_DIR) ---$(NC)"
 	@# Remove any old installations (both symlink and bundle) first
 	rm -rf $(APP_BUNDLE) $(APP_LINK_PATH)
 	@# Create a tiny script bundle that runs the brew executable
-	osacompile -o $(APP_BUNDLE) -e "do shell script \"$(shell which $(PACKAGE_NAME)) > /dev/null 2>&1 &\""
+	osacompile -o $(APP_BUNDLE) -e "do shell script \"$(shell which $(CLAWS_PKGS)) > /dev/null 2>&1 &\""
 	@echo "$(GREEN)--- Done! ---$(NC)"
 	@echo "Wrapper created at: $(APP_BUNDLE)"
 	@echo "Spotlight will now index 'ClawsMail' as a real application."
 
-# 	@echo "--- Creating user-level symlink ---"
-# 	ln -sf $(shell which $(PACKAGE_NAME)) $(APP_LINK_PATH)
-# 	@echo "--- Done! ---"
-# 	@echo "Location: $(APP_LINK_PATH)"
-# 	@echo "You can now find ClawsMail in your Applications folder or Spotlight."
-
-claws-icon: # Set icon
-ifeq ($(IS_INSTALLED), $(PACKAGE_NAME))
-	@echo "$(BLUE)--- Homebrew: $(PACKAGE_NAME) is already installed. ---$(NC)"
-else
-	@echo "$(BLUE)--- $(PACKAGE_NAME) not found. Installing... ---$(NC)"
-	brew install $(PACKAGE_NAME)
-endif
+claws-icon: claws-deps # Set icon
 	@echo "$(BLUE)--- Setting custom icon for $(APP_BUNDLE) ---$(NC)"
 	fileicon set $(APP_BUNDLE) $(ICON_FILE)
 	touch $(APP_BUNDLE)
@@ -481,8 +457,10 @@ endif
 claws-clean: ## Clean target: Removes the generated files in the Applications folder
 	@echo "$(BLUE)--- Cleaning up ClawsMail links/wrappers from $(USER_APP_DIR) ---$(NC)"
 	# Use 'rm -f' to forcefully remove both the .app bundle and the old symlink
-	rm -rf $(APP_BUNDLE) $(APP_LINK_PATH) $(ICON_PNG) $(ICON_FILE) /tmp/claws.iconset
+	rm -rf $(APP_LINK_PATH) $(APP_BUNDLE) $(ICON_PNG) $(ICON_FILE) /tmp/claws.iconset
 	@echo "$(GREEN)--- Cleanup complete. Note: Homebrew installation remains untouched. ---$(NC)"
+
+.PHONY: claws-install claws-mail claws-clean claws-icon dl-claws-icon prep-claws-icon claws-deps
 
 duti: ## Setup default applications
 	$(PKGINSTALL) duti; $(PROGINSTALL) skim;\
@@ -648,12 +626,6 @@ update: ## Update system and packages, and save packages cache
 # If MSG is not provided on the command line, it defaults to the value below.
 MSG ?= Automated push via Makefile
 
-# Define color variables for easier use
-GREEN   := \033[0;32m
-YELLOW  := \033[0;33m
-RED     := \033[0;31m
-NC      := \033[0m # No Color (resets terminal color)
-
 syncdots: ## Push changes to git repo (use 'make sync MSG="..."' for custom message)
 	@echo "$(YELLOW)--- Starting Git Synchronization ---$(NC)"
 	@set -e; \
@@ -666,17 +638,6 @@ syncdots: ## Push changes to git repo (use 'make sync MSG="..."' for custom mess
 		echo "$(GREEN)Pushing all committed changes...$(NC)"; \
 		git push origin master
 	@echo "$(YELLOW)--- Synchronization Complete ---$(NC)"
-
-#syncdots: ## Push changes to git repo
-#	git add .;\
-#		git commit -m "Automated push via Makefile";\
-#		git push -u origin master
-
-#syncdots: ## Push changes to git repo
-#	git pull;\
-#		git add .;\
-#		git commit -m "Push from Makefile";\
-#		git push -u origin master
 
 #pip: ## Install python packages
 #	pip install --user --upgrade pip

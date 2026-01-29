@@ -1,10 +1,11 @@
-# Define ANSI color codes
-GREEN  := \033[0;32m
-YELLOW := \033[0;33m
-NC     := \033[0m # No Color (reset)
-BLUE   := \033[0;34m
+# Define ANSI color codes for easier use
+BLUE    := \033[0;34m
+GREEN   := \033[0;32m
+YELLOW  := \033[0;33m
+RED     := \033[0;31m
+NC      := \033[0m # No Color (resets terminal color)
 
-PACKAGE_NAME = claws-mail fileicon
+CLAWS_PKGS = claws-mail fileicon
 USER_APP_DIR = $(HOME)/Applications
 APP_LINK_PATH = $(USER_APP_DIR)/ClawsMail
 # Create a folder ending in .app, which macOS recognizes as a GUI app
@@ -16,13 +17,25 @@ ICON_FILE = $(ICON_DIR)/scalable/apps/claws_icon.icns
 
 ICON_URL = "https://git.claws-mail.org/?p=claws.git;a=blob_plain;f=claws-mail-128x128.png;hb=HEAD"
 
-IS_INSTALLED := $(shell brew list --formulae | grep "$(PACKAGE_NAME)" || true)
+# Use 'brew list --formula $(1)' which returns 0 if installed, 1 if not.
+define IS_INSTALLED
+    if brew list --formula $(1) >/dev/null 2>&1; then \
+        echo "$(BLUE)--- Homebrew: $(1) is already installed. ---$(NC)"; \
+    else \
+        echo "$(YELLOW)--- Homebrew: $(1) not found. Installing... ---$(NC)"; \
+        brew install $(1); \
+    fi;
+endef
 
-.PHONY: claws-install claws-mail claws-clean claws-icon dl-claws-icon prep-claws-icon
+.PHONY: install claws-mail clean claws-icon fetch-icon prep-icon install-deps
 
-claws-install: dl-claws-icon prep-claws-icon claws-mail claws-icon
+install: fetch-icon prep-icon claws-mail claws-icon
 
-dl-claws-icon:
+install-deps: # Target to run all dependency checks/installs
+	@# Use 'foreach' to iterate  packages and run the IS_INSTALLED  macro for each item
+	@$(foreach PKG, $(CLAWS_PKGS), $(call IS_INSTALLED, $(PKG)))
+
+fetch-icon:
 	@# Ensure the XDG directories exist quietly
 	@mkdir -p $(ICON_DIR)/{128x128,scalable}/apps
 ifeq ($(wildcard $(ICON_PNG)),)
@@ -36,7 +49,7 @@ else
 	@echo "$(YELLOW)--- Icon already exists locally. Skipping download. ---$(NC)"
 endif
 
-prep-claws-icon:
+prep-icon:
 	@echo "$(BLUE)--- Converting PNG to required macOS .icns format ---$(NC)"
 	@echo "$(YELLOW)--- Create the temporary iconset ---$(NC)"
 	mkdir -p /tmp/claws.iconset
@@ -56,46 +69,33 @@ prep-claws-icon:
 	@echo "$(YELLOW)--- Compile the icns file ---$(NC)"
 	iconutil -c icns /tmp/claws.iconset -o $(ICON_FILE)
 	@echo "$(YELLOW)--- # Cleaning /tmp folder ---$(NC)"
-	rm -rf /tmp/claws.iconset
+	#rm -rf /tmp/claws.iconset
 
-claws-mail: ## Setup Claws Mail on OSX: simlink homebrew forulae to ~/Applications (no cask for Claws Mail)
-ifeq ($(IS_INSTALLED), $(PACKAGE_NAME))
-	@echo "$(BLUE)--- Homebrew: $(PACKAGE_NAME) is already installed. ---$(NC)"
-else
-	@echo "$(BLUE)--- $(PACKAGE_NAME) not found. Installing... ---$(NC)"
-	brew install $(PACKAGE_NAME)
-endif
+claws-mail: install-deps ## Setup Claws Mail on OSX: simlink homebrew forulae to ~/Applications (no cask for Claws Mail)
 	@echo "$(YELLOW)--- Ensuring user Applications directory exists ---$(NC)"
 	mkdir -p $(USER_APP_DIR)
 	@echo "$(BLUE)--- Creating macOS App Wrapper in $(USER_APP_DIR) ---$(NC)"
 	@# Remove any old installations (both symlink and bundle) first
 	rm -rf $(APP_BUNDLE) $(APP_LINK_PATH)
 	@# Create a tiny script bundle that runs the brew executable
-	osacompile -o $(APP_BUNDLE) -e "do shell script \"$(shell which $(PACKAGE_NAME)) > /dev/null 2>&1 &\""
+	osacompile -o $(APP_BUNDLE) -e "do shell script \"$(shell which $(CLAWS_PKGS)) > /dev/null 2>&1 &\""
 	@echo "$(GREEN)--- Done! ---$(NC)"
 	@echo "Wrapper created at: $(APP_BUNDLE)"
 	@echo "Spotlight will now index 'ClawsMail' as a real application."
 
-claws-icon: # Set icon
-ifeq ($(IS_INSTALLED), $(PACKAGE_NAME))
-	@echo "$(BLUE)--- Homebrew: $(PACKAGE_NAME) is already installed. ---$(NC)"
-else
-	@echo "$(BLUE)--- $(PACKAGE_NAME) not found. Installing... ---$(NC)"
-	brew install $(PACKAGE_NAME)
-endif
+claws-icon: install-deps # Set icon
 	@echo "$(BLUE)--- Setting custom icon for $(APP_BUNDLE) ---$(NC)"
 	fileicon set $(APP_BUNDLE) $(ICON_FILE)
 	touch $(APP_BUNDLE)
 	@echo "$(GREEN)--- Icon updated successfully. ---$(NC)"
 
-claws-clean: ## Clean target: Removes the generated files in the Applications folder
+clean: ## Clean target: Removes the generated files in the Applications folder
 	@echo "$(BLUE)--- Cleaning up ClawsMail links/wrappers from $(USER_APP_DIR) ---$(NC)"
 	# Use 'rm -f' to forcefully remove both the .app bundle and the old symlink
-	rm -rf $(APP_BUNDLE) $(APP_LINK_PATH) $(ICON_PNG) $(ICON_FILE) /tmp/claws.iconset
+	rm -rf $(APP_LINK_PATH) $(APP_BUNDLE) $(ICON_PNG) $(ICON_FILE) /tmp/claws.iconset
 	@echo "$(GREEN)--- Cleanup complete. Note: Homebrew installation remains untouched. ---$(NC)"
 
 .DEFAULT_GOAL := help
-.PHONY: claws-install claws-mail claws-clean claws-icon download-icon prep-icon
 
 help: ## Prints out Make help
 	@echo "Usage: make <command>"
