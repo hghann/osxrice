@@ -154,7 +154,7 @@ vimpush: ## Updates vim repo
 	cd $(HOME)/.vim;\
 		git pull;\
 		git add .;\
-		git commit -m "push via Makefile";\
+		git commit -m "Automated push via Makefile";\
 		git push -u origin master
 
 vimpull: ## Updates local vim config
@@ -382,6 +382,108 @@ yazi: ## Deploy yazi configs
 	@#$(MKDIR) $(HOME)/.config/yazi/plugins/{easyjump.yazi,full-border.yazi,jump-to-char.yazi,smart-enter.yazi}
 	$(LNDIR) $(PWD)/.config/yazi/plugins $(HOME)/.config/yazi/plugins
 
+# Define ANSI color codes
+GREEN  := \033[0;32m
+YELLOW := \033[0;33m
+NC     := \033[0m # No Color (reset)
+BLUE   := \033[0;34m
+
+PACKAGE_NAME = claws-mail fileicon
+USER_APP_DIR = $(HOME)/Applications
+APP_LINK_PATH = $(USER_APP_DIR)/ClawsMail
+# Create a folder ending in .app, which macOS recognizes as a GUI app
+APP_BUNDLE = $(USER_APP_DIR)/ClawsMail.app
+
+ICON_DIR = $(PWD)/.local/share/icons/hicolor
+ICON_PNG = $(ICON_DIR)/128x128/apps/claws_icon.png
+ICON_FILE = $(ICON_DIR)/scalable/apps/claws_icon.icns
+
+ICON_URL = "https://git.claws-mail.org/?p=claws.git;a=blob_plain;f=claws-mail-128x128.png;hb=HEAD"
+
+IS_INSTALLED := $(shell brew list --formulae | grep "$(PACKAGE_NAME)" || true)
+
+.PHONY: claws-install claws-mail claws-clean claws-icon dl-claws-icon prep-claws-icon
+
+claws-install: dl-claws-icon prep-claws-icon claws-mail claws-icon
+
+dl-claws-icon:
+	@# Ensure the XDG directories exist quietly
+	@mkdir -p $(ICON_DIR)/{128x128,scalable}/apps
+ifeq ($(wildcard $(ICON_PNG)),)
+	@echo "$(BLUE)--- Downloading icon from $(ICON_URL) ---"
+	@echo "$(NC)"
+	@# Use curl -L to follow redirects and -o to name the file specifically
+	curl -L -o $(ICON_PNG) $(ICON_URL)
+	@echo ""
+	@echo "$(GREEN)--- DONE! ---$(NC)"
+else
+	@echo "$(YELLOW)--- Icon already exists locally. Skipping download. ---$(NC)"
+endif
+
+prep-claws-icon:
+	@echo "$(BLUE)--- Converting PNG to required macOS .icns format ---$(NC)"
+	@echo "$(YELLOW)--- Create the temporary iconset ---$(NC)"
+	mkdir -p /tmp/claws.iconset
+	@echo "$(YELLOW)--- Use standard macOS tools to create a temporary iconset and compile it ---$(NC)"
+	@# Resize commands: Add >/dev/null 2>&1 to each line to silence the verbose output
+	sips -z 16 16   $(ICON_PNG) --out /tmp/claws.iconset/icon_16x16.png > /dev/null 2>&1
+	sips -z 32 32   $(ICON_PNG) --out /tmp/claws.iconset/icon_16x16@2x.png > /dev/null 2>&1
+	@sips -z 32 32   $(ICON_PNG) --out /tmp/claws.iconset/icon_32x32.png > /dev/null 2>&1
+	@sips -z 64 64   $(ICON_PNG) --out /tmp/claws.iconset/icon_32x32@2x.png > /dev/null 2>&1
+	@sips -z 128 128 $(ICON_PNG) --out /tmp/claws.iconset/icon_128x128.png > /dev/null 2>&1
+	@sips -z 256 256 $(ICON_PNG) --out /tmp/claws.iconset/icon_128x128@2x.png > /dev/null 2>&1
+	@sips -z 256 256 $(ICON_PNG) --out /tmp/claws.iconset/icon_256x256.png > /dev/null 2>&1
+	@sips -z 512 512 $(ICON_PNG) --out /tmp/claws.iconset/icon_256x256@2x.png > /dev/null 2>&1
+	@sips -z 512 512 $(ICON_PNG) --out /tmp/claws.iconset/icon_512x512.png > /dev/null 2>&1
+	@echo "..."
+	sips -z 1024 1024 $(ICON_PNG) --out /tmp/claws.iconset/icon_512x512@2x.png > /dev/null 2>&1
+	@echo "$(YELLOW)--- Compile the icns file ---$(NC)"
+	iconutil -c icns /tmp/claws.iconset -o $(ICON_FILE)
+	@echo "$(YELLOW)--- # Cleaning /tmp folder ---$(NC)"
+	#rm -rf /tmp/claws.iconset
+
+claws-mail: ## Setup Claws Mail on OSX: simlink homebrew forulae to ~/Applications (no cask for Claws Mail)
+ifeq ($(IS_INSTALLED), $(PACKAGE_NAME))
+	@echo "$(BLUE)--- Homebrew: $(PACKAGE_NAME) is already installed. ---$(NC)"
+else
+	@echo "$(BLUE)--- $(PACKAGE_NAME) not found. Installing... ---$(NC)"
+	brew install $(PACKAGE_NAME)
+endif
+	@echo "$(YELLOW)--- Ensuring user Applications directory exists ---$(NC)"
+	mkdir -p $(USER_APP_DIR)
+	@echo "$(BLUE)--- Creating macOS App Wrapper in $(USER_APP_DIR) ---$(NC)"
+	@# Remove any old installations (both symlink and bundle) first
+	rm -rf $(APP_BUNDLE) $(APP_LINK_PATH)
+	@# Create a tiny script bundle that runs the brew executable
+	osacompile -o $(APP_BUNDLE) -e "do shell script \"$(shell which $(PACKAGE_NAME)) > /dev/null 2>&1 &\""
+	@echo "$(GREEN)--- Done! ---$(NC)"
+	@echo "Wrapper created at: $(APP_BUNDLE)"
+	@echo "Spotlight will now index 'ClawsMail' as a real application."
+
+# 	@echo "--- Creating user-level symlink ---"
+# 	ln -sf $(shell which $(PACKAGE_NAME)) $(APP_LINK_PATH)
+# 	@echo "--- Done! ---"
+# 	@echo "Location: $(APP_LINK_PATH)"
+# 	@echo "You can now find ClawsMail in your Applications folder or Spotlight."
+
+claws-icon: # Set icon
+ifeq ($(IS_INSTALLED), $(PACKAGE_NAME))
+	@echo "$(BLUE)--- Homebrew: $(PACKAGE_NAME) is already installed. ---$(NC)"
+else
+	@echo "$(BLUE)--- $(PACKAGE_NAME) not found. Installing... ---$(NC)"
+	brew install $(PACKAGE_NAME)
+endif
+	@echo "$(BLUE)--- Setting custom icon for $(APP_BUNDLE) ---$(NC)"
+	fileicon set $(APP_BUNDLE) $(ICON_FILE)
+	touch $(APP_BUNDLE)
+	@echo "$(GREEN)--- Icon updated successfully. ---$(NC)"
+
+claws-clean: ## Clean target: Removes the generated files in the Applications folder
+	@echo "$(BLUE)--- Cleaning up ClawsMail links/wrappers from $(USER_APP_DIR) ---$(NC)"
+	# Use 'rm -f' to forcefully remove both the .app bundle and the old symlink
+	rm -rf $(APP_BUNDLE) $(APP_LINK_PATH) $(ICON_PNG) $(ICON_FILE) /tmp/claws.iconset
+	@echo "$(GREEN)--- Cleanup complete. Note: Homebrew installation remains untouched. ---$(NC)"
+
 duti: ## Setup default applications
 	$(PKGINSTALL) duti; $(PROGINSTALL) skim;\
 		defaults-xdg.sh
@@ -542,10 +644,33 @@ update: ## Update system and packages, and save packages cache
 		brew cu -afyv;\
 		cd; brew doctor -v
 
-syncdots: ## Push changes to git repo
-	git add .;\
-		git commit -m "Push from Makefile";\
-		git push -u origin master
+# Use override: 'make sync MSG="hi"' sets MSG="hi".
+# If MSG is not provided on the command line, it defaults to the value below.
+MSG ?= Automated push via Makefile
+
+# Define color variables for easier use
+GREEN   := \033[0;32m
+YELLOW  := \033[0;33m
+RED     := \033[0;31m
+NC      := \033[0m # No Color (resets terminal color)
+
+syncdots: ## Push changes to git repo (use 'make sync MSG="..."' for custom message)
+	@echo "$(YELLOW)--- Starting Git Synchronization ---$(NC)"
+	@set -e; \
+		echo "$(GREEN)Pulling remote changes...$(NC)"; \
+		git pull origin master; \
+		echo "$(GREEN)Staging all changes...$(NC)"; \
+		git add .; \
+		echo "$(GREEN)Committing changes with message: $(MSG)...$(NC)"; \
+		git commit -m "$(MSG)" || true; \
+		echo "$(GREEN)Pushing all committed changes...$(NC)"; \
+		git push origin master
+	@echo "$(YELLOW)--- Synchronization Complete ---$(NC)"
+
+#syncdots: ## Push changes to git repo
+#	git add .;\
+#		git commit -m "Automated push via Makefile";\
+#		git push -u origin master
 
 #syncdots: ## Push changes to git repo
 #	git pull;\

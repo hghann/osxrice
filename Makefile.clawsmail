@@ -1,0 +1,97 @@
+# Define ANSI color codes
+GREEN  := \033[0;32m
+YELLOW := \033[0;33m
+NC     := \033[0m # No Color (reset)
+BLUE   := \033[0;34m
+
+PACKAGE_NAME = claws-mail
+USER_APP_DIR = $(HOME)/Applications
+APP_LINK_PATH = $(USER_APP_DIR)/ClawsMail
+# Create a folder ending in .app, which macOS recognizes as a GUI app
+APP_BUNDLE = $(USER_APP_DIR)/ClawsMail.app
+
+# Define Icon variables
+ICON_URL = "https://git.claws-mail.org/?p=claws.git;a=blob_plain;f=claws-mail-128x128.png;hb=HEAD"
+# We download a PNG first, then convert it to the required ICNS format
+ICON_PNG = $(PWD)/.local/share/icons/hicolor/128x128/apps/claws_icon.png
+ICON_FILE = $(PWD)/.local/share/icons/claws_icon.icns
+
+IS_INSTALLED := $(shell brew list --formulae | grep $(PACKAGE_NAME) || true)
+
+claws-install: download-icon prep-icon claws-mail install-icon
+
+download-icon:
+ifeq ($(wildcard $(ICON_PNG)),)
+	@echo "$(BLUE)--- Downloading icon from $(ICON_URL) ---$(NC)"
+	# Use curl -L to follow redirects and -o to name the file specifically
+	curl -L -o $(ICON_PNG) $(ICON_URL)
+else
+	@echo "$(YELLOW)--- Icon already exists locally. Skipping download. ---$(NC)"
+endif
+
+prep-icon:
+	@echo "$(BLUE)--- Converting PNG to required macOS .icns format ---$(NC)"
+	# Use standard macOS tools to create a temporary iconset and compile it
+	mkdir -p /tmp/claws.iconset
+	sips -z 16 16   $(ICON_PNG) --out /tmp/claws.iconset/icon_16x16.png
+	sips -z 32 32   $(ICON_PNG) --out /tmp/claws.iconset/icon_16x16@2x.png
+	sips -z 32 32   $(ICON_PNG) --out /tmp/claws.iconset/icon_32x32.png
+	sips -z 64 64   $(ICON_PNG) --out /tmp/claws.iconset/icon_32x32@2x.png
+	sips -z 128 128 $(ICON_PNG) --out /tmp/claws.iconset/icon_128x128.png
+	sips -z 256 256 $(ICON_PNG) --out /tmp/claws.iconset/icon_128x128@2x.png
+	sips -z 256 256 $(ICON_PNG) --out /tmp/claws.iconset/icon_256x256.png
+	sips -z 512 512 $(ICON_PNG) --out /tmp/claws.iconset/icon_256x256@2x.png
+	sips -z 512 512 $(ICON_PNG) --out /tmp/claws.iconset/icon_512x512.png
+	sips -z 1024 1024 $(ICON_PNG) --out /tmp/claws.iconset/icon_512x512@2x.png
+	iconutil -c icns /tmp/claws.iconset -o $(ICON_FILE)
+	rm -rf /tmp/claws.iconset
+
+claws-mail: ## Setup Claws Mail on OSX: simlink homebrew forulae to ~/Applications (no cask for Claws Mail)
+ifeq ($(IS_INSTALLED), $(PACKAGE_NAME))
+	@echo "$(BLUE)--- $(PACKAGE_NAME) is already installed. ---$(NC)"
+else
+	@echo "$(BLUE)--- $(PACKAGE_NAME) not found. Installing... ---$(NC)"
+	brew install $(PACKAGE_NAME)
+endif
+	@echo "$(YELLOW) --- Ensuring user Applications directory exists ---$(NC)"
+	mkdir -p $(USER_APP_DIR)
+	@echo "$(BLUE)--- Creating macOS App Wrapper in $(USER_APP_DIR) ---$(NC)"
+	@# Remove any old installations (both symlink and bundle) first
+	rm -rf $(APP_BUNDLE) $(APP_LINK_PATH)
+	@# Create a tiny script bundle that runs the brew executable
+	osacompile -o $(APP_BUNDLE) -e "do shell script \"$(shell which $(PACKAGE_NAME)) > /dev/null 2>&1 &\""
+	@echo "$(GREEN)--- Done! ---$(NC)"
+	@echo "Wrapper created at: $(APP_BUNDLE)"
+	@echo "Spotlight will now index 'ClawsMail' as a real application."
+
+# 	@echo "--- Creating user-level symlink ---"
+# 	ln -sf $(shell which $(PACKAGE_NAME)) $(APP_LINK_PATH)
+# 	@echo "--- Done! ---"
+# 	@echo "Location: $(APP_LINK_PATH)"
+# 	@echo "You can now find ClawsMail in your Applications folder or Spotlight."
+
+claws-icon: # Set icon
+	@echo "$(BLUE)--- Setting custom icon for $(APP_BUNDLE) ---$(NC)"
+	fileicon set $(APP_BUNDLE) $(ICON_FILE)
+	touch $(APP_BUNDLE)
+	@echo "$(GREEN)--- Icon updated successfully. ---$(NC)"
+
+claws-clean: ## Clean target: Removes the generated files in the Applications folder
+	@echo "$(BLUE)--- Cleaning up ClawsMail links/wrappers from $(USER_APP_DIR) ---$(NC)"
+	# Use 'rm -f' to forcefully remove both the .app bundle and the old symlink
+	rm -rf $(APP_BUNDLE) $(APP_LINK_PATH)
+	@echo "$(GREEN)--- Cleanup complete. Note: Homebrew installation remains untouched. ---$(NC)"
+
+.DEFAULT_GOAL := help
+.PHONY: claws-install claws-mail claws-clean claws-icon download-icon prep-icon
+
+help: ## Prints out Make help
+	@echo "Usage: make <command>"
+	@echo ""
+	@echo "Commands:"
+	@#grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST)
+	@grep -E '^[a-zA-Z0-9_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
+	| sort \
+	| awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-30s\033[0m %s\n", $$1, $$2}'
+
+# vim: set fdm=marker fmr={{{,}}}:
