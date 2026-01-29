@@ -1,1 +1,1 @@
-/Users/hg/.vim/vimrc
+/Users/hg/.dots/.vimrc

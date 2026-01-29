@@ -1,14 +1,4 @@
-enables-layout-hud-on-space-change: false
-
-# Use tall and fullscreen layouts
-layouts:
-    - fullscreen
-    - tall
-    - two-pane
-    - floating
-    - bsp
-
-# Add "command" to the default mods
+# Define mod keys
 mod1:
     - shift
     - option
@@ -18,18 +8,20 @@ mod2:
     - option
     - control
 
-# Turn on or off focus-follows-mouse.
-toggle-focus-follows-mouse:
-  mod: mod2
-  key: x
+# Layout settings
+layouts:
+    - fullscreen
+    - tall
+    - two-pane
+    - floating
 
 cycle-layout:
     mod: mod1
     key: n
 
 cycle-layout-backward:
-    mod: mod2
-    key: n
+    mod: mod1
+    key: m
 
 select-fullscreen-layout:
     mod: mod1
@@ -47,12 +39,14 @@ select-floating-layout:
     mod: mod1
     key: f
 
-# Column layout keybind broken
-select-column-layout:
-    mod: mod1
-    key: z
+# Misc
+enables-layout-hud-on-space-change: false
 
-# Enable focus-follows-mouse
+toggle-focus-follows-mouse:
+  mod: mod2
+  key: x
+
+# Dissable focus-follows-mouse
 mouse-follows-focus: false
 focus-follows-mouse: false
 
@@ -62,5 +56,5 @@ window-margin-size: 5
 smart-window-margins: true
 
 # List of bundle identifiers for applications to either be automatically floating or automatically tiled based on floating-is-blacklist (default []).
-floating: ['com.exifcleaner', 'com.apple.systempreferences', 'com.objective-see.lulu.app', 'com.apple.Stickies']
+floating: ['com.metadatazero', 'com.apple.systempreferences', 'com.objective-see.lulu.app', 'com.apple.Stickies']
 

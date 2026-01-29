@@ -46,17 +46,18 @@ alias \
 
 # brew
 # update all brew pkgs
-alias bsyu='cd $HOME/.config/brew; brew update -v;\
-        brew upgrade -v --display-times --greedy;\
-        brew bundle -vf --all --describe;\
-		brew cu -ayv --cleanup --include-mas; cd; bfsyu; bclean'
-# create brewfile in $HOME/.config/brew
-alias bfcrt='cd $HOME/.config/brew && brew bundle dump --describe && cd'
-# update brewfile
-alias bfsyu='cd $HOME/.config/brew; brew bundle dump -vf --all --describe;\
-        brew bundle cleanup -vf --describe; cd'
-# remove orphaned packages
-alias bclean='brew autoremove && brew cleanup && brew doctor -v'
+alias bsyu='brew update -v && \
+            brew upgrade -v --display-times --greedy && \
+            brew bundle install -v --cleanup --file=$HOME/.config/homebrew/Brewfile && \
+            bfsyu && bclean'
+# create brewfile
+alias bfcrt='cd $HOME/.config/homebrew && brew bundle dump --describe && cd'
+# update brewfile = capture system state
+alias bfsyu='cd $HOME/.config/homebrew && \
+             brew bundle dump -vf --all --describe && \
+             cd -'
+# remove orphaned packages (added --prune)
+alias bclean='brew autoremove && brew cleanup --prune=all && brew doctor -v'
 # list dependencies
 alias bdepls='brew deps -n --tree --installed --annotate'
 alias bls='brew list -1 --full-name'
@@ -64,11 +65,12 @@ alias boutdtd='brew outdated -v'
 
 # Change "ls" to "eza"
 alias \
-	ls='eza -al --color=always --group-directories-first --git' \
+	ls='eza -lah --color=always --group-directories-first --git' \
 	la='eza -a --color=always --group-directories-first --git' \
 	ll='eza -l --color=always --group-directories-first --git' \
 	lt='eza -aT --color=always --group-directories-first --git' \
-	l.='eza -a | egrep "^\."'
+	l.='eza -a | egrep "^\."' \
+    exa='eza'
 
 # Colorize commands when possible.
 alias diff="diff --color=auto" \
@@ -102,7 +104,7 @@ alias \
 	nb='newsboat' \
   tasktui="taskwarrior-tui" \
 	scim='sc-im' \
-	ytdlp='yt-dlp' \
+	ytdlp='cd $HOME/downloads/ytdlp; yt-dlp' \
 	sdcv='sdcvrun' \
 	YT="youtube-viewer" \
 	pf="fzf --preview='less {}' --bind shift-up:preview-page-up,shift-down:preview-page-down"
@@ -158,10 +160,11 @@ alias \
 	newtag='git tag -a'
 # yt-dlp
 alias \
-	ydl="yt-dlp -x --audio-format mp3 -a $HOME/Downloads/ytdlp" \
+	ydl="yt-dlp -x --audio-format mp3 -a $HOME/Downloads/ytdlp/list" \
 	yta-best="yt-dlp --extract-audio --audio-format best " \
 	ytdl-flac="yt-dlp --extract-audio --audio-format flac " \
-	ytdl-m4a="yt-dlp --extract-audio --audio-format m4a " \
+	ytdl-mp4="$HOME/Downloads/ytdlp; yt-dlp --extract-audio --audio-format mp4 " \
+	ytdl-m4a="$HOME/Downloads/ytdlp; yt-dlp --extract-audio --audio-format m4a " \
 	ytdl-mp3="yt-dlp --extract-audio --audio-format mp3 " \
 	yta-opus="yt-dlp --extract-audio --audio-format opus " \
 	yta-wav="yt-dlp --extract-audio --audio-format wav " \

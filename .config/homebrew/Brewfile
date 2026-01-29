@@ -447,6 +447,8 @@ brew "xmlto"
 brew "xpdf"
 # High-performance, high-quality MPEG-4 video library
 brew "xvid"
+# Blazing fast terminal file manager written in Rust, based on async I/O
+brew "yazi"
 # Feature-rich command-line audio/video downloader
 brew "yt-dlp"
 # High-performance, asynchronous messaging library
@@ -489,6 +491,8 @@ cask "discord"
 cask "ungoogled-chromium"
 # Desktop client for Ente Auth
 cask "ente-auth"
+# Web browser
+cask "firefox"
 # Folder comparison and synchronization software
 cask "freefilesync"
 # Terminal emulator that uses platform-native UI and GPU acceleration

@@ -1,0 +1,47 @@
+# ---------------------------------------------------------
+# VISUALS & TRANSPARENCY
+# ---------------------------------------------------------
+# Opacity: 0 (transparent) to 1 (opaque)
+background-opacity = 0.85
+# Blur: radius in pixels. 20 is a good "frosted glass" starting point
+background-blur = 20
+# Theme: supports system switching (dark/light)
+#theme = dark:Catppuccin Mocha,light:Catppuccin Latte
+
+# ---------------------------------------------------------
+# MACOS SPECIFIC INTEGRATION
+# ---------------------------------------------------------
+# Makes the titlebar blend into the background (modern look)
+macos-titlebar-style = transparent
+# Use the Option key as 'Alt' (critical for Vim, Emacs, and CLI tools)
+macos-option-as-alt = true
+# Enable a global shortcut to drop down the terminal (Quake-style)
+keybind = global:cmd+§=toggle_quick_terminal
+#keybind = global:cmd+grave_accent=toggle_quick_terminal
+
+# ---------------------------------------------------------
+# TYPOGRAPHY
+# ---------------------------------------------------------
+font-family = "JetBrains Mono"
+font-size = 13
+# Makes text slightly bolder for better legibility on high-DPI displays
+font-thicken = true
+
+# ---------------------------------------------------------
+# CURSOR & INTERACTION
+# ---------------------------------------------------------
+cursor-style = block
+cursor-style-blink = false
+# Automatically copy selected text to your clipboard
+copy-on-select = clipboard
+# Disable the "Are you sure?" confirmation when closing
+confirm-close-surface = false
+
+# ---------------------------------------------------------
+# SHELL INTEGRATION
+# ---------------------------------------------------------
+# Enables advanced features like clicking output to select it
+shell-integration = detect
+# Checks for updates automatically
+auto-update = check
+
