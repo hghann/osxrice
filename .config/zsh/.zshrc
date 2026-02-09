@@ -42,7 +42,7 @@ if [[ "$STARSHIP_BIN" -nt "$STARSHIP_INIT" ]]; then
 fi
 
 # Source the static file if it exists
-[ -f "$STARSHIP_INIT" ] && source "$STARSHIP_INIT"
+#[ -f "$STARSHIP_INIT" ] && source "$STARSHIP_INIT"
 # 2}}} "Starship
 
 # }}}
@@ -212,6 +212,104 @@ ff() {
   [[ -o zle ]] && zle reset-prompt
 }
 # }}}2 "ff
+
+# fk: Fuzzy process killer (ctrl+K) {{{2
+fkill() {
+    local pid
+    if [ "$UID" != "0" ]; then
+        # Standard user processes
+        pid=$(ps -u $UID -o pid,ppid,comm | sed 1d | fzf -m --ansi --header="[TAB] Multi-select | [ENTER] Kill" | awk '{print $1}')
+    else
+        # All processes if run with sudo
+        pid=$(ps -ax -o pid,ppid,comm | sed 1d | fzf -m --ansi --header="[TAB] Multi-select | [ENTER] Kill" | awk '{print $1}')
+    fi
+
+    if [ -n "$pid" ]; then
+        echo "$pid" | xargs kill -9
+        echo "Killed process(es): $(echo $pid | tr '\n' ' ')"
+    fi
+}
+
+fko() {
+  local pid
+  # Get processes: PID, CPU%, MEM%, COMMAND
+  # Use 'ps -u $USER' to only show your own processes by default
+  pid=$(ps -u "$USER" -o pid,pcpu,pmem,comm | sed 1d | fzf -m \
+    --height 40% --reverse --header-label=" 💀 KILL RADAR " \
+    --header="[TAB] Multi-select | [ENT] Kill -9" \
+    --preview 'ps -p {1} -o pid,ppid,user,%cpu,%mem,start,time,command | numfmt --header --to=iec --field=4,5' \
+    --preview-window="top,4,wrap" \
+    --color="bg+:#30343c,bg:#282c34,fg:#bbc2cf,header:#ff6c6b,info:#98be65,pointer:#c678dd,marker:#98be65,prompt:#a9a1e1,hl:#ecbe7b,hl+:#ecbe7b,border:#464b5d,label:#ff6c6b" \
+    | awk '{print $1}')
+
+  if [[ -n "$pid" ]]; then
+    # Kill all selected PIDs
+    echo "$pid" | xargs kill -9
+    echo "Successfully terminated PIDs: ${(j:, :)pid}"
+    [[ -o zle ]] && zle reset-prompt
+  fi
+}
+
+fkpp() {
+  local pid
+  # 1. Define the two commands
+  local user_cmd="ps -u $USER -o pid,ppid,pcpu,pmem,comm"
+  local deep_cmd="ps -ax -o pid,ppid,pcpu,pmem,comm"
+
+  # 2. Setup Doom One Header
+  local header=$(print -P "%F{magenta}[Alt-D] Deep Scan | [TAB] Multi | [ENT] Kill -9%f")
+
+  # 3. Execution with dynamic reload
+  pid=$(eval "$user_cmd" | sed 1d | fzf -m \
+    --ansi \
+    --height 45% --reverse --border=double \
+    --header-label=" 💀 KILL RADAR " \
+    --header="$header" \
+    --color="bg+:#30343c,bg:#282c34,fg:#bbc2cf,header:#ff6c6b,info:#98be65,pointer:#c678dd,marker:#98be65,prompt:#a9a1e1,hl:#ecbe7b,hl+:#ecbe7b,border:#464b5d,label:#ff6c6b" \
+    --preview 'ps -p {1} -o pid,ppid,user,%cpu,%mem,start,time,command' \
+    --preview-window="top,4,wrap" \
+    --bind "alt-d:reload($deep_cmd | sed 1d)+change-prompt(🌊 DEEP SCAN > )" \
+    | awk '{print $1}')
+
+  if [[ -n "$pid" ]]; then
+    # Try standard kill; if it fails (permission), suggest sudo
+    echo "$pid" | xargs kill -9 2>/dev/null || {
+      print -P "%F{red}Permission denied. Some processes require sudo.%f"
+    }
+    [[ -o zle ]] && zle reset-prompt
+  fi
+}
+
+fk() {
+  local pid
+
+  # Only show the magenta instruction row
+  local header=$(print -P "%F{magenta}[TAB] Multi-select | [ENT] Kill -9%f")
+
+  # Get processes and pipe to fzf
+  # Use 'ps -u $USER' to only show your own processes by default
+  pid=$(ps -u "$USER" -o pid,ppid,pcpu,pmem,comm | sed 1d | fzf -m \
+    --ansi \
+    --height 45% --reverse --border=double \
+    --header-label=" 💀 KILL RADAR " \
+    --header="$header" \
+    --color="bg+:#30343c,bg:#282c34,fg:#bbc2cf,header:#ff6c6b,info:#98be65,pointer:#c678dd,marker:#98be65,prompt:#a9a1e1,hl:#ecbe7b,hl+:#ecbe7b,border:#464b5d,label:#ff6c6b" \
+    --preview 'ps -p {1} -o pid,ppid,user,%cpu,%mem,start,time,command' \
+    --preview-window="top,4,wrap" \
+    | awk '{print $1}')
+
+  if [[ -n "$pid" ]]; then
+    # Kill all selected PIDs
+    echo "$pid" | xargs kill -9
+    echo "Terminated: ${(j:, :)pid}"
+    [[ -o zle ]] && zle reset-prompt
+  fi
+}
+# Register widget and bind to Ctrl+K
+zle -N fk_widget fk
+bindkey '^K' fk_widget
+
+# }}}2
 
 # Widget Registration
 zle -N fdr_widget fdr
