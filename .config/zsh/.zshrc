@@ -98,6 +98,12 @@ setopt INC_APPEND_HISTORY       # Immediately append commands to history file.
 setopt HIST_IGNORE_ALL_DUPS     # Never add duplicate entries.
 setopt HIST_IGNORE_SPACE        # Ignore commands that start with a space.
 setopt HIST_REDUCE_BLANKS       # Remove unnecessary blank lines.
+
+setopt HIST_VERIFY # Don't execute immediately; reload the expanded line for editing
+# In zsh, history expansion commands (like ^old^new) are not stored as
+# literally typed by default. Instead, the shell expands them into the full
+# command and saves that to your history
+
 # }}}
 
 # VI-MODE & CURSOR LOGIC {{{
@@ -212,7 +218,6 @@ ff() {
   [[ -o zle ]] && zle reset-prompt
 }
 # }}}2 "ff
-
 # fk: Fuzzy process killer (ctrl+K) {{{2
 fkill() {
     local pid
@@ -318,6 +323,20 @@ autoload edit-command-line; zle -N edit-command-line # Edit line in vim with ctr
 
 # }}}
 
+## CUSTOM FUNCTIONS (Lazy Loaded) {{{
+#fpath=( ~/.config/zsh/functions $fpath )
+#
+## Autoload all files in that directory
+## This tells Zsh these functions exist without reading their code yet
+#autoload -Uz ~/.config/zsh/functions/*(:t)
+#
+## Register the widgets (Zsh needs to know they are ZLE widgets)
+#zle -N fdr_widget fdr
+#zle -N ff_widget ff
+#zle -N fk_widget fk
+#autoload -Uz edit-command-line; zle -N edit-command-line
+## }}}
+
 # KEYBINDINGS {{{
 # --- Command Shortcuts (String injection) ---
 bindkey -s '^o' 'lfcd\n'        # Ctrl+O: Open LF directory switcher
@@ -336,7 +355,9 @@ bindkey '^P' ff_widget          # Ctrl+P: Search/Open file in Vim
 
 # Load aliases and shortcuts if existent.
 [ -f "$HOME/.config/zsh/aliasrc" ] && source "$HOME/.config/zsh/aliasrc"
+[ -f "$HOME/.config/zsh/functionrc" ] && source "$HOME/.config/zsh/functionrc"
 #[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc"
+#[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/functionrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/functionrc"
 #[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc"
 #[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/zshnameddirrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/zshnameddirrc"
 
@@ -367,6 +388,20 @@ ZSH_SH="/opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 [ -f "$ZSH_AS" ] && source "$ZSH_AS"
 [ -f "$ZSH_SH" ] && source "$ZSH_SH" # Must be last!
 # 2}}} "Plugins
+
+## PLUGINS (Delayed Load) {{{
+#_lazy_load_plugins() {
+#    # Source only if files exist
+#    [[ -f "$ZSH_AS" ]] && source "$ZSH_AS"
+#    [[ -f "$ZSH_SH" ]] && source "$ZSH_SH"
+#
+#    # Clean up: remove this function so it doesn't run again
+#    add-zsh-hook -d precmd _lazy_load_plugins
+#}
+#
+#autoload -Uz add-zsh-hook
+#add-zsh-hook precmd _lazy_load_plugins
+## }}}
 
 # 1}}}
 

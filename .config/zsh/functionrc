@@ -1,0 +1,86 @@
+#!/usr/bin/env bash
+
+# --- SHELL INTEGRATION ---
+
+# Interactive History: Search and select a previous command to run
+# Needs to be a function to use 'print -z' (Zsh)
+fh() {
+  local cmd
+  # 1. fc -rl 1 lists full history starting from the first entry, reversed (newest first)
+  # 2. awk removes the history numbers and duplicate entries
+  # 3. fzf opens the picker; print -z puts the selected command on your prompt without running it
+  cmd=$(fc -rl 1 | awk '{ cmd=$0; sub(/^[ \t]*[0-9]+\**[ \t]+/, "", cmd); if (!seen[cmd]++) print cmd }' | fzf --height 40% --reverse) && print -z "$cmd"
+}
+
+# Temporarily decrypts 2fa database to generate a code
+2fac() {
+  gpg -d ~/.2fa.gpg > ~/.2fa
+  2fa "$1"
+  rm ~/.2fa
+}
+
+# Peek at a specific Makefile target's recipe and help comment
+mpeek() {
+  [[ -z "$1" ]] && { echo "Usage: mpeek <target>"; return 1; }
+  sed -n "/^$1:/,/^[a-zA-Z0-9_-]\+:/p" Makefile | head -n -1
+}
+
+# --- DIFF WRAPPERS ---
+
+# Visual Diff: Opens directories in DirDiff or files in vimdiff
+vdiff () {
+  if [ "${#}" -ne 2 ] ; then
+    echo "Usage: vdiff <path1> <path2>"
+    return 1
+  fi
+
+  local left="${1}"
+  local right="${2}"
+
+  if [ -d "${left}" ] && [ -d "${right}" ]; then
+      vim +"DirDiff ${left} ${right}"
+  else
+      vim -d "${left}" "${right}"
+  fi
+}
+
+# Side-by-Side Diff: Colorized with terminal width detection
+sdiffc() {
+  local suppress="-s"
+
+  # Check if the first argument is '-a' (show all)
+  if [[ "$1" == "-a" ]]; then
+    suppress=""
+    shift # Remove '-a' so $1 and $2 become the filenames
+  fi
+
+  if [ "$#" -ne 2 ]; then
+    echo "Usage: sdiffc [-a] file1 file2"
+    echo "  -a : Show all lines (no suppression)"
+    return 1
+  fi
+
+  # Run sdiff with dynamic width and optional suppression
+  sdiff -w $(tput cols) $suppress "$1" "$2" | colordiff
+}
+
+# icdiff Wrapper: Line numbers and color highlighting
+icdiffc() {
+  local highlight=""
+  local args=()
+
+  # Parse arguments
+  for arg in "$@"; do
+    if [[ "$arg" == "-h" ]]; then
+      highlight="--highlight"
+    else
+      args+=("$arg")
+    fi
+  done
+
+  # use 'command icdiff' to avoid an infinite loop calling the function itself
+  command icdiff --line-numbers --cols=$(tput cols) $highlight "${args[@]}"
+}
+
+# vim: set foldlevel=99:
+

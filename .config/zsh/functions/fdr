@@ -1,0 +1,15 @@
+local dir
+local base_cmd="fd -u --type d --follow --exclude .git"
+local init_cmd="$base_cmd --max-depth 2"
+
+dir=$(eval "$init_cmd" | fzf --multi --height 80% --reverse --border=double \
+  --header-label=" 📂 SPEED NAV " --prompt="λ " \
+  --header="[Alt-D] Deep Scan | [TAB] Multi | [ENT] CD | [?] Preview" \
+  --color="bg+:#30343c,bg:#282c34,fg:#bbc2cf,header:#51afef,info:#98be65,pointer:#c678dd,marker:#98be65,prompt:#a9a1e1,hl:#ecbe7b,hl+:#ecbe7b,border:#464b5d,label:#da8548" \
+  --preview 'eza -aT -L 1 --color=always --icons {} 2>/dev/null' \
+  --bind "alt-d:reload($base_cmd)+change-prompt(🌊 DEEP SEARCH > )" \
+  --bind "?:toggle-preview" --preview-window="right,50%,hidden,wrap")
+
+if [[ -z "$dir" ]]; then [[ -o zle ]] && zle redisplay; return 0; fi
+cd "$(echo "$dir" | head -n 1)"
+[[ -o zle ]] && zle reset-prompt

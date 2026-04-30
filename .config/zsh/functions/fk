@@ -1,0 +1,18 @@
+local pid
+local header=$(print -P "%F{magenta}[TAB] Multi-select | [ENT] Kill -9%f")
+
+pid=$(ps -u "$USER" -o pid,ppid,pcpu,pmem,comm | sed 1d | fzf -m \
+  --ansi \
+  --height 45% --reverse --border=double \
+  --header-label=" 💀 KILL RADAR " \
+  --header="$header" \
+  --color="bg+:#30343c,bg:#282c34,fg:#bbc2cf,header:#ff6c6b,info:#98be65,pointer:#c678dd,marker:#98be65,prompt:#a9a1e1,hl:#ecbe7b,hl+:#ecbe7b,border:#464b5d,label:#ff6c6b" \
+  --preview 'ps -p {1} -o pid,ppid,user,%cpu,%mem,start,time,command' \
+  --preview-window="top,4,wrap" \
+  | awk '{print $1}')
+
+if [[ -n "$pid" ]]; then
+  echo "$pid" | xargs kill -9
+  echo "Terminated: ${(j:, :)pid}"
+  [[ -o zle ]] && zle reset-prompt
+fi

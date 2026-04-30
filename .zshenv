@@ -36,10 +36,28 @@ export READER="xpdf"
 export VIDEO="mpv"
 #export IMAGE="sxiv"
 export PAGER="less"
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-#export MANPAGER="nvim -c 'set ft=man' -"
 export BUKUSERVER_PER_PAGE=100
 export GHLENABLECOLOR=1
+
+
+# Support colors in less
+export LESS_TERMCAP_mb=$'\e[1;31m'
+export LESS_TERMCAP_md=$'\e[1;31m'
+export LESS_TERMCAP_me=$'\e[0m'
+export LESS_TERMCAP_se=$'\e[0m'
+export LESS_TERMCAP_so=$'\e[1;33;44m'
+export LESS_TERMCAP_ue=$'\e[0m'
+export LESS_TERMCAP_us=$'\e[4;1;32m'
+export LESS_TERMCAP_mr=$'\e[7m'
+export LESS_TERMCAP_mh=$'\e[2m'
+export LESS_TERMCAP_ZN=$'\e[74m'
+export LESS_TERMCAP_ZV=$'\e[75m'
+export LESS_TERMCAP_ZO=$'\e[73m'
+export LESS_TERMCAP_ZW=$'\e[75m'
+#export MANPAGER='less'
+# Alternatively set one of
+#export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+#export MANPAGER="nvim -c 'set ft=man' -"
 
 # $HOME Clean-up:
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -57,6 +75,7 @@ export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 export ANSIBLE_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/ansible/ansible.cfg"
 export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc-2.0"
 export LESSHISTFILE="-"
+#export TWFA_CONFIG="${XDG_DATA_HOME:-$HOME/.local/share}/keepass"
 
 # Other program settings:
 export REFER="$HOME/documents/referbib"
@@ -64,6 +83,7 @@ export BACKUP_VOLUME_PATH="/Volumes/samsung-bar/backup"
 export SDCV_PAGER='bat --pager "less -RF"'
 #export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
 export FZF_DEFAULT_OPTS="--color=dark"
+export BAT_THEME="OneHalfDark"
 #export LESS=-R
 
 # This is the list for lf icons:
@@ -228,3 +248,4 @@ ex=:\
 *.pdf=:\
 *.nix=:\
 "
+

@@ -1,0 +1,15 @@
+local file
+local base_cmd="fd -u --type f --follow --exclude .git"
+local init_cmd="$base_cmd --max-depth 2"
+
+file=$(eval "$init_cmd" | fzf --multi --height 85% --reverse --border=double \
+  --header-label=" 🔍 SPEED RADAR " --prompt="λ " \
+  --header="[Alt-D] Deep Scan | [TAB] Multi | [?] Toggle Preview" \
+  --color="bg+:#30343c,bg:#282c34,fg:#bbc2cf,header:#c678dd,info:#51afef,pointer:#da8548,marker:#98be65,prompt:#a9a1e1,hl:#ecbe7b,hl+:#ecbe7b,border:#464b5d,label:#da8548" \
+  --preview 'bat --color=always --style=numbers --line-range :30 {} 2>/dev/null' \
+  --bind "alt-d:reload($base_cmd)+change-prompt(🌊 DEEP SCAN > )" \
+  --bind "?:toggle-preview" --preview-window="right,60%,hidden,wrap")
+
+if [[ -z "$file" ]]; then [[ -o zle ]] && zle redisplay; return 0; fi
+echo "$file" | xargs -o vim
+[[ -o zle ]] && zle reset-prompt

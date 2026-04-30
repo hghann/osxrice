@@ -1,24 +1,7 @@
 #!/bin/sh
 
-vdiff () {
-    if [ "${#}" -ne 2 ] ; then
-        echo "vdiff requires two arguments"
-        echo "  comparing dirs:  vdiff dir_a dir_b"
-        echo "  comparing files: vdiff file_a file_b"
-        return 1
-    fi
-
-    local left="${1}"
-    local right="${2}"
-
-    if [ -d "${left}" ] && [ -d "${right}" ]; then
-        vim +"DirDiff ${left} ${right}"
-    else
-        vim -d "${left}" "${right}"
-    fi
-}
-
 # Use neovim for vim if present.
+#[ -x "$(command -v nvim)" ] && alias vim="nvim --listen /tmp/nvim.pipe" vimdiff="nvim -d"
 [ -x "$(command -v nvim)" ] && alias vim="nvim" vimdiff="nvim -d"
 
 # miscellaneous
@@ -45,30 +28,30 @@ alias \
 	.5='cd ../../../../..'
 
 # brew
-# update all brew pkgs
-alias bsyu='brew update -v && \
-            brew upgrade -v --display-times --greedy && \
-            brew bundle install -v --cleanup --file=$HOME/.config/homebrew/Brewfile && \
-            bfsyu && bclean'
-# create brewfile
-alias bfcrt='cd $HOME/.config/homebrew && brew bundle dump --describe && cd'
-# update brewfile = capture system state
-alias bfsyu='cd $HOME/.config/homebrew && \
-             brew bundle dump -vf --all --describe && \
-             cd -'
-# remove orphaned packages (added --prune)
-alias bclean='brew autoremove && brew cleanup --prune=all && brew doctor -v'
-# list dependencies
-alias bdepls='brew deps -n --tree --installed --annotate'
 alias bls='brew list -1 --full-name'
 alias boutdtd='brew outdated -v'
+# list dependencies
+alias bdepls='brew deps -n --tree --installed --annotate'
+alias bpurge='brew uninstall --zap "$@" && brew autoremove && brew cleanup'
+
+# [Legacy] Full maintenance suite (Now handled by script: ~/.local/bin/brew-up)
+# alias bsyu='brew update -v && (brew upgrade -v --display-times --greedy || true) && \
+#           brew bundle install -v --cleanup --file=$HOME/.config/homebrew/Brewfile && \
+#           bfsyu && bclean'
+
+# Capture current system state to Brewfile
+alias bfcrt='(cd "$HOME/.config/homebrew" && brew bundle dump --describe)'
+# Force update/overwrite Brewfile (Sync state)
+alias bfsyu='(cd "$HOME/.config/homebrew" && brew bundle dump -vf --all --describe)'
+# Manual deep clean (Remove orphans, prune cache, run health check)
+alias bclean='brew autoremove && brew cleanup --prune=all && brew doctor -v'
 
 # Change "ls" to "eza"
 alias \
-	ls='eza -lah --color=always --group-directories-first --git' \
+	ls='eza -lahgo --color=always --group-directories-first --git' \
 	la='eza -a --color=always --group-directories-first --git' \
 	ll='eza -l --color=always --group-directories-first --git' \
-	lt='eza -aT --color=always --group-directories-first --git' \
+	lt='eza -aT --color=always --group-directories-first --git -I ".git"' \
 	l.='eza -a | egrep "^\."' \
     exa='eza'
 
@@ -102,13 +85,13 @@ alias \
 	b='brew' \
 	z='xpdf' \
 	nb='newsboat' \
-  tasktui="taskwarrior-tui" \
+    tasktui="taskwarrior-tui" \
 	scim='sc-im' \
 	ytdlp='cd $HOME/downloads/ytdlp; yt-dlp' \
 	sdcv='sdcvrun' \
 	YT="youtube-viewer" \
 	pf="fzf --preview='less {}' --bind shift-up:preview-page-up,shift-down:preview-page-down"
-  pdfcat=""
+#pdfcat=""
 
 # Adding flags
 alias \
@@ -116,12 +99,12 @@ alias \
 	vifm='./.config/vifm/scripts/vifmrun' \
 	ncmpcpp='ncmpcpp ncmpcpp_directory=$HOME/.config/ncmpcpp/' \
 	mocp='mocp -M "$XDG_CONFIG_HOME"/moc -O MOCDir="$XDG_CONFIG_HOME"/moc' \
-	lynx='lynx -cfg=~/.config/lynx/lynx.cfg -lss=~/.config/lynx/lynx.lss -vikeys' \
+	lynx='lynx -cfg=~/.config/lynx/lynx.cfg -lss=~/.config/lynx/lynx.lss -vikeys'
 #lf='/usr/local/bin/lfrun'
 
 # GnuPG encryption
-alias gpg-check="gpg2 --keyserver-options auto-key-retrieve --verify" # verify signature for isos
-alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys" # receive the key of a developer
+alias gpg-check="gpg2 --keyserver-options auto-key-retrieve --verify"           # verify signature for isos
+alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"  # receive the key of a developer
 
 # Program Specific Aliases
 # remind
@@ -157,7 +140,8 @@ alias \
 	push='git push origin' \
 	status='git status' \
 	tag='git tag' \
-	newtag='git tag -a'
+	newtag='git tag -a' \
+  git-blame="git log --format='%ae' | sort -u | cat"
 # yt-dlp
 alias \
 	ydl="yt-dlp -x --audio-format mp3 -a $HOME/Downloads/ytdlp/list" \
@@ -185,3 +169,6 @@ alias wsa='wget --mirror --convert-links --page-requisites --no-parent -P $HOME/
 alias \
 	gw='cd ~/.blog/SteveSite/ && rm -f ~/.blog/SteveSite/dst/.files && ~/.blog/SteveSite/bin/ssg6 src dst "Steve Blog" "https://hghann.github.io/" && rsync -av ~/.blog/SteveSite/dst/ ~/.blog/SteveSite/'
 	dw='cd ~/.blog/SteveSite/ && rm -f ~/.blog/SteveSite/dst/.files && ~/.blog/SteveSite/bin/ssg6 src dst "hghanns Blog" "https://hghann.github.io/" && rsync -av ~/.blog/SteveSite/dst/ ~/.blog/SteveSite/ && git add . && git commit -m "minor edits" && git push -u origin master'
+
+# vim: set foldlevel=99:
+
